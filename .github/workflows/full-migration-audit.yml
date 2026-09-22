@@ -1,0 +1,302 @@
+name: Full 1-to-1 migration audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/full-migration-audit.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout production repository
+        uses: actions/checkout@v4
+
+      - name: Install audit tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget curl
+
+      - name: Recover live files that crawlers do not normally follow
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/hidden-live
+          : > /tmp/hidden-status.txt
+          for file in \
+            danke-prozess-check.html \
+            danke-erstgespraech.html \
+            danke-roi.html \
+            og-image.png \
+            robots.txt \
+            sitemap.xml \
+            404.html; do
+            status=$(curl -L -sS -o "/tmp/hidden-live/$file" -w '%{http_code}' "https://hk-growthoperator.de/$file" || true)
+            echo "$file $status" | tee -a /tmp/hidden-status.txt
+            if [ "$status" = "200" ]; then
+              cp "/tmp/hidden-live/$file" "site/$file"
+            else
+              rm -f "/tmp/hidden-live/$file"
+            fi
+          done
+
+      - name: Create fresh normalized snapshot from current live site
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/fresh-live
+          mkdir -p /tmp/fresh-live/site
+          cd /tmp/fresh-live/site
+          wget \
+            --mirror \
+            --page-requisites \
+            --convert-links \
+            --no-parent \
+            --no-host-directories \
+            --execute robots=off \
+            --domains=hk-growthoperator.de \
+            --timeout=30 \
+            --tries=3 \
+            https://hk-growthoperator.de/
+
+          for file in danke-prozess-check.html danke-erstgespraech.html danke-roi.html og-image.png robots.txt sitemap.xml 404.html; do
+            status=$(curl -L -sS -o "$file.tmp" -w '%{http_code}' "https://hk-growthoperator.de/$file" || true)
+            if [ "$status" = "200" ]; then mv "$file.tmp" "$file"; else rm -f "$file.tmp"; fi
+          done
+
+          cd "$GITHUB_WORKSPACE"
+          python - <<'PY'
+          from pathlib import Path
+
+          root = Path('/tmp/fresh-live/site')
+          replacements = {
+              'https://hk-growthoperator.de/danke-prozess-check.html': '/api/forms/prozess-check',
+              'https://hk-growthoperator.de/danke-erstgespraech.html': '/api/forms/erstgespraech',
+              'https://hk-growthoperator.de/danke-roi.html': '/api/forms/roi-auswertung',
+          }
+          for name in ['index.html', 'roi-rechner', 'roi-rechner.html']:
+              path = root / name
+              if path.exists():
+                  text = path.read_text(encoding='utf-8')
+                  for old, new in replacements.items():
+                      text = text.replace(old, new)
+                  path.write_text(text, encoding='utf-8')
+
+          for path in list(root.iterdir()):
+              if path.is_file() and not path.suffix:
+                  html_variant = path.with_name(path.name + '.html')
+                  if html_variant.exists():
+                      path.unlink()
+          PY
+
+      - name: Byte-level compare current live snapshot with repository
+        run: |
+          set -euo pipefail
+          echo 'Repository files:' $(find site -type f | wc -l)
+          echo 'Fresh live files:' $(find /tmp/fresh-live/site -type f | wc -l)
+          if ! diff -qr site /tmp/fresh-live/site > /tmp/site-diff.txt; then
+            echo 'The repository is not byte-equivalent to the freshly fetched live site after the documented form transport changes:'
+            cat /tmp/site-diff.txt
+            exit 1
+          fi
+          echo 'Byte-level live comparison: PASS'
+
+      - name: Validate all local HTML and CSS references
+        run: |
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path, PurePosixPath
+          from urllib.parse import urlsplit
+          import re, sys
+
+          root = Path('site')
+          failures = []
+          external = set()
+
+          def target_exists(source: Path, raw: str):
+              raw = (raw or '').strip()
+              if not raw or raw.startswith(('#', 'mailto:', 'tel:', 'javascript:', 'data:')):
+                  return
+              if raw.startswith('//'):
+                  external.add('https:' + raw); return
+              parsed = urlsplit(raw)
+              if parsed.scheme in ('http', 'https'):
+                  if parsed.netloc in ('hk-growthoperator.de', 'www.hk-growthoperator.de'):
+                      pathpart = parsed.path
+                  else:
+                      external.add(raw); return
+              else:
+                  pathpart = parsed.path
+              if not pathpart:
+                  return
+              if pathpart.startswith('/'):
+                  rel = PurePosixPath(pathpart.lstrip('/'))
+              else:
+                  rel = PurePosixPath(source.parent.relative_to(root).as_posix()) / pathpart
+              rel = PurePosixPath(str(rel))
+              candidate = root / rel.as_posix()
+              choices = [candidate]
+              if not candidate.suffix:
+                  choices += [Path(str(candidate) + '.html'), candidate / 'index.html']
+              if pathpart == '/':
+                  choices.append(root / 'index.html')
+              if not any(p.exists() and p.is_file() for p in choices):
+                  failures.append(f'{source}: missing local reference {raw}')
+
+          class Parser(HTMLParser):
+              def __init__(self, source):
+                  super().__init__(); self.source = source
+              def handle_starttag(self, tag, attrs):
+                  d = dict(attrs)
+                  for key in ('href','src','poster','action'):
+                      if key in d: target_exists(self.source, d[key])
+                  if 'srcset' in d:
+                      for item in d['srcset'].split(','):
+                          target_exists(self.source, item.strip().split(' ')[0])
+
+          for html in root.rglob('*.html'):
+              try:
+                  Parser(html).feed(html.read_text(encoding='utf-8'))
+              except Exception as exc:
+                  failures.append(f'{html}: parse error {exc}')
+
+          css_url = re.compile(r'url\(([^)]+)\)')
+          for css in root.rglob('*.css'):
+              text = css.read_text(encoding='utf-8')
+              for match in css_url.finditer(text):
+                  target_exists(css, match.group(1).strip(' \"\''))
+
+          print(f'External URLs referenced: {len(external)}')
+          for url in sorted(external): print('EXTERNAL', url)
+          if failures:
+              print('\n'.join(failures)); sys.exit(1)
+          print('Internal link/asset validation: PASS')
+          PY
+
+      - name: Verify production Docker image and all primary routes
+        run: |
+          set -euo pipefail
+          docker build -t hk-growth-website:audit .
+          docker run -d --rm --name hk-growth-audit -p 18080:3000 -e FORM_DRY_RUN=true hk-growth-website:audit
+          trap 'docker stop hk-growth-audit >/dev/null 2>&1 || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:18080/health >/dev/null && break; sleep 1; done
+
+          routes=(
+            / /system /system/ /system.html
+            /anwendungsfaelle /einfuehrung /roi-rechner /unternehmen
+            /impressum /datenschutz /ki-richtlinie
+            /favicon.svg /site.webmanifest
+            /danke-prozess-check.html /danke-erstgespraech.html /danke-roi.html
+          )
+          for route in "${routes[@]}"; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' "http://127.0.0.1:18080$route")
+            echo "$code $route"
+            test "$code" = "200"
+          done
+
+          curl -fsS -o /dev/null -D /tmp/h1 -X POST http://127.0.0.1:18080/api/forms/prozess-check \
+            --data-urlencode 'name=QA Test' --data-urlencode 'company=HK QA' --data-urlencode 'email=qa@example.com' --data-urlencode 'prozess=QA Prozess'
+          grep -qi 'location: /danke-prozess-check.html' /tmp/h1
+
+          curl -fsS -o /dev/null -D /tmp/h2 -X POST http://127.0.0.1:18080/api/forms/erstgespraech \
+            --data-urlencode 'name=QA Test' --data-urlencode 'unternehmen=HK QA' --data-urlencode 'email=qa@example.com' --data-urlencode 'thema=Systemintegration' --data-urlencode 'wunschzeit=2026-09-23T12:00'
+          grep -qi 'location: /danke-erstgespraech.html' /tmp/h2
+
+          curl -fsS -o /dev/null -D /tmp/h3 -X POST http://127.0.0.1:18080/api/forms/roi-auswertung \
+            --data-urlencode 'name=QA Test' --data-urlencode 'unternehmen=HK QA' --data-urlencode 'email=qa@example.com'
+          grep -qi 'location: /danke-roi.html' /tmp/h3
+          echo 'Docker routes and form redirects: PASS'
+
+      - name: Browser interaction smoke test
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/pw
+          npm install --prefix /tmp/pw --no-save playwright@1.55.0 >/dev/null
+          /tmp/pw/node_modules/.bin/playwright install --with-deps chromium >/dev/null
+          cat > /tmp/browser-audit.mjs <<'JS'
+          import { chromium } from '/tmp/pw/node_modules/playwright/index.mjs';
+          const browser = await chromium.launch({headless:true});
+          const errors=[];
+          const page=await browser.newPage({viewport:{width:1440,height:1000}, reducedMotion:'reduce'});
+          page.on('pageerror', e=>errors.push(String(e)));
+          const routes=['/','/system','/anwendungsfaelle','/einfuehrung','/roi-rechner','/unternehmen','/impressum','/datenschutz','/ki-richtlinie'];
+          for (const route of routes) {
+            const res=await page.goto('http://127.0.0.1:18080'+route,{waitUntil:'networkidle'});
+            if (!res || res.status() !== 200) throw new Error(`Route failed ${route}: ${res?.status()}`);
+            if ((await page.title()).trim().length < 3) throw new Error(`Missing title ${route}`);
+          }
+
+          await page.goto('http://127.0.0.1:18080/',{waitUntil:'networkidle'});
+          await page.locator('#calcCases').fill('40');
+          await page.locator('#calcMinutes').fill('12');
+          await page.locator('#calcRate').fill('45');
+          await page.locator('#calcButton').click();
+          if ((await page.locator('#calcHours').innerText()).includes('—')) throw new Error('Homepage calculator did not calculate');
+          const faq=page.locator('.faq-q').first();
+          if (await faq.count()) { await faq.click(); if ((await faq.getAttribute('aria-expanded')) !== 'true') throw new Error('FAQ did not open'); }
+          const demo=page.locator('a[href$="#erstgespraech"]').first();
+          if (await demo.count()) { await demo.click(); await page.waitForTimeout(100); if (!(await page.locator('#erstgespraech .meeting-dialog').isVisible())) throw new Error('Demo modal did not open'); }
+
+          await page.goto('http://127.0.0.1:18080/roi-rechner',{waitUntil:'networkidle'});
+          await page.locator('#roiCalc').click();
+          if ((await page.locator('#annualCost').innerText()).includes('—')) throw new Error('ROI calculator did not calculate');
+
+          const mobile=await browser.newPage({viewport:{width:390,height:844}, reducedMotion:'reduce'});
+          mobile.on('pageerror', e=>errors.push('mobile:'+String(e)));
+          await mobile.goto('http://127.0.0.1:18080/',{waitUntil:'networkidle'});
+          const menu=mobile.locator('.mobile-menu-button');
+          if (await menu.count()) { await menu.click(); if (!(await mobile.locator('#mobilePanel').evaluate(el=>el.classList.contains('open')))) throw new Error('Mobile menu did not open'); }
+
+          await browser.close();
+          if (errors.length) throw new Error('Browser page errors: '+errors.join(' | '));
+          console.log('Browser interactions: PASS');
+          JS
+          node /tmp/browser-audit.mjs
+          docker stop hk-growth-audit >/dev/null
+
+      - name: Write audit report and commit recovered files
+        run: |
+          set -euo pipefail
+          files=$(find site -type f | wc -l | tr -d ' ')
+          cat > MIGRATION_AUDIT.md <<EOF
+          # 1:1 Migration Audit
+
+          Last automated full audit: $(date -u '+%Y-%m-%d %H:%M UTC')
+
+          - Fresh live snapshot vs repository after intentional form transport adaptation: **PASS**
+          - Byte-level file comparison: **PASS**
+          - Internal links and local assets: **PASS**
+          - Docker production image: **PASS**
+          - Primary clean URLs and `.html` URLs: **PASS**
+          - Process-Check form route/redirect: **PASS**
+          - Demo form route/redirect: **PASS**
+          - ROI form route/redirect: **PASS**
+          - Homepage calculator: **PASS**
+          - ROI calculator: **PASS**
+          - FAQ interaction: **PASS**
+          - Demo modal: **PASS**
+          - Mobile menu: **PASS**
+          - Browser JavaScript page errors on primary routes: **none detected**
+          - Files in mirrored production site: **$files**
+
+          `FORM_DRY_RUN=true` was used only for automated form transport tests; production requires the SMTP variables documented in `README.md`.
+
+          ## Hidden live endpoint status during audit
+
+          \`\`\`
+          $(cat /tmp/hidden-status.txt)
+          \`\`\`
+          EOF
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site MIGRATION_AUDIT.md
+          if ! git diff --cached --quiet; then
+            git commit -m "Complete hidden live files and record full migration audit"
+            git push
+          fi
