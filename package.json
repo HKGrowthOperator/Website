@@ -7,7 +7,7 @@
     "start": "node server.mjs"
   },
   "dependencies": {
-    "express": "4.21.2",
-    "nodemailer": "6.10.1"
+    "express": "4.22.3",
+    "nodemailer": "10.0.8"
   }
 }
