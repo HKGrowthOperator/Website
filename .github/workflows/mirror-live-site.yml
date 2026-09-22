@@ -1,0 +1,59 @@
+name: Mirror current live website
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/mirror-live-site.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install mirror tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget
+
+      - name: Mirror hk-growthoperator.de
+        run: |
+          rm -rf site
+          mkdir -p site
+          cd site
+          wget \
+            --mirror \
+            --page-requisites \
+            --convert-links \
+            --no-parent \
+            --no-host-directories \
+            --execute robots=off \
+            --domains=hk-growthoperator.de \
+            --timeout=30 \
+            --tries=3 \
+            https://hk-growthoperator.de/
+
+      - name: Verify homepage exists
+        run: |
+          test -f site/index.html
+          echo "Mirrored files: $(find site -type f | wc -l)"
+
+      - name: Commit mirrored website
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site
+          if git diff --cached --quiet; then
+            echo "No website changes to commit."
+            exit 0
+          fi
+          git commit -m "Mirror current hk-growthoperator.de live site"
+          git push
