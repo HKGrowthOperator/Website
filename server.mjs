@@ -59,15 +59,24 @@ function emailLooksValid(value) {
 
 function rateLimited(ip) {
   const now = Date.now();
-  const recent = (submissions.get(ip) || []).filter(ts => now - ts < rateWindowMs);
-  if (recent.length >= rateLimit) {
-    submissions.set(ip, recent);
-    return true;
+  const entry = submissions.get(ip);
+
+  if (!entry || now >= entry.resetAt) {
+    submissions.set(ip, { count: 1, resetAt: now + rateWindowMs });
+    return false;
   }
-  recent.push(now);
-  submissions.set(ip, recent);
-  return false;
+
+  entry.count += 1;
+  return entry.count > rateLimit;
 }
+
+const rateLimitCleanup = setInterval(() => {
+  const now = Date.now();
+  for (const [ip, entry] of submissions.entries()) {
+    if (now >= entry.resetAt) submissions.delete(ip);
+  }
+}, rateWindowMs);
+rateLimitCleanup.unref();
 
 function getTransporter() {
   const host = process.env.SMTP_HOST;
