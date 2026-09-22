@@ -38,8 +38,6 @@ jobs:
                   text = text.replace(old, new)
               path.write_text(text, encoding='utf-8')
 
-          # Wget mirrored both clean route files and .html variants. Keep the .html
-          # source files and let server.mjs serve them under the original clean URLs.
           root = Path('site')
           for path in root.iterdir():
               if path.is_file() and not path.suffix:
@@ -52,7 +50,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
 
       - name: Generate lockfile and verify server
         run: |
