@@ -1,0 +1,231 @@
+name: Final production migration verification
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/final-migration-verification.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout production repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Refresh production dependency lock and security audit
+        run: |
+          npm install --package-lock-only --ignore-scripts
+          npm ci --omit=dev
+          npm audit --omit=dev --audit-level=high
+          node --check server.mjs
+
+      - name: Recover non-crawled live production files
+        run: |
+          set -euo pipefail
+          : > /tmp/hidden-status.txt
+          for file in danke-prozess-check.html danke-erstgespraech.html danke-roi.html og-image.png robots.txt sitemap.xml 404.html; do
+            status=$(curl -L -sS -o "site/$file.tmp" -w '%{http_code}' "https://hk-growthoperator.de/$file")
+            echo "$file $status" | tee -a /tmp/hidden-status.txt
+            test "$status" = "200"
+            mv "site/$file.tmp" "site/$file"
+          done
+
+      - name: Fresh live snapshot and byte comparison
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/live
+          mkdir -p /tmp/live
+          cd /tmp/live
+          wget --mirror --page-requisites --convert-links --no-parent --no-host-directories --execute robots=off --domains=hk-growthoperator.de --timeout=30 --tries=3 https://hk-growthoperator.de/ >/dev/null 2>&1
+          for file in danke-prozess-check.html danke-erstgespraech.html danke-roi.html og-image.png robots.txt sitemap.xml 404.html; do
+            curl -L -fsS -o "$file" "https://hk-growthoperator.de/$file"
+          done
+          cd "$GITHUB_WORKSPACE"
+          python - <<'PY'
+          from pathlib import Path
+          root=Path('/tmp/live')
+          replacements={
+            'https://hk-growthoperator.de/danke-prozess-check.html':'/api/forms/prozess-check',
+            'https://hk-growthoperator.de/danke-erstgespraech.html':'/api/forms/erstgespraech',
+            'https://hk-growthoperator.de/danke-roi.html':'/api/forms/roi-auswertung',
+          }
+          for name in ['index.html','roi-rechner','roi-rechner.html']:
+            p=root/name
+            if p.exists():
+              s=p.read_text(encoding='utf-8')
+              for old,new in replacements.items(): s=s.replace(old,new)
+              p.write_text(s,encoding='utf-8')
+          for p in list(root.iterdir()):
+            if p.is_file() and not p.suffix and p.with_name(p.name+'.html').exists(): p.unlink()
+          PY
+          echo "repo files: $(find site -type f | wc -l)"
+          echo "live files: $(find /tmp/live -type f | wc -l)"
+          diff -qr site /tmp/live
+          echo 'LIVE BYTE COMPARISON PASS'
+
+      - name: Validate every local link and asset reference
+        run: |
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path, PurePosixPath
+          from urllib.parse import urlsplit
+          import re,sys
+          root=Path('site'); failures=[]
+          def check(source,raw):
+            raw=(raw or '').strip()
+            if not raw or raw.startswith(('#','mailto:','tel:','javascript:','data:')): return
+            if raw.startswith('//'): return
+            u=urlsplit(raw)
+            if u.scheme in ('http','https'):
+              if u.netloc not in ('hk-growthoperator.de','www.hk-growthoperator.de'): return
+              pp=u.path
+            else: pp=u.path
+            if not pp or pp.startswith('/api/forms/'): return
+            if pp.startswith('/'): rel=PurePosixPath(pp.lstrip('/'))
+            else: rel=PurePosixPath(source.parent.relative_to(root).as_posix())/pp
+            c=root/rel.as_posix(); choices=[c]
+            if not c.suffix: choices += [Path(str(c)+'.html'),c/'index.html']
+            if pp=='/': choices.append(root/'index.html')
+            if not any(x.exists() and x.is_file() for x in choices): failures.append(f'{source}: {raw}')
+          class P(HTMLParser):
+            def __init__(self,source): super().__init__(); self.source=source
+            def handle_starttag(self,tag,attrs):
+              d=dict(attrs)
+              for k in ('href','src','poster','action'):
+                if k in d: check(self.source,d[k])
+              if 'srcset' in d:
+                for x in d['srcset'].split(','): check(self.source,x.strip().split(' ')[0])
+          for p in root.rglob('*.html'): P(p).feed(p.read_text(encoding='utf-8'))
+          rx=re.compile(r'url\(([^)]+)\)')
+          for p in root.rglob('*.css'):
+            for m in rx.finditer(p.read_text(encoding='utf-8')): check(p,m.group(1).strip(' \"\''))
+          if failures:
+            print('\n'.join(failures)); sys.exit(1)
+          print('LOCAL REFERENCES PASS')
+          PY
+
+      - name: Build and start exact production container
+        run: |
+          docker build -t hk-growth-website:final .
+          docker run -d --rm --name hk-growth-final -p 18080:3000 -e FORM_DRY_RUN=true hk-growth-website:final
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:18080/health >/dev/null && exit 0; sleep 1; done
+          docker logs hk-growth-final
+          exit 1
+
+      - name: Verify production routes and forms
+        run: |
+          set -euo pipefail
+          routes=(/ /index.html /system /system/ /system.html /anwendungsfaelle /einfuehrung /roi-rechner /unternehmen /impressum /datenschutz /ki-richtlinie /favicon.svg /site.webmanifest /og-image.png /robots.txt /sitemap.xml /danke-prozess-check.html /danke-erstgespraech.html /danke-roi.html)
+          for route in "${routes[@]}"; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' "http://127.0.0.1:18080$route")
+            echo "$code $route"; test "$code" = 200
+          done
+          code=$(curl -sS -o /tmp/notfound -w '%{http_code}' http://127.0.0.1:18080/this-page-must-not-exist)
+          test "$code" = 404
+          for spec in \
+            "prozess-check|name=QA&company=HK&email=qa@example.com&prozess=Test|/danke-prozess-check.html" \
+            "erstgespraech|name=QA&unternehmen=HK&email=qa@example.com&thema=Systemintegration&wunschzeit=2026-09-23T12%3A00|/danke-erstgespraech.html" \
+            "roi-auswertung|name=QA&unternehmen=HK&email=qa@example.com|/danke-roi.html"; do
+            IFS='|' read -r form body target <<< "$spec"
+            curl -sS -o /dev/null -D /tmp/headers -X POST "http://127.0.0.1:18080/api/forms/$form" -H 'Content-Type: application/x-www-form-urlencoded' --data "$body"
+            grep -qi "location: $target" /tmp/headers
+          done
+          echo 'ROUTES + FORM TRANSPORT PASS'
+
+      - name: Browser interaction verification desktop and mobile
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/pw
+          npm install --prefix /tmp/pw --no-save playwright@1.55.0 >/dev/null
+          /tmp/pw/node_modules/.bin/playwright install --with-deps chromium >/dev/null
+          cat > /tmp/verify.mjs <<'JS'
+          import { chromium } from '/tmp/pw/node_modules/playwright/index.mjs';
+          const browser=await chromium.launch({headless:true});
+          const jsErrors=[];
+          const badResponses=[];
+          const page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
+          page.on('pageerror',e=>jsErrors.push(String(e)));
+          page.on('response',r=>{if(r.url().startsWith('http://127.0.0.1:18080')&&r.status()>=400)badResponses.push(`${r.status()} ${r.url()}`)});
+          const routes=['/','/system','/anwendungsfaelle','/einfuehrung','/roi-rechner','/unternehmen','/impressum','/datenschutz','/ki-richtlinie'];
+          for(const route of routes){const r=await page.goto('http://127.0.0.1:18080'+route,{waitUntil:'networkidle'});if(!r||r.status()!==200)throw new Error(`route ${route}`);if(!(await page.title()).trim())throw new Error(`title ${route}`)}
+          await page.goto('http://127.0.0.1:18080/',{waitUntil:'networkidle'});
+          await page.locator('#calcCases').fill('40');await page.locator('#calcMinutes').fill('12');await page.locator('#calcRate').fill('45');await page.locator('#calcButton').click();
+          if((await page.locator('#calcHours').innerText()).includes('—'))throw new Error('homepage calculator');
+          const faq=page.locator('.faq-q').first();await faq.click();if(await faq.getAttribute('aria-expanded')!=='true')throw new Error('faq');
+          const demo=page.locator('a[href$="#erstgespraech"]').first();await demo.click();
+          await page.locator('#erstgespraech').waitFor({state:'visible',timeout:3000});
+          await page.waitForFunction(()=>document.getElementById('erstgespraech')?.classList.contains('open'));
+          if((await page.locator('#erstgespraech').getAttribute('aria-hidden'))!=='false')throw new Error('demo aria');
+          await page.keyboard.press('Escape');await page.waitForFunction(()=>!document.getElementById('erstgespraech')?.classList.contains('open'));
+          await page.goto('http://127.0.0.1:18080/roi-rechner',{waitUntil:'networkidle'});await page.locator('#roiCalc').click();if((await page.locator('#annualCost').innerText()).includes('—'))throw new Error('roi calculator');
+          const mobile=await browser.newPage({viewport:{width:390,height:844},reducedMotion:'reduce'});mobile.on('pageerror',e=>jsErrors.push('mobile '+String(e)));await mobile.goto('http://127.0.0.1:18080/',{waitUntil:'networkidle'});const menu=mobile.locator('.mobile-menu-button');await menu.click();if(!(await mobile.locator('#mobilePanel').evaluate(el=>el.classList.contains('open'))))throw new Error('mobile menu');
+          await browser.close();
+          if(jsErrors.length)throw new Error('JS errors: '+jsErrors.join(' | '));
+          if(badResponses.length)throw new Error('local response errors: '+badResponses.join(' | '));
+          console.log('BROWSER INTERACTIONS PASS');
+          JS
+          node /tmp/verify.mjs
+
+      - name: Commit verified production snapshot and report
+        run: |
+          set -euo pipefail
+          docker stop hk-growth-final >/dev/null || true
+          files=$(find site -type f | wc -l | tr -d ' ')
+          cat > MIGRATION_AUDIT.md <<EOF
+          # HK Growth Website — 1:1 Migration Audit
+
+          Verified against the live website on $(date -u '+%Y-%m-%d %H:%M UTC').
+
+          ## Result
+
+          - Fresh live snapshot vs repository: **PASS**
+          - Byte-level website-file comparison after intentional Netlify-form transport replacement: **PASS**
+          - Non-crawled live files recovered: **PASS**
+          - Internal links and local assets: **PASS**
+          - Production dependency high-severity audit: **PASS**
+          - Node server syntax: **PASS**
+          - Docker production build: **PASS**
+          - Clean URLs and .html URLs: **PASS**
+          - robots.txt / sitemap.xml / OpenGraph image / webmanifest: **PASS**
+          - Custom 404 response: **PASS**
+          - Process-Check endpoint + success redirect: **PASS**
+          - Demo endpoint + success redirect: **PASS**
+          - ROI endpoint + success redirect: **PASS**
+          - Homepage calculator: **PASS**
+          - ROI calculator: **PASS**
+          - FAQ: **PASS**
+          - Demo modal open/close: **PASS**
+          - Mobile menu: **PASS**
+          - JavaScript errors on tested primary pages: **none detected**
+          - Local 4xx/5xx asset requests during browser test: **none detected**
+          - Production website files: **$files**
+
+          ## Hidden production files explicitly verified
+
+          \`\`\`
+          $(cat /tmp/hidden-status.txt)
+          \`\`\`
+
+          ## Deliberate infrastructure difference
+
+          The visible website is preserved. Netlify Forms are replaced by the local `/api/forms/*` handlers because the production host moves from Netlify to Coolify/Hetzner. Automated tests use `FORM_DRY_RUN=true`; real outbound email delivery still requires valid SMTP environment variables in Coolify.
+          EOF
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add site package-lock.json MIGRATION_AUDIT.md
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Finalize verified 1-to-1 production migration'
+          git pull --rebase origin main
+          git push origin main
