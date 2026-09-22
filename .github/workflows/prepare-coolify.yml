@@ -7,7 +7,12 @@ on:
       - main
     paths:
       - '.github/workflows/prepare-coolify.yml'
+      - 'site/**'
+      - 'server.mjs'
+      - 'Dockerfile'
+      - '.dockerignore'
       - 'package.json'
+      - 'package-lock.json'
 
 permissions:
   contents: write
@@ -23,6 +28,7 @@ jobs:
       - name: Patch forms for Coolify
         run: |
           python - <<'PY'
+          import re
           from pathlib import Path
 
           replacements = {
@@ -37,6 +43,8 @@ jobs:
               text = path.read_text(encoding='utf-8')
               for old, new in replacements.items():
                   text = text.replace(old, new)
+              text = text.replace(' data-netlify="true"', '')
+              text = re.sub(r' netlify-honeypot="[^"]*"', '', text)
               path.write_text(text, encoding='utf-8')
 
           root = Path('site')
@@ -71,5 +79,5 @@ jobs:
             echo "No preparation changes to commit."
             exit 0
           fi
-          git commit -m "Prepare mirrored website for Coolify production"
+          git commit -m "Prepare website for Coolify production"
           git push
