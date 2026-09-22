@@ -1,9 +1,17 @@
-FROM nginx:1.27-alpine
+FROM node:22-alpine
 
-COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
-COPY site/ /usr/share/nginx/html/
+WORKDIR /app
+ENV NODE_ENV=production
 
-EXPOSE 80
+COPY package*.json ./
+RUN npm ci --omit=dev
+
+COPY server.mjs ./server.mjs
+COPY site ./site
+
+EXPOSE 3000
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-  CMD wget -qO- http://127.0.0.1/health || exit 1
+  CMD wget -qO- http://127.0.0.1:3000/health || exit 1
+
+CMD ["node", "server.mjs"]
