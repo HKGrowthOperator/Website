@@ -1,0 +1,7 @@
+const megaItems=[...document.querySelectorAll('[data-mega-item]')];
+megaItems.forEach(item=>{const trigger=item.querySelector('.nav-trigger');if(!trigger)return;trigger.addEventListener('click',e=>{e.stopPropagation();const wasOpen=item.classList.contains('open');megaItems.forEach(other=>{other.classList.remove('open');other.querySelector('.nav-trigger')?.setAttribute('aria-expanded','false')});if(!wasOpen){item.classList.add('open');trigger.setAttribute('aria-expanded','true')}})});
+document.addEventListener('click',()=>megaItems.forEach(item=>{item.classList.remove('open');item.querySelector('.nav-trigger')?.setAttribute('aria-expanded','false')}));
+document.querySelectorAll('.mega-menu').forEach(menu=>menu.addEventListener('click',e=>e.stopPropagation()));
+const mobileMenuButton=document.querySelector('.mobile-menu-button'),mobilePanel=document.getElementById('mobilePanel');
+if(mobileMenuButton&&mobilePanel){mobileMenuButton.addEventListener('click',()=>{const open=mobilePanel.classList.toggle('open');mobileMenuButton.setAttribute('aria-expanded',String(open))});mobilePanel.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobilePanel.classList.remove('open');mobileMenuButton.setAttribute('aria-expanded','false')}))}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.1});document.querySelectorAll('.reveal').forEach(e=>io.observe(e));

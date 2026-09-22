@@ -1,0 +1,9 @@
+{
+  "name": "HK Growth OS",
+  "short_name": "HK Growth OS",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f4ef",
+  "theme_color": "#f4f4ef",
+  "icons": []
+}
