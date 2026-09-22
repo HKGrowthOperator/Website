@@ -1,0 +1,76 @@
+name: Prepare Coolify deployment
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/prepare-coolify.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Patch forms for Coolify
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          replacements = {
+              'https://hk-growthoperator.de/danke-prozess-check.html': '/api/forms/prozess-check',
+              'https://hk-growthoperator.de/danke-erstgespraech.html': '/api/forms/erstgespraech',
+              'https://hk-growthoperator.de/danke-roi.html': '/api/forms/roi-auswertung',
+          }
+
+          for path in [Path('site/index.html'), Path('site/roi-rechner'), Path('site/roi-rechner.html')]:
+              if not path.exists():
+                  continue
+              text = path.read_text(encoding='utf-8')
+              for old, new in replacements.items():
+                  text = text.replace(old, new)
+              path.write_text(text, encoding='utf-8')
+
+          # Wget mirrored both clean route files and .html variants. Keep the .html
+          # source files and let server.mjs serve them under the original clean URLs.
+          root = Path('site')
+          for path in root.iterdir():
+              if path.is_file() and not path.suffix:
+                  html_variant = path.with_name(path.name + '.html')
+                  if html_variant.exists():
+                      path.unlink()
+          PY
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Generate lockfile and verify server
+        run: |
+          npm install --package-lock-only --ignore-scripts
+          npm ci --omit=dev
+          node --check server.mjs
+
+      - name: Test production image
+        run: docker build -t hk-growth-website:test .
+
+      - name: Commit prepared production state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site package-lock.json
+          if git diff --cached --quiet; then
+            echo "No preparation changes to commit."
+            exit 0
+          fi
+          git commit -m "Prepare mirrored website for Coolify production"
+          git push
