@@ -13,7 +13,16 @@ const dryRun = String(process.env.FORM_DRY_RUN || '').toLowerCase() === 'true';
 
 app.disable('x-powered-by');
 app.set('trust proxy', 1);
-app.use(express.urlencoded({ extended: false, limit: '64kb' }));
+
+app.use((_req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  next();
+});
+
+app.use(express.urlencoded({ extended: false, limit: '64kb', parameterLimit: 100 }));
 
 const forms = {
   'prozess-check': {
@@ -85,12 +94,11 @@ function getTransporter() {
   });
 }
 
-function messageText(formName, body, req) {
+function messageText(formName, body) {
   const excluded = new Set(['form-name', 'interner-empfaenger', 'bot-field', 'website']);
   const lines = [
     `Formular: ${formName}`,
     `Zeitpunkt: ${new Date().toISOString()}`,
-    `IP: ${clean(req.ip, 200)}`,
     ''
   ];
 
@@ -109,7 +117,8 @@ async function handleForm(req, res) {
   const config = forms[formName];
   if (!config) return res.status(404).send('Formular nicht gefunden.');
 
-  if (rateLimited(req.ip || 'unknown')) {
+  const requestIp = req.ip || 'unknown';
+  if (rateLimited(requestIp)) {
     return res.status(429).send('Zu viele Anfragen. Bitte versuchen Sie es später erneut.');
   }
 
@@ -128,7 +137,7 @@ async function handleForm(req, res) {
   }
 
   if (dryRun) {
-    console.log(`[forms:dry-run] ${formName}\n${messageText(formName, req.body, req)}`);
+    console.log(`[forms:dry-run] ${formName}\n${messageText(formName, req.body)}`);
     return res.redirect(303, config.redirect);
   }
 
@@ -143,7 +152,7 @@ async function handleForm(req, res) {
       to,
       replyTo,
       subject: config.subject,
-      text: messageText(formName, req.body, req)
+      text: messageText(formName, req.body)
     });
 
     return res.redirect(303, config.redirect);
