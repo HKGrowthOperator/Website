@@ -9,6 +9,7 @@ const __dirname = path.dirname(__filename);
 const siteDir = path.join(__dirname, 'site');
 const app = express();
 const port = Number(process.env.PORT || 3000);
+const dryRun = String(process.env.FORM_DRY_RUN || '').toLowerCase() === 'true';
 
 app.disable('x-powered-by');
 app.set('trust proxy', 1);
@@ -126,6 +127,11 @@ async function handleForm(req, res) {
     return res.status(400).send('Bitte geben Sie eine gültige E-Mail-Adresse an.');
   }
 
+  if (dryRun) {
+    console.log(`[forms:dry-run] ${formName}\n${messageText(formName, req.body, req)}`);
+    return res.redirect(303, config.redirect);
+  }
+
   try {
     const transporter = getTransporter();
     const to = process.env.FORM_TO || 'auftraege@hk-growthoperator.de';
@@ -152,12 +158,12 @@ async function handleForm(req, res) {
 app.post('/api/forms/:form', handleForm);
 app.get('/health', (_req, res) => res.type('text/plain').send('ok'));
 
-// Serve clean production URLs such as /system from the mirrored .html pages.
+// Serve clean production URLs such as /system and /system/ from mirrored .html pages.
 app.use((req, res, next) => {
   if (!['GET', 'HEAD'].includes(req.method)) return next();
   if (req.path === '/' || path.extname(req.path)) return next();
 
-  const relative = req.path.replace(/^\/+/, '');
+  const relative = req.path.replace(/^\/+/, '').replace(/\/+$/, '');
   if (!relative || relative.includes('..')) return next();
 
   const candidate = path.join(siteDir, `${relative}.html`);
@@ -177,7 +183,9 @@ app.use(express.static(siteDir, {
 }));
 
 app.use((_req, res) => {
-  res.status(404).type('text/plain').send('Seite nicht gefunden.');
+  const notFound = path.join(siteDir, '404.html');
+  if (fs.existsSync(notFound)) return res.status(404).sendFile(notFound);
+  return res.status(404).type('text/plain').send('Seite nicht gefunden.');
 });
 
 app.listen(port, '0.0.0.0', () => {
