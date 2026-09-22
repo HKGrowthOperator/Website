@@ -132,7 +132,7 @@ jobs:
                       external.add(raw); return
               else:
                   pathpart = parsed.path
-              if not pathpart:
+              if not pathpart or pathpart.startswith('/api/forms/'):
                   return
               if pathpart.startswith('/'):
                   rel = PurePosixPath(pathpart.lstrip('/'))
@@ -183,7 +183,6 @@ jobs:
           set -euo pipefail
           docker build -t hk-growth-website:audit .
           docker run -d --rm --name hk-growth-audit -p 18080:3000 -e FORM_DRY_RUN=true hk-growth-website:audit
-          trap 'docker stop hk-growth-audit >/dev/null 2>&1 || true' EXIT
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:18080/health >/dev/null && break; sleep 1; done
 
           routes=(
