@@ -40,6 +40,7 @@ export function loadConfig() {
     sendDays: String(env.SEND_DAYS || '1,2,3,4,5').split(',').map(Number).filter((n) => n >= 0 && n <= 6),
     sendHours: parseRange(env.SEND_HOURS, [8, 17]),
     maxFailureRate: num('MAX_FAILURE_RATE', 0.05),
+    inboxPollSec: num('INBOX_POLL_SEC', 300),
     allowColdEmail: String(env.ALLOW_COLD_EMAIL || '').toLowerCase() === 'true',
     dryRun: String(env.DRY_RUN ?? 'true').toLowerCase() !== 'false',
     timezone: 'Europe/Berlin'

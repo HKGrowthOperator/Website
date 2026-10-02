@@ -16,7 +16,7 @@ const run = (fn) => async (...a) => { try { await fn(...a); } catch (e) { toast(
 document.querySelectorAll('nav button').forEach((b) => b.addEventListener('click', () => {
   document.querySelectorAll('nav button, section').forEach((x) => x.classList.remove('active'));
   b.classList.add('active'); $(`#${b.dataset.tab}`).classList.add('active');
-  ({ leads: () => loadLeads(true), campaigns: loadCampaigns, status: loadStatus, suppression: loadSuppression })[b.dataset.tab]?.();
+  ({ leads: () => loadLeads(true), phone: loadQueue, campaigns: loadCampaigns, status: loadStatus, suppression: loadSuppression })[b.dataset.tab]?.();
 }));
 
 async function loadMeta() {
@@ -28,6 +28,7 @@ async function loadMeta() {
   else n.push('ALLOW_COLD_EMAIL=true: Werbe-Mails ohne Einwilligung können nach §7 UWG abgemahnt werden. Das Risiko liegt bei euch.');
   $('#notices').innerHTML = n.map((x) => `<div class="notice">${esc(x)}</div>`).join('');
   $('#f-cats').innerHTML = Object.entries(META.categories).map(([k, v]) => `<label><input type="checkbox" value="${k}" checked>${esc(v)}</label>`).join('');
+  $('#p-cat').innerHTML += Object.entries(META.categories).map(([k, v]) => `<option value="${k}">${esc(v)}</option>`).join('');
   $('#l-cat').innerHTML += Object.entries(META.categories).map(([k, v]) => `<option value="${k}">${esc(v)}</option>`).join('');
   $('#l-status').innerHTML += META.statuses.map((s) => `<option>${s}</option>`).join('');
 }
@@ -141,6 +142,11 @@ async function loadStatus() {
   $('#s-kpis').innerHTML = [[s.sentToday, 'heute gesendet'], [s.capToday, 'Limit heute (inkl. Warm-up)'], [s.queued, 'in Warteschlange'], [s.inWindow ? 'aktiv' : 'Pause', 'Versandfenster']]
     .map(([v, l]) => `<div class="kpi"><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join('');
   $('#s-acc').innerHTML = s.accounts.map((a) => `<tr><td>${esc(a.id)}</td><td>${a.sentToday}</td><td>${a.cap}</td></tr>`).join('') || '<tr><td colspan="3" class="muted">Keine Postfächer in SMTP_ACCOUNTS</td></tr>';
+  $('#s-inbox').textContent = m.inboxWatch ? 'Postfach-Überwachung aktiv.' : 'Keine IMAP-Daten in SMTP_ACCOUNTS: Antworten bitte manuell als „replied“ markieren.';
+  const rep = await api('/api/replies');
+  const kinds = { reply: 'Antwort', auto: 'Abwesenheit', bounce: 'Bounce' };
+  $('#s-replies').innerHTML = rep.map((r) => `<tr><td>${esc(r.received_at)}</td><td class="${r.kind === 'reply' ? 'ok' : r.kind === 'bounce' ? 'bad' : 'muted'}">${kinds[r.kind] || esc(r.kind)}</td>
+    <td>${esc(r.from_email)}</td><td>${esc(r.name || '')}</td><td><b>${esc(r.subject)}</b><br><span class="muted">${esc((r.snippet || '').slice(0, 160))}</span></td></tr>`).join('') || '<tr><td colspan="5" class="muted">Noch nichts eingegangen</td></tr>';
   const log = await api('/api/sends');
   $('#s-log').innerHTML = log.map((x) => `<tr><td>${esc(x.sent_at || x.due_at)}</td><td>${esc(x.campaign)}</td><td>${esc(x.name)}<br><span class="muted">${esc(x.email)}</span></td>
     <td>${x.step ? 'Follow-up' : 'Erstmail'}</td><td class="${x.status === 'sent' ? 'ok' : ['failed', 'bounced'].includes(x.status) ? 'bad' : ''}">${esc(x.status)}</td><td class="muted">${esc(x.error || x.account || '')}</td></tr>`).join('');
@@ -155,3 +161,79 @@ $('#x-go').addEventListener('click', run(async () => {
 }));
 
 run(async () => { await loadMeta(); fillCampaign(); })();
+
+// ---------- Telefon ----------
+const DEFAULT_SCRIPT = `Guten Tag, hier ist {{ich}} von HK Growth. Spreche ich mit dem Inhaber von {{firma}}?
+
+Ich rufe kurz an, weil wir {{branche}} in {{stadt}} helfen, online mehr Anfragen zu bekommen.
+{{problem}}
+
+Frage: Wie kommen neue Kunden heute zu Ihnen?
+
+Bei Interesse:   „Darf ich Ihnen zwei, drei Beispiele per Mail schicken? An welche Adresse?“  → Infos schicken
+Termin möglich:  „Passt Ihnen ein 15-Minuten-Gespräch am … ?“                                → Termin
+Kein Interesse:  „Verstehe, danke für Ihre Zeit. Darf ich mich in einem halben Jahr nochmal melden?“`;
+const OUTCOME_LABELS = { not_reached: 'Nicht erreicht', callback: 'Rückruf vereinbart', send_info: 'Infos schicken (Mail ok)', meeting: 'Termin', no_interest: 'Kein Interesse', wrong_number: 'Falsche Nummer' };
+let QUEUE = [];
+let CURRENT = null;
+try { $('#p-script').value = localStorage.getItem('callScript') || DEFAULT_SCRIPT; } catch { $('#p-script').value = DEFAULT_SCRIPT; }
+$('#p-script').addEventListener('input', () => { try { localStorage.setItem('callScript', $('#p-script').value); } catch { /* egal */ } if (CURRENT) showLead(CURRENT); });
+
+async function loadQueue() {
+  const camps = await api('/api/campaigns');
+  const sel = $('#p-camp'); const keep = sel.value;
+  sel.innerHTML = '<option value="">keine (nur markieren)</option>' + camps.map((c) => `<option value="${c.id}">${esc(c.name)} (${esc(c.status)})</option>`).join('');
+  sel.value = keep;
+  const q = new URLSearchParams(Object.entries({ city: $('#p-city').value, category: $('#p-cat').value }).filter(([, v]) => v));
+  const r = await api(`/api/calls/queue?${q}`);
+  QUEUE = r.rows;
+  $('#p-due').textContent = r.callbacksDue ? `${r.callbacksDue} Rückrufe fällig` : '';
+  $('#p-list').innerHTML = QUEUE.map((l, i) => `<div class="qitem" data-i="${i}"><b>${esc(l.name)}</b>
+    <small>${esc(META.categories[l.category] || '')} · ${esc(l.city || '')}${l.callback_at ? ` · Rückruf ${esc(l.callback_at.slice(5, 16))}` : ''}${l.call_attempts ? ` · ${l.call_attempts}× versucht` : ''}</small></div>`).join('')
+    || '<p class="muted" style="padding:12px">Keine Leads mit Telefonnummer offen.</p>';
+  if (QUEUE.length) showLead(QUEUE[0]); else $('#p-detail').innerHTML = '<p class="muted">Liste leer.</p>';
+}
+$('#p-reload').addEventListener('click', run(loadQueue));
+$('#p-list').addEventListener('click', (e) => { const it = e.target.closest('.qitem'); if (it) showLead(QUEUE[Number(it.dataset.i)]); });
+
+function scriptFor(l) {
+  const issues = l.site_issues ? JSON.parse(l.site_issues) : [];
+  const problem = !l.website ? 'Mir ist aufgefallen, dass Sie noch keine eigene Website haben.' : issues.length ? `Ich habe mir Ihre Website angesehen: Sie ist ${issues.slice(0, 2).join(' und ')}.` : '';
+  const vars = { firma: l.name, stadt: l.city || 'Ihrer Region', branche: META.categories[l.category] || 'Betriebe', problem, ich: '[Name]' };
+  return $('#p-script').value.replace(/\{\{(\w+)\}\}/g, (_, k) => vars[k] ?? '');
+}
+
+async function showLead(l) {
+  CURRENT = l;
+  document.querySelectorAll('.qitem').forEach((x) => x.classList.toggle('active', QUEUE[Number(x.dataset.i)] === l));
+  const issues = l.site_issues ? JSON.parse(l.site_issues) : [];
+  const history = await api(`/api/leads/${l.id}/calls`);
+  const tomorrow = new Date(Date.now() + 86400_000); tomorrow.setHours(10, 0, 0, 0);
+  const local = new Date(tomorrow.getTime() - tomorrow.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+  $('#p-detail').innerHTML = `<h2>${esc(l.name)}</h2>
+    <a class="tel" href="tel:${esc(String(l.phone).replace(/[^\d+]/g, ''))}">${esc(l.phone)}</a>
+    <p class="muted">${esc([l.street, [l.postcode, l.city].filter(Boolean).join(' ')].filter(Boolean).join(', '))} · ${esc(META.categories[l.category] || '')}</p>
+    <p>${l.website ? `<a href="${esc(l.website)}" target="_blank" rel="noopener">${esc(l.website)}</a> ${l.site_score != null ? `(${l.site_score}/100) <span class="muted">${esc(issues.join(', '))}</span>` : ''}` : '<span class="bad">Keine Website</span>'}</p>
+    ${l.notes ? `<pre>${esc(l.notes)}</pre>` : ''}
+    <div class="card script">${esc(scriptFor(l))}</div>
+    <div class="row">
+      <div><label>E-Mail (für „Infos schicken“)</label><input id="p-email" value="${esc(l.email || '')}" placeholder="name@firma.de"></div>
+      <div><label>Rückruf am</label><input id="p-cb" type="datetime-local" value="${local}"></div>
+    </div>
+    <label>Notiz</label><input id="p-note" placeholder="z. B. Chef ab 14 Uhr da, will Preise wissen">
+    <div class="outcomes">${META.callOutcomes.map((o) => `<button class="btn ${o === 'send_info' || o === 'meeting' ? '' : 'ghost'}" data-o="${o}">${OUTCOME_LABELS[o] || o}</button>`).join('')}</div>
+    ${history.length ? `<h2 style="margin-top:16px">Verlauf</h2><table>${history.map((h) => `<tr><td>${esc(h.created_at)}</td><td>${esc(OUTCOME_LABELS[h.outcome] || h.outcome)}</td><td class="muted">${esc(h.note || '')}</td></tr>`).join('')}</table>` : ''}`;
+}
+
+$('#p-detail').addEventListener('click', run(async (e) => {
+  const o = e.target.dataset.o; if (!o || !CURRENT) return;
+  const body = { outcome: o, note: $('#p-note').value, email: $('#p-email').value, campaignId: $('#p-camp').value || undefined };
+  if (o === 'callback') body.callbackAt = new Date($('#p-cb').value).toISOString();
+  const r = await api(`/api/leads/${CURRENT.id}/call`, { method: 'POST', body });
+  toast(r.suppressed ? 'Achtung: Adresse steht auf der Sperrliste, Mail wird nicht verschickt.' : r.queued ? 'Gespeichert, Mail ist eingeplant.' : `Gespeichert: ${OUTCOME_LABELS[o]}`);
+  const idx = QUEUE.indexOf(CURRENT);
+  QUEUE.splice(idx, 1);
+  $('#p-list').querySelectorAll('.qitem')[idx]?.remove();
+  $('#p-list').querySelectorAll('.qitem').forEach((x, i) => (x.dataset.i = i));
+  if (QUEUE[idx] || QUEUE[idx - 1]) showLead(QUEUE[idx] || QUEUE[idx - 1]); else loadQueue();
+}));

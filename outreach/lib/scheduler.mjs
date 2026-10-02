@@ -2,6 +2,9 @@ import { isSuppressed, suppress } from './db.mjs';
 import { buildMessage } from './template.mjs';
 import { isHardBounce } from './mailer.mjs';
 
+const MAX_ATTEMPTS = 3;
+const RETRY_DELAY_MS = 15 * 60 * 1000;
+
 export const SENDABLE_BASES = new Set(['consent', 'inquiry', 'customer']);
 
 export function berlinParts(date, tz = 'Europe/Berlin') {
@@ -75,7 +78,7 @@ export async function tick(db, cfg, transports, now = new Date()) {
   };
   if (!lead?.email) return skip('skipped', 'keine E-Mail');
   if (isSuppressed(db, lead.email)) return skip('skipped', 'abgemeldet / gesperrt');
-  if (['replied', 'unsubscribed', 'won', 'lost'].includes(lead.status)) return skip('cancelled', `Lead-Status ${lead.status}`);
+  if (['replied', 'meeting', 'unsubscribed', 'won', 'lost'].includes(lead.status)) return skip('cancelled', `Lead-Status ${lead.status}`);
   if (!cfg.allowColdEmail && !SENDABLE_BASES.has(lead.basis)) return skip('skipped', 'keine Rechtsgrundlage (ALLOW_COLD_EMAIL=false)');
 
   const msg = buildMessage({ campaign: job, lead, cfg, step: job.step });
@@ -95,8 +98,15 @@ export async function tick(db, cfg, transports, now = new Date()) {
     return { action: 'sent', sendId: job.id, to: lead.email, account: account.id };
   } catch (err) {
     const bounced = isHardBounce(err);
-    db.prepare('UPDATE sends SET status = ?, account = ?, sent_at = ?, error = ? WHERE id = ?')
-      .run(bounced ? 'bounced' : 'failed', account.id, nowIso, String(err?.message || err).slice(0, 500), job.id);
+    const error = String(err?.message || err).slice(0, 500);
+    // Vorübergehende Fehler (Verbindung, 4xx): bis zu 3 Versuche mit 15 Min. Abstand
+    if (!bounced && job.attempts < MAX_ATTEMPTS - 1) {
+      const retryAt = new Date(now.getTime() + RETRY_DELAY_MS).toISOString().replace('T', ' ').slice(0, 19);
+      db.prepare('UPDATE sends SET attempts = attempts + 1, due_at = ?, account = ?, error = ? WHERE id = ?').run(retryAt, account.id, error, job.id);
+      return { action: 'retry', sendId: job.id, error };
+    }
+    db.prepare('UPDATE sends SET status = ?, attempts = attempts + 1, account = ?, sent_at = ?, error = ? WHERE id = ?')
+      .run(bounced ? 'bounced' : 'failed', account.id, nowIso, error, job.id);
     if (bounced) suppress(db, lead.email, 'bounce');
     checkFailureRate(db, cfg, job.campaign_id);
     return { action: bounced ? 'bounced' : 'failed', sendId: job.id, error: err?.message };
@@ -112,7 +122,7 @@ export function startLoop(db, cfg, transports, log = console) {
     let next = 60_000;
     try {
       const r = await tick(db, cfg, transports);
-      if (['sent', 'failed', 'bounced'].includes(r.action)) {
+      if (['sent', 'failed', 'bounced', 'retry'].includes(r.action)) {
         log.log(`[send] ${r.action} ${r.to || ''} ${r.error || ''}`.trim());
         next = rand();
       } else if (['skipped', 'cancelled'].includes(r.action)) {

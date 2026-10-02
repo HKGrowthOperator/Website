@@ -27,6 +27,11 @@ textarea{min-height:180px;font-family:ui-monospace,Menlo,monospace;font-size:13p
 th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted);font-weight:500}
 td select{padding:4px;width:auto}
 .notice{background:var(--warnbg);color:var(--warn);border-radius:8px;padding:10px 12px;margin-bottom:16px}
+.split{display:grid;grid-template-columns:minmax(220px,320px) 1fr;gap:16px}@media (max-width:760px){.split{grid-template-columns:1fr}}
+.qlist{max-height:70vh;overflow:auto;padding:0}.qitem{padding:10px 12px;border-bottom:1px solid var(--line);cursor:pointer}
+.qitem.active{background:var(--bg)}.qitem small{display:block;color:var(--muted)}
+.tel{font-size:22px;font-weight:600;color:var(--accent);text-decoration:none}
+.outcomes{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.script{white-space:pre-wrap;line-height:1.6}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
 .kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}.kpi b{display:block;font-size:22px}
 .kpi span{color:var(--muted);font-size:12px}.muted{color:var(--muted)}.ok{color:var(--ok)}.bad{color:var(--bad)}
@@ -40,6 +45,7 @@ pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);borde
   <nav>
     <button data-tab="find" class="active">Leads finden</button>
     <button data-tab="leads">Leads</button>
+    <button data-tab="phone">Telefon</button>
     <button data-tab="campaigns">Kampagnen</button>
     <button data-tab="status">Versand</button>
     <button data-tab="suppression">Sperrliste</button>
@@ -86,6 +92,22 @@ pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);borde
       <p><button class="btn ghost" id="l-more">Mehr laden</button></p></div>
   </section>
 
+
+  <section id="phone">
+    <div class="card"><div class="row">
+      <div><label>Stadt</label><input id="p-city" placeholder="alle"></div>
+      <div><label>Branche</label><select id="p-cat"><option value="">alle</option></select></div>
+      <div><label>Kampagne für „Infos schicken“</label><select id="p-camp"><option value="">keine (nur markieren)</option></select></div>
+      <div><button class="btn ghost" id="p-reload">Liste laden</button> <span id="p-due" class="muted"></span></div>
+    </div></div>
+    <div class="split">
+      <div class="card qlist" id="p-list"></div>
+      <div class="card" id="p-detail"><p class="muted">Lead links auswählen.</p></div>
+    </div>
+    <details class="card"><summary>Gesprächsleitfaden bearbeiten (wird im Browser gespeichert)</summary>
+      <textarea id="p-script"></textarea></details>
+  </section>
+
   <section id="campaigns">
     <div class="card">
       <h2 id="c-title">Neue Kampagne</h2>
@@ -106,6 +128,7 @@ pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);borde
   <section id="status">
     <div class="kpis" id="s-kpis"></div>
     <div class="card table-wrap" style="margin-top:16px"><h2>Postfächer (Warm-up)</h2><table><thead><tr><th>Postfach</th><th>Heute gesendet</th><th>Limit heute</th></tr></thead><tbody id="s-acc"></tbody></table></div>
+    <div class="card table-wrap"><h2>Antworten &amp; Bounces aus dem Postfach</h2><p class="muted" id="s-inbox"></p><table><thead><tr><th>Zeit</th><th>Art</th><th>Von</th><th>Lead</th><th>Betreff / Auszug</th></tr></thead><tbody id="s-replies"></tbody></table></div>
     <div class="card table-wrap"><h2>Letzte Aktivität</h2><table><thead><tr><th>Zeit</th><th>Kampagne</th><th>Empfänger</th><th>Schritt</th><th>Status</th><th>Info</th></tr></thead><tbody id="s-log"></tbody></table></div>
   </section>
 

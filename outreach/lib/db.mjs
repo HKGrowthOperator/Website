@@ -53,6 +53,30 @@ CREATE TABLE IF NOT EXISTS sends (
   UNIQUE(campaign_id, lead_id, step)
 );
 CREATE INDEX IF NOT EXISTS sends_queue ON sends(status, due_at);
+CREATE TABLE IF NOT EXISTS calls (
+  id INTEGER PRIMARY KEY,
+  lead_id INTEGER NOT NULL REFERENCES leads(id),
+  outcome TEXT NOT NULL,
+  note TEXT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS calls_lead ON calls(lead_id);
+CREATE TABLE IF NOT EXISTS replies (
+  id INTEGER PRIMARY KEY,
+  lead_id INTEGER REFERENCES leads(id),
+  kind TEXT NOT NULL,
+  account TEXT,
+  from_email TEXT,
+  subject TEXT,
+  snippet TEXT,
+  message_id TEXT UNIQUE,
+  received_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE TABLE IF NOT EXISTS inbox_state (
+  account TEXT PRIMARY KEY,
+  uid_validity TEXT,
+  last_uid INTEGER NOT NULL DEFAULT 0
+);
 CREATE INDEX IF NOT EXISTS sends_account_day ON sends(account, sent_day);
 `;
 
@@ -61,7 +85,23 @@ export function openDb(file) {
   const db = new DatabaseSync(file);
   db.exec('PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON;');
   db.exec(SCHEMA);
+  migrate(db);
   return db;
+}
+
+// Spalten, die nach dem ersten Release dazukamen (bestehende DBs nachziehen)
+const ADDED_COLUMNS = [
+  ['sends', 'attempts', 'INTEGER NOT NULL DEFAULT 0'],
+  ['leads', 'call_attempts', 'INTEGER NOT NULL DEFAULT 0'],
+  ['leads', 'callback_at', 'TEXT'],
+  ['leads', 'last_call_at', 'TEXT']
+];
+
+function migrate(db) {
+  for (const [table, col, def] of ADDED_COLUMNS) {
+    const cols = db.prepare(`PRAGMA table_info(${table})`).all().map((c) => c.name);
+    if (!cols.includes(col)) db.exec(`ALTER TABLE ${table} ADD COLUMN ${col} ${def}`);
+  }
 }
 
 export function normEmail(email) {

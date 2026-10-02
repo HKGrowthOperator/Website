@@ -119,3 +119,16 @@ test('Hard-Bounces werden gesperrt, hohe Fehlerquote pausiert die Kampagne', asy
   assert.equal(c.status, 'paused');
   assert.match(c.paused_reason, /Automatisch pausiert/);
 });
+
+test('Vorübergehende SMTP-Fehler werden bis zu 3× wiederholt', async () => {
+  const db = openDb(':memory:');
+  seed(db, 'consent', 1);
+  const acc = fakeAccount('a@x.de', 150, Object.assign(new Error('421 try later'), { responseCode: 421 }));
+  assert.equal((await tick(db, cfg, [acc], MONDAY_10)).action, 'retry');
+  assert.equal((await tick(db, cfg, [acc], MONDAY_10)).action, 'idle', 'erst in 15 Min. wieder dran');
+  const later = new Date(MONDAY_10.getTime() + 16 * 60_000);
+  assert.equal((await tick(db, cfg, [acc], later)).action, 'retry');
+  const evenLater = new Date(later.getTime() + 16 * 60_000);
+  assert.equal((await tick(db, cfg, [acc], evenLater)).action, 'failed');
+  assert.equal(db.prepare('SELECT attempts FROM sends').get().attempts, 3);
+});

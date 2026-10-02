@@ -3,16 +3,18 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { loadConfig } from './lib/config.mjs';
-import { openDb, upsertLead, suppress, normEmail } from './lib/db.mjs';
+import { openDb, upsertLead, suppress, normEmail, isSuppressed } from './lib/db.mjs';
 import { CATEGORIES, findLeads } from './lib/leads.mjs';
 import { enrichWebsite } from './lib/enrich.mjs';
 import { buildMessage } from './lib/template.mjs';
 import { createTransports } from './lib/mailer.mjs';
 import { stats, startLoop, SENDABLE_BASES } from './lib/scheduler.mjs';
+import { startInboxWatcher } from './lib/inbox.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const BASES = ['none', 'inquiry', 'consent', 'customer'];
-const LEAD_STATUSES = ['new', 'contacted', 'replied', 'won', 'lost', 'unsubscribed'];
+const LEAD_STATUSES = ['new', 'contacted', 'replied', 'meeting', 'won', 'lost', 'unsubscribed'];
+const CALL_OUTCOMES = ['not_reached', 'callback', 'send_info', 'meeting', 'no_interest', 'wrong_number'];
 
 export function createApp(cfg, db, transports, deps = {}) {
   const app = express();
@@ -51,7 +53,8 @@ export function createApp(cfg, db, transports, deps = {}) {
   app.get('/api/meta', (_req, res) => {
     res.json({
       categories: Object.fromEntries(Object.entries(CATEGORIES).map(([k, v]) => [k, v.label])),
-      bases: BASES, statuses: LEAD_STATUSES,
+      bases: BASES, statuses: LEAD_STATUSES, callOutcomes: CALL_OUTCOMES,
+      inboxWatch: cfg.accounts.some((a) => a.imap?.host),
       allowColdEmail: cfg.allowColdEmail, dryRun: cfg.dryRun,
       senderImprintSet: Boolean(cfg.senderImprint),
       stats: stats(db, cfg, transports)
@@ -84,6 +87,7 @@ export function createApp(cfg, db, transports, deps = {}) {
     if (q.basis) { where.push('basis = $basis'); params.basis = q.basis; }
     if (q.hasEmail === '1') where.push('email IS NOT NULL');
     if (q.hasEmail === '0') where.push('email IS NULL');
+    if (q.hasPhone === '1') where.push('phone IS NOT NULL');
     if (q.hasWebsite === '1') where.push('has_website = 1');
     if (q.hasWebsite === '0') where.push('has_website = 0');
     if (q.maxScore) { where.push('site_score IS NOT NULL AND site_score <= $maxScore'); params.maxScore = Number(q.maxScore); }
@@ -106,7 +110,7 @@ export function createApp(cfg, db, transports, deps = {}) {
     db.prepare(`UPDATE leads SET basis = COALESCE($basis, basis), status = COALESCE($status, status),
       email = COALESCE($email, email), notes = COALESCE($notes, notes) WHERE id = $id`)
       .run({ id: Number(req.params.id), basis: b.basis ?? null, status: b.status ?? null, email: b.email ? normEmail(b.email) : null, notes: b.notes ?? null });
-    if (['replied', 'won', 'lost'].includes(b.status)) {
+    if (['replied', 'meeting', 'won', 'lost'].includes(b.status)) {
       db.prepare("UPDATE sends SET status = 'cancelled' WHERE lead_id = ? AND status = 'queued'").run(Number(req.params.id));
     }
     res.json(db.prepare('SELECT * FROM leads WHERE id = ?').get(Number(req.params.id)));
@@ -158,6 +162,68 @@ export function createApp(cfg, db, transports, deps = {}) {
     const body = rows.map((r) => [r.name, CATEGORIES[r.category]?.label, r.street, r.postcode, r.city, r.phone, r.email, r.website, r.site_score,
       r.site_issues ? JSON.parse(r.site_issues).join(', ') : '', r.status].map(esc).join(';'));
     res.type('text/csv; charset=utf-8').attachment('leads.csv').send('﻿' + [head.join(';'), ...body].join('\n'));
+  });
+
+  // ---------- Telefon-Akquise ----------
+  // Reihenfolge: fällige Rückrufe zuerst, dann wenig Versuche, Firmen ohne Website, schlechte Websites
+  app.get('/api/calls/queue', (req, res) => {
+    const f = leadFilter({ city: req.query.city, category: req.query.category, hasPhone: '1' });
+    const rows = db.prepare(`SELECT * FROM leads ${f.sql} AND status IN ('new','contacted')
+      AND (callback_at IS NULL OR callback_at <= datetime('now', '+1 hour'))
+      AND (last_call_at IS NULL OR last_call_at <= datetime('now', '-20 hours') OR (callback_at IS NOT NULL AND callback_at <= datetime('now', '+1 hour')))
+      AND call_attempts < 5
+      ORDER BY (callback_at IS NULL), callback_at, call_attempts, has_website, COALESCE(site_score, 100), id LIMIT 50`).all(f.params);
+    const due = db.prepare("SELECT COUNT(*) n FROM leads WHERE callback_at IS NOT NULL AND callback_at <= datetime('now', '+1 hour') AND status IN ('new','contacted')").get().n;
+    res.json({ rows, callbacksDue: due });
+  });
+
+  app.get('/api/leads/:id/calls', (req, res) => {
+    res.json(db.prepare('SELECT * FROM calls WHERE lead_id = ? ORDER BY id DESC').all(Number(req.params.id)));
+  });
+
+  app.post('/api/leads/:id/call', (req, res) => {
+    const id = Number(req.params.id);
+    const b = req.body;
+    const lead = db.prepare('SELECT * FROM leads WHERE id = ?').get(id);
+    if (!lead) return res.status(404).json({ error: 'Lead nicht gefunden' });
+    if (!CALL_OUTCOMES.includes(b.outcome)) return res.status(400).json({ error: 'ungültiges Ergebnis' });
+    const email = b.email ? normEmail(b.email) : lead.email;
+    if (b.outcome === 'send_info' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email || '')) return res.status(400).json({ error: 'Für „Infos schicken“ wird eine E-Mail-Adresse gebraucht' });
+    if (b.outcome === 'callback' && !b.callbackAt) return res.status(400).json({ error: 'Rückruf-Zeitpunkt fehlt' });
+
+    let queued = false;
+    db.exec('BEGIN');
+    try {
+      db.prepare('INSERT INTO calls (lead_id, outcome, note) VALUES (?, ?, ?)').run(id, b.outcome, b.note || null);
+      db.prepare("UPDATE leads SET call_attempts = call_attempts + 1, last_call_at = datetime('now'), callback_at = NULL, status = CASE WHEN status = 'new' THEN 'contacted' ELSE status END WHERE id = ?").run(id);
+      if (b.note) db.prepare("UPDATE leads SET notes = TRIM(COALESCE(notes, '') || char(10) || ?) WHERE id = ?").run(`[${new Date().toISOString().slice(0, 10)}] ${b.note}`, id);
+      if (b.outcome === 'callback') {
+        const at = new Date(b.callbackAt);
+        if (Number.isNaN(at.getTime())) throw new Error('Rückruf-Zeitpunkt ungültig');
+        db.prepare('UPDATE leads SET callback_at = ?, call_attempts = call_attempts - 1 WHERE id = ?').run(at.toISOString().replace('T', ' ').slice(0, 19), id);
+      }
+      if (b.outcome === 'no_interest') db.prepare("UPDATE leads SET status = 'lost' WHERE id = ?").run(id);
+      if (b.outcome === 'wrong_number') db.prepare("UPDATE leads SET phone = NULL WHERE id = ?").run(id);
+      if (b.outcome === 'meeting') db.prepare("UPDATE leads SET status = 'meeting' WHERE id = ?").run(id);
+      if (b.outcome === 'send_info') {
+        // Mündliche Zustimmung am Telefon -> dokumentierte Anfrage, ab jetzt darf gemailt werden
+        db.prepare("UPDATE leads SET email = ?, basis = 'inquiry' WHERE id = ?").run(email, id);
+        if (b.campaignId) {
+          const r = db.prepare("INSERT OR IGNORE INTO sends (campaign_id, lead_id, step, due_at) VALUES (?, ?, 0, datetime('now'))").run(Number(b.campaignId), id);
+          queued = r.changes > 0;
+        }
+      }
+      db.exec('COMMIT');
+    } catch (err) {
+      db.exec('ROLLBACK');
+      return res.status(400).json({ error: err.message });
+    }
+    const suppressed = b.outcome === 'send_info' && isSuppressed(db, email);
+    res.json({ ok: true, queued, suppressed, lead: db.prepare('SELECT * FROM leads WHERE id = ?').get(id) });
+  });
+
+  app.get('/api/replies', (_req, res) => {
+    res.json(db.prepare(`SELECT r.*, l.name FROM replies r LEFT JOIN leads l ON l.id = r.lead_id ORDER BY r.id DESC LIMIT 100`).all());
   });
 
   // ---------- Kampagnen ----------
@@ -249,4 +315,5 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     console.log(`[outreach] läuft auf :${cfg.port} | Postfächer: ${transports.length} | Tageslimit: ${cfg.dailyLimit} | ${cfg.dryRun ? 'DRY-RUN' : 'LIVE'} | Kaltakquise per Mail: ${cfg.allowColdEmail ? 'AN' : 'AUS'}`);
   });
   startLoop(db, cfg, transports);
+  startInboxWatcher(db, cfg);
 }

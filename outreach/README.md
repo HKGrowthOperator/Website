@@ -5,7 +5,9 @@ Eigenständige App (läuft getrennt von der Website), um:
 1. **Leads finden**: Firmen pro Stadt und Branche aus OpenStreetMap, auf Wunsch nur Firmen **ohne Website**.
 2. **Websites prüfen**: HTTPS, Handy-Optimierung, Ladezeit, Google-Basics, Alter, Baukasten. Die Kontakt-E-Mail wird aus Startseite und Impressum gelesen.
 3. **Kampagnen versenden**: personalisierte Mails (`{{firma}}`, `{{problem}}` …) mit automatischem Follow-up, Warm-up, Tageslimit, Versandfenster, Abmeldelink und Sperrliste.
-4. **Telefon- und Brief-Listen exportieren**: CSV für Leads, die (noch) nicht per Mail angeschrieben werden dürfen.
+4. **Telefon-Akquise**: Anrufliste mit Gesprächsleitfaden, Rückruf-Terminen und Ergebnis-Buttons. „Infos schicken“ speichert die E-Mail, markiert den Lead als Anfrage und plant die Mail direkt ein.
+5. **Postfach mitlesen (IMAP, optional)**: Antworten stoppen Follow-ups automatisch, Bounces werden gesperrt, Abwesenheitsnotizen ignoriert.
+6. **CSV-Export** für Serienbriefe.
 
 ## Start
 
@@ -25,9 +27,11 @@ Deployment in Coolify: eigener Service mit `outreach/Dockerfile`, Volume auf `/a
 
 1. **Leads finden** → Stadt + Branchen → *Suchen & speichern*
 2. **Websites prüfen** (mehrmals klicken, 20 pro Durchgang)
-3. **Leads** → Rechtsgrundlage pro Lead setzen; Antworten als `replied` markieren (stoppt das Follow-up)
-4. **Kampagnen** → Text schreiben → *Vorschau* → *Leads hinzufügen* → *Starten*
-5. **Versand** zeigt Tageslimit, Warm-up pro Postfach und das Log
+3. **Kampagnen** → „Infos“-Mail schreiben (z. B. „Wie besprochen, hier die Beispiele für {{firma}}“) → *Starten*
+4. **Telefon** → Kampagne oben auswählen → anrufen → Ergebnis klicken. Bei „Infos schicken“ geht die Mail automatisch raus, Follow-up inklusive.
+5. **Versand** zeigt Tageslimit, Warm-up pro Postfach, eingegangene Antworten/Bounces und das Log
+
+Ohne IMAP-Daten setzt ihr Antworten im Tab *Leads* manuell auf `replied`.
 
 Ohne `DRY_RUN=false` wird nichts wirklich verschickt.
 
@@ -62,7 +66,8 @@ Kalte Leads exportiert ihr als CSV, ruft an oder schreibt einen Brief. Sagt jema
 | `lib/leads.mjs` | OSM/Overpass-Abfrage, Branchen-Presets |
 | `lib/enrich.mjs` | Website-Check + E-Mail aus Impressum |
 | `lib/template.mjs` | Platzhalter, Footer, Abmelde-Header |
-| `lib/scheduler.mjs` | Versand-Loop: Fenster, Warm-up, Limits, Bounces, Follow-ups |
+| `lib/scheduler.mjs` | Versand-Loop: Fenster, Warm-up, Limits, Bounces, Follow-ups, 3 Versuche bei SMTP-Störungen |
+| `lib/inbox.mjs` | IMAP: Antworten, Bounces, Abwesenheitsnotizen erkennen (nur lesend) |
 | `lib/db.mjs` | SQLite (Node-intern, keine extra Abhängigkeit) |
 | `server.mjs` | API + Login + öffentliche Abmeldeseite `/u/:token` |
 | `public/` | Oberfläche |
