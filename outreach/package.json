@@ -1,0 +1,16 @@
+{
+  "name": "hk-growth-outreach",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Lead-Finder + Outreach-Tool (OSM-Leads, Website-Check, gedrosselter Mailversand mit Opt-out)",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "start": "node --no-warnings=ExperimentalWarning server.mjs",
+    "test": "node --no-warnings=ExperimentalWarning --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "express": "4.22.3",
+    "nodemailer": "10.0.8"
+  }
+}

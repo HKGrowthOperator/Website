@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HK Outreach</title>
+<style>
+:root{--bg:#f6f5f2;--card:#fff;--ink:#1b1b1a;--muted:#6b6a66;--line:#e3e1db;--accent:#1f5eff;--warn:#b45309;--warnbg:#fff4e0;--ok:#0f7a3f;--bad:#b42318}
+@media (prefers-color-scheme:dark){:root{--bg:#141413;--card:#1d1d1b;--ink:#ecebe7;--muted:#9c9a94;--line:#33322f;--accent:#7aa2ff;--warn:#f0b35c;--warnbg:#2c2112;--ok:#5fd18f;--bad:#ff8b80}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
+header{display:flex;gap:16px;align-items:center;padding:14px 20px;border-bottom:1px solid var(--line);background:var(--card);position:sticky;top:0;z-index:2;flex-wrap:wrap}
+header h1{font-size:16px;margin:0}nav{display:flex;gap:4px;flex-wrap:wrap}
+nav button{background:none;border:1px solid transparent;color:var(--muted);padding:6px 12px;border-radius:6px;cursor:pointer;font:inherit}
+nav button.active{border-color:var(--line);color:var(--ink);background:var(--bg)}
+main{max-width:1200px;margin:0 auto;padding:20px 16px}
+section{display:none}section.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:16px}
+h2{font-size:15px;margin:0 0 12px}label{display:block;font-size:12px;color:var(--muted);margin:10px 0 4px}
+input,select,textarea{width:100%;padding:8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit}
+textarea{min-height:180px;font-family:ui-monospace,Menlo,monospace;font-size:13px}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;align-items:end}
+.btn{background:var(--accent);color:#fff;border:0;padding:8px 14px;border-radius:6px;cursor:pointer;font:inherit}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line)}.btn:disabled{opacity:.5}
+.chips{display:flex;flex-wrap:wrap;gap:6px}.chips label{display:flex;gap:6px;align-items:center;margin:0;border:1px solid var(--line);padding:5px 10px;border-radius:999px;color:var(--ink);cursor:pointer}
+.chips input{width:auto}
+.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted);font-weight:500}
+td select{padding:4px;width:auto}
+.notice{background:var(--warnbg);color:var(--warn);border-radius:8px;padding:10px 12px;margin-bottom:16px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}.kpi b{display:block;font-size:22px}
+.kpi span{color:var(--muted);font-size:12px}.muted{color:var(--muted)}.ok{color:var(--ok)}.bad{color:var(--bad)}
+pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px;font-size:13px}
+#toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:6px;display:none}
+</style>
+</head>
+<body>
+<header>
+  <h1>HK Outreach</h1>
+  <nav>
+    <button data-tab="find" class="active">Leads finden</button>
+    <button data-tab="leads">Leads</button>
+    <button data-tab="campaigns">Kampagnen</button>
+    <button data-tab="status">Versand</button>
+    <button data-tab="suppression">Sperrliste</button>
+  </nav>
+</header>
+<main>
+  <div id="notices"></div>
+
+  <section id="find" class="active">
+    <div class="card">
+      <h2>Firmen in einer Stadt finden (OpenStreetMap)</h2>
+      <div class="row">
+        <div><label>Stadt / Gemeinde</label><input id="f-city" placeholder="z. B. Hamburg"></div>
+        <div><label><input type="checkbox" id="f-nosite" style="width:auto" checked> Nur Firmen OHNE Website</label></div>
+      </div>
+      <label>Branchen</label><div class="chips" id="f-cats"></div>
+      <p><button class="btn" id="f-go">Suchen &amp; speichern</button> <span id="f-result" class="muted"></span></p>
+    </div>
+    <div class="card">
+      <h2>Websites prüfen &amp; Kontaktadresse finden</h2>
+      <p class="muted">Prüft bei Leads mit Website: HTTPS, Handy-Optimierung, Ladezeit, Google-Basics, Alter. Holt die E-Mail aus Startseite/Impressum. Ergebnis landet in <code>{{problem}}</code>.</p>
+      <button class="btn" id="e-go">Nächste 20 prüfen</button> <span id="e-result" class="muted"></span>
+    </div>
+    <div class="card">
+      <h2>Kontakte mit Einwilligung importieren (CSV)</h2>
+      <p class="muted">Spalten: <code>name;email;city;website;phone;basis</code> – basis: inquiry (Anfrage), consent (Opt-in), customer (Bestandskunde).</p>
+      <textarea id="i-csv" placeholder="name;email;city;website;phone;basis"></textarea>
+      <p><button class="btn" id="i-go">Importieren</button> <span id="i-result" class="muted"></span></p>
+    </div>
+  </section>
+
+  <section id="leads">
+    <div class="card">
+      <div class="row">
+        <div><label>Suche</label><input id="l-q"></div>
+        <div><label>Branche</label><select id="l-cat"><option value="">alle</option></select></div>
+        <div><label>Website</label><select id="l-site"><option value="">egal</option><option value="0">keine</option><option value="1">vorhanden</option></select></div>
+        <div><label>E-Mail</label><select id="l-mail"><option value="">egal</option><option value="1">vorhanden</option><option value="0">fehlt</option></select></div>
+        <div><label>Status</label><select id="l-status"><option value="">alle</option></select></div>
+        <div><button class="btn ghost" id="l-csv">CSV (Telefon/Brief)</button></div>
+      </div>
+    </div>
+    <div class="card table-wrap"><p class="muted" id="l-count"></p><table><thead><tr><th>Firma</th><th>Ort</th><th>Kontakt</th><th>Website</th><th>Rechtsgrundlage</th><th>Status</th></tr></thead><tbody id="l-body"></tbody></table>
+      <p><button class="btn ghost" id="l-more">Mehr laden</button></p></div>
+  </section>
+
+  <section id="campaigns">
+    <div class="card">
+      <h2 id="c-title">Neue Kampagne</h2>
+      <input type="hidden" id="c-id">
+      <div class="row"><div><label>Name</label><input id="c-name" placeholder="Handwerk Hamburg ohne Website"></div>
+      <div><label>Betreff</label><input id="c-subject" placeholder="Kurze Frage zu {{firma}}"></div></div>
+      <label>Text – Platzhalter: {{firma}} {{stadt}} {{branche}} {{website}} {{problem|Fallback}} {{probleme}} {{absender}}. Impressum + Abmeldelink werden automatisch angehängt.</label>
+      <textarea id="c-body"></textarea>
+      <div class="row"><div><label>Follow-up nach Tagen (nur ohne Antwort)</label><input id="c-fdays" type="number" value="4" min="1"></div>
+      <div><label>Follow-up-Betreff (leer = „Re: …“)</label><input id="c-fsubject"></div></div>
+      <label>Follow-up-Text (leer = kein Follow-up)</label><textarea id="c-fbody" style="min-height:100px"></textarea>
+      <p><button class="btn" id="c-save">Speichern</button> <button class="btn ghost" id="c-preview">Vorschau</button> <button class="btn ghost" id="c-new">Neu</button></p>
+      <div id="c-prev"></div>
+    </div>
+    <div class="card table-wrap"><h2>Kampagnen</h2><table><thead><tr><th>Name</th><th>Status</th><th>Warteschlange</th><th>Gesendet</th><th>Fehler</th><th>Antworten</th><th></th></tr></thead><tbody id="c-body-list"></tbody></table></div>
+  </section>
+
+  <section id="status">
+    <div class="kpis" id="s-kpis"></div>
+    <div class="card table-wrap" style="margin-top:16px"><h2>Postfächer (Warm-up)</h2><table><thead><tr><th>Postfach</th><th>Heute gesendet</th><th>Limit heute</th></tr></thead><tbody id="s-acc"></tbody></table></div>
+    <div class="card table-wrap"><h2>Letzte Aktivität</h2><table><thead><tr><th>Zeit</th><th>Kampagne</th><th>Empfänger</th><th>Schritt</th><th>Status</th><th>Info</th></tr></thead><tbody id="s-log"></tbody></table></div>
+  </section>
+
+  <section id="suppression">
+    <div class="card"><h2>Adressen sperren</h2><textarea id="x-emails" style="min-height:80px" placeholder="eine oder mehrere E-Mail-Adressen"></textarea>
+      <p><button class="btn" id="x-go">Sperren</button></p></div>
+    <div class="card table-wrap"><table><thead><tr><th>E-Mail</th><th>Grund</th><th>Seit</th></tr></thead><tbody id="x-body"></tbody></table></div>
+  </section>
+</main>
+<div id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
