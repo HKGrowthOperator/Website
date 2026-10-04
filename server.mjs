@@ -27,19 +27,19 @@ app.use(express.urlencoded({ extended: false, limit: '64kb', parameterLimit: 100
 const forms = {
   'prozess-check': {
     subject: 'Neue Website-Anfrage: Prozess-Check',
-    redirect: '/danke-prozess-check.html',
+    redirect: '/danke-prozess-check',
     honeypot: 'bot-field',
     required: ['name', 'company', 'email', 'prozess']
   },
   'erstgespraech': {
     subject: 'Neue Website-Anfrage: Individuelle Demo',
-    redirect: '/danke-erstgespraech.html',
+    redirect: '/danke-erstgespraech',
     honeypot: 'website',
     required: ['name', 'unternehmen', 'email', 'thema', 'wunschzeit']
   },
   'roi-auswertung': {
     subject: 'Neue Website-Anfrage: ROI-Auswertung',
-    redirect: '/danke-roi.html',
+    redirect: '/danke-roi',
     honeypot: 'website',
     required: ['name', 'unternehmen', 'email']
   }
@@ -175,6 +175,21 @@ async function handleForm(req, res) {
 
 app.post('/api/forms/:form', handleForm);
 app.get('/health', (_req, res) => res.type('text/plain').send('ok'));
+
+// One address per page: /system.html and /index.html redirect permanently to the
+// clean URL that canonical tags, sitemap and navigation use.
+app.use((req, res, next) => {
+  if (!['GET', 'HEAD'].includes(req.method)) return next();
+  if (path.extname(req.path) !== '.html' || req.path.includes('..')) return next();
+
+  const relative = req.path.replace(/^\/+/, '');
+  const target = path.join(siteDir, relative);
+  if (!target.startsWith(siteDir + path.sep) || !fs.existsSync(target) || !fs.statSync(target).isFile()) return next();
+
+  const clean = relative === 'index.html' ? '/' : `/${relative.slice(0, -'.html'.length)}`;
+  const query = req.originalUrl.includes('?') ? req.originalUrl.slice(req.originalUrl.indexOf('?')) : '';
+  return res.redirect(301, clean + query);
+});
 
 // Serve clean production URLs such as /system and /system/ from mirrored .html pages.
 app.use((req, res, next) => {
