@@ -1,6 +1,6 @@
 # Google-Indexierung: alle HK-Growth-Seiten unter einer Marke
 
-Stand: 6. Oktober 2026, abends. Gilt für hk-growthoperator.de, dealuno.hk-growthoperator.de,
+Stand: 6. Oktober 2026, 22 Uhr. Gilt für hk-growthoperator.de, dealuno.hk-growthoperator.de,
 dealoperator.hk-growthoperator.de und website.hk-growthoperator.de. luiskummer.de bleibt auf
 Wunsch außen vor (nur die gemeinsame Organisation in den Daten ist gesetzt).
 
@@ -33,14 +33,12 @@ Erledigt (automatisch über das Dienstkonto `search-console-agent@hk-growth-seo`
 | IndexNow (Bing, Copilot, ChatGPT-Suche) | Schlüssel `bc49fe1dfd860a2c09d72ac982f0768e` auf allen vier Hosts, alle Sitemap-URLs eingereicht, viermal `202 Accepted` |
 | Live-Prüfung | alle 37 Sitemap-URLs antworten mit 200, JSON-LD mit gemeinsamer Organisation auf allen Startseiten |
 | www | Express leitet `www.` per 301 auf die Hauptdomain (greift, sobald die www-Domain in Coolify ein Zertifikat hat) |
+| DNS | Netlify-Eintrag gelöscht; `hk-growthoperator.de` zeigt seit dem Abend nur noch auf Hetzner, alle Aufrufe erreichen die neue Seite |
+| Neue Seiten | 48 Seiten zu Suchbegriffen, Regionen, Branchen und Wettbewerbern: 12 Webstudio, 10 Hauptseite, 15 DealUno, 1 Deal Operator; alle in den Sitemaps, erneut eingereicht und an IndexNow gemeldet. Zuordnung in `SEO-KEYWORDS.md` |
 
 Blockiert, weil DNS oder Zugänge fehlen:
 
-1. **Zwei A-Einträge auf der Hauptdomain.** `hk-growthoperator.de` löst auf
-   `75.2.60.5` (Netlify, alte Seite) **und** `167.233.76.202` (Hetzner, neue Seite).
-   Jeder zweite Aufruf, auch der Googlebot, bekommt die alte Startseite ohne strukturierte
-   Daten, ohne `/llms.txt` und ohne IndexNow-Datei. Im All-Inkl-KAS den Eintrag
-   `75.2.60.5` löschen; danach nur noch Hetzner.
+1. **Zwei A-Einträge auf der Hauptdomain.** Erledigt am 6. Oktober abends; nur noch Hetzner.
 2. **www ohne Zertifikat.** `www.hk-growthoperator.de` zeigt auf Hetzner, aber der Dienst in
    Coolify kennt die Domain nicht. Domain im Coolify-Dienst der Hauptseite ergänzen.
 3. **Search Console für Menschen.** Das Dienstkonto ist Inhaber. Ein zweiter Inhaber braucht
@@ -249,8 +247,9 @@ FAQPage-Daten hinterlegt, `llms.txt` beschreibt Firma und Marken für KI-Suchen.
   wieder relativ machen. Nicht mehr manuell starten oder vorher anpassen.
 - **`www.hk-growthoperator.de`** löst inzwischen auf Hetzner auf; der 301 auf die Hauptdomain
   ist im Server. Es fehlt nur das Zertifikat (www-Domain im Coolify-Dienst eintragen).
-- **Doppelter A-Eintrag** der Hauptdomain (Netlify und Hetzner), siehe oben. Solange er
-  besteht, sind Live-Prüfungen und Googles Sicht auf die Startseite Zufall.
+- **Webstudio-Dockerfile** kopiert Module einzeln. Neue `.mjs`-Dateien müssen in die `COPY`-Zeile,
+  sonst startet der neue Container nicht und Coolify lässt still den alten laufen (so geschehen bei
+  `landing-data.mjs`, behoben). Ein Test im Repo prüft das jetzt.
 - **Bisher indexierte `.html`-Adressen** der Hauptseite leiten jetzt um. Die Search Console
   meldet sie als „Seite mit Weiterleitung“; das ist korrekt, die Signale wandern mit.
 - **Deal Operator Footer** hat bewusst nur einen zusätzlichen Link bekommen, weil die
