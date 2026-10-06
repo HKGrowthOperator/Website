@@ -1,6 +1,6 @@
 # Google-Indexierung: alle HK-Growth-Seiten unter einer Marke
 
-Stand: 6. Oktober 2026, 22 Uhr. Gilt für hk-growthoperator.de, dealuno.hk-growthoperator.de,
+Stand: 6. Oktober 2026, 23 Uhr. Gilt für hk-growthoperator.de, dealuno.hk-growthoperator.de,
 dealoperator.hk-growthoperator.de und website.hk-growthoperator.de. luiskummer.de bleibt auf
 Wunsch außen vor (nur die gemeinsame Organisation in den Daten ist gesetzt).
 
@@ -35,6 +35,7 @@ Erledigt (automatisch über das Dienstkonto `search-console-agent@hk-growth-seo`
 | www | Express leitet `www.` per 301 auf die Hauptdomain (greift, sobald die www-Domain in Coolify ein Zertifikat hat) |
 | DNS | Netlify-Eintrag gelöscht; `hk-growthoperator.de` zeigt seit dem Abend nur noch auf Hetzner, alle Aufrufe erreichen die neue Seite |
 | Neue Seiten | 48 Seiten zu Suchbegriffen, Regionen, Branchen und Wettbewerbern: 12 Webstudio, 10 Hauptseite, 15 DealUno, 1 Deal Operator; alle in den Sitemaps, erneut eingereicht und an IndexNow gemeldet. Zuordnung in `SEO-KEYWORDS.md` |
+| KI-Paket | Glossare mit DefinedTermSet auf Hauptseite, DealUno und Webstudio; `llms-full.txt` mit Volltext auf allen vier Sites; robots.txt mit ausdrücklicher Erlaubnis für KI-Crawler; Article-Daten mit Autor, Datum und „Kurz gesagt“ auf den Ratgeber- und Prozessseiten; Robots-Meta erlaubt volle Snippets. Details in `SEO-KEYWORDS.md`, Abschnitt 5 |
 
 Blockiert, weil DNS oder Zugänge fehlen:
 
