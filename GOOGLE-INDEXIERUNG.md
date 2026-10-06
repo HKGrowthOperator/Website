@@ -133,6 +133,49 @@ Branch in allen Repos: `claude/google-indexierung-domains-t5t7cd`.
 
 - `worksFor` der Person trägt die @id der HK-Growth-Organisation.
 
+## SEO/GEO-Inhalte in diesem Branch
+
+Technik allein bringt keine Rankings für „CRM“ oder „Kaltakquise Software“. Dafür braucht
+es Seiten, die genau diese Fragen beantworten. Das ist jetzt angelegt:
+
+**DealUno, fünf Ratgeberseiten** im Layout der Produktseiten, jede mit Hero, Erklärtext,
+drei Funktionskarten, Paket-Hinweis, FAQ (als FAQPage-Daten für Google und KI-Suchen) und
+Demo-Anfrage als Ziel:
+
+| Seite | Suchbegriffe |
+| --- | --- |
+| `/kaltakquise-software/` | Kaltakquise Software, Telefonakquise Software, B2B Kaltakquise Tool |
+| `/crm-fuer-vertriebsteams/` | CRM Vertrieb, Sales CRM, CRM Kaltakquise, CRM Opener Setter Closer |
+| `/sales-app/` | Sales App, Vertriebs-App, Vertriebssoftware |
+| `/power-dialer/` | Power Dialer, Dialer Software, Telefonakquise Tool |
+| `/lead-scoring/` | Lead Scoring, Lead Score, B2B Leads finden, Leadrecherche |
+
+Alle fünf sind im Footer jeder Seite verlinkt, stehen in der Sitemap und in `llms.txt`.
+
+**Hauptseite:** Titel und Beschreibungen der sechs Seiten nennen die Suchbegriffe
+(Prozessautomatisierung Mittelstand, Auftragssteuerung, Nachkalkulation, Rechnungsablauf,
+KI-Betriebssystem, ROI-Rechner). `/unternehmen` hat einen Abschnitt „Vier Marken. Ein Team.“
+mit Text und Link zu DealUno, Deal Operator und Webstudio. Die FAQ der Startseite ist als
+FAQPage-Daten hinterlegt, `llms.txt` beschreibt Firma und Marken für KI-Suchen.
+
+**Deal Operator:** `llms.txt`.
+
+### Was danach Rankings und Anfragen bringt
+
+1. **Monatlich eine neue Ratgeberseite auf DealUno.** Kandidaten: „Kaltakquise Skript
+   B2B“, „Einwandbehandlung Telefonakquise“, „Setter Closer Modell“, „Vorzimmer
+   Kaltakquise“, „Nachfassen nach dem Erstgespräch“. Jede Seite mit FAQ und Demo-CTA.
+2. **Erfahrungsberichte und Zahlen.** Ein Kundenbeispiel mit echten Werten (Anwahlen,
+   Termine, Abschlussquote) auf DealUno und als Beitrag im Unternehmensprofil.
+3. **Google-Bewertungen** im Unternehmensprofil sammeln; nach jedem abgeschlossenen
+   Projekt eine Bitte um Bewertung mit Direktlink.
+4. **Backlinks:** Deal-Operator-Mitglieder und Webstudio-Kunden verlinken auf
+   hk-growthoperator.de (Footer „Website von HK Growth Webstudio“), Branchenverzeichnisse
+   für Marienheide/Oberberg, Gastbeiträge in Vertriebs-Communities.
+5. **Bing Webmaster Tools** einrichten; Bing speist ChatGPT-Suche und Copilot.
+6. **Search Console monatlich lesen:** Welche Anfragen bringen Impressionen ohne Klicks?
+   Dort Titel und Beschreibung nachschärfen oder eine eigene Seite anlegen.
+
 ## Nach dem Deploy: Reihenfolge
 
 1. **Branches mergen und deployen** (Coolify), danach je Seite prüfen:
