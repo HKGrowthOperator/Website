@@ -149,8 +149,15 @@ Demo-Anfrage als Ziel:
 | `/sales-app/` | Sales App, Vertriebs-App, Vertriebssoftware |
 | `/power-dialer/` | Power Dialer, Dialer Software, Telefonakquise Tool |
 | `/lead-scoring/` | Lead Scoring, Lead Score, B2B Leads finden, Leadrecherche |
+| `/vertriebssoftware-kmu/` | Vertriebssoftware KMU, Vertriebssoftware kleine Unternehmen |
+| `/kaltakquise-software-vergleich/` | Kaltakquise Software Vergleich, CRM oder Dialer, Alternative zu Excel |
+| `/kaltakquise-skript/` | Kaltakquise Skript, Telefonakquise Skript, Gesprächsleitfaden |
+| `/einwandbehandlung-telefonakquise/` | Einwandbehandlung Telefonakquise, Einwände Kaltakquise |
+| `/setter-closer-modell/` | Setter Closer, Opener Setter Closer, Vertriebsrollen |
+| `/ratgeber/` | Übersicht aller Ratgeber, verlinkt im Footer jeder Seite |
 
-Alle fünf sind im Footer jeder Seite verlinkt, stehen in der Sitemap und in `llms.txt`.
+Jede Seite verlinkt drei verwandte Ratgeber („Weiterlesen“), alle stehen in der Sitemap
+und in `llms.txt`. Wettbewerber, Begriffe und die nächsten Seiten je Marke: `SEO-KEYWORDS.md`.
 
 **Hauptseite:** Titel und Beschreibungen der sechs Seiten nennen die Suchbegriffe
 (Prozessautomatisierung Mittelstand, Auftragssteuerung, Nachkalkulation, Rechnungsablauf,
