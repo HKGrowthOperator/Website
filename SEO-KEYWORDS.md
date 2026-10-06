@@ -80,8 +80,8 @@ Rechnungslauf) mit Beispielrechnung wäre indexierbar und würde Anfragen bringe
 ## Webstudio: Begriffe
 
 Webdesign Marienheide, Webdesign Gummersbach, Webdesign Oberberg, Webdesign Köln, Website
-erstellen lassen, Unternehmenswebsite, Relaunch, SEO Agentur Oberberg. Alles im Code
-vorbereitet; die Seite muss live gehen.
+erstellen lassen, Unternehmenswebsite, Relaunch, SEO Agentur Oberberg. Live unter
+`website.hk-growthoperator.de`, Sitemap in der Search Console eingereicht.
 
 ## Für alle Marken
 

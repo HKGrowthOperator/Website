@@ -22,5 +22,5 @@ Geschäftsführung: Nick Hinze, Luis Kummer
 
 - [DealUno](https://dealuno.hk-growthoperator.de/): Sales-App und CRM für die B2B-Kaltakquise mit Lead Radar, Power Dialer und Vertriebsprozess für Opener, Setter und Closer
 - [Deal Operator](https://dealoperator.hk-growthoperator.de/): kostenfreie Sales-Community fürs gemeinsame Callen mit Rangliste und Discord-Runde
-- [HK Growth Webstudio](https://webseite.hk-growthoperator.de/): Unternehmenswebsites mit SEO, KI-Sichtbarkeit und Anfrage-Automation
+- [HK Growth Webstudio](https://website.hk-growthoperator.de/): Unternehmenswebsites mit SEO, KI-Sichtbarkeit und Anfrage-Automation
 - [Luis Kummer](https://luiskummer.de/): Gründer und Geschäftsführer
