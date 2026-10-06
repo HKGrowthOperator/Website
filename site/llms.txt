@@ -1,0 +1,26 @@
+# HK Growth Operator
+
+> HK Growth Operator (HK Growth UG, Weststraße 2, 51709 Marienheide, Deutschland) baut KI-Betriebssysteme und Prozessautomatisierung für den Mittelstand: HK Growth OS verbindet Anfragen, Angebote, Aufträge, Zeiterfassung, Nachkalkulation und Rechnungen in einem Ablauf. Zur Gruppe gehören DealUno (Sales-App und CRM für die Kaltakquise), Deal Operator (kostenfreie Sales-Community fürs gemeinsame Callen) und das HK Growth Webstudio (Websites mit SEO, GEO und Anfrage-Automation).
+
+Canonical URL: https://hk-growthoperator.de/
+Sprache: Deutsch
+Kontakt: info@hk-growthoperator.de, +49 175 4547011
+Geschäftsführung: Nick Hinze, Luis Kummer
+
+## Seiten
+
+- [Startseite](https://hk-growthoperator.de/): HK Growth OS, Prozess-Check, Demo anfragen, FAQ
+- [System](https://hk-growthoperator.de/system): Auftragssteuerung, Nachkalkulation, Rechnungsablauf, Integrationen
+- [Anwendungsfälle](https://hk-growthoperator.de/anwendungsfaelle): Geschäftsführung, Verwaltung, Projektleitung, Ausführung
+- [Einführung](https://hk-growthoperator.de/einfuehrung): Prozessaufnahme, Pilot, Test, Rollout
+- [ROI-Rechner](https://hk-growthoperator.de/roi-rechner): manuellen Aufwand und Amortisation berechnen
+- [Unternehmen](https://hk-growthoperator.de/unternehmen): Team, Arbeitsweise, Marken, Referenzen
+- [KI-Transparenz & AI Act](https://hk-growthoperator.de/ki-richtlinie): Transparenz, Verantwortung, EU AI Act
+- [Impressum](https://hk-growthoperator.de/impressum), [Datenschutz](https://hk-growthoperator.de/datenschutz)
+
+## Marken der HK-Growth-Gruppe
+
+- [DealUno](https://dealuno.hk-growthoperator.de/): Sales-App und CRM für die B2B-Kaltakquise mit Lead Radar, Power Dialer und Vertriebsprozess für Opener, Setter und Closer
+- [Deal Operator](https://dealoperator.hk-growthoperator.de/): kostenfreie Sales-Community fürs gemeinsame Callen mit Rangliste und Discord-Runde
+- [HK Growth Webstudio](https://webseite.hk-growthoperator.de/): Unternehmenswebsites mit SEO, KI-Sichtbarkeit und Anfrage-Automation
+- [Luis Kummer](https://luiskummer.de/): Gründer und Geschäftsführer
