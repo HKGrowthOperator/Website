@@ -1,97 +1,186 @@
-# Suchbegriffe, Wettbewerber und Inhalte je Marke
+# Suchbegriffe, Seiten und Wettbewerber je Marke
 
-Stand: 6. Oktober 2026. Grundlage: Live-Suchergebnisse zu den Kernbegriffen und die
-Positionierung der Wettbewerber auf ihren eigenen Seiten. Keine Suchvolumen-Zahlen, dafür
-braucht es ein Tool (Google Keyword Planner über ein Ads-Konto, Sistrix oder Ahrefs). Die
-Search Console liefert ab etwa vier Wochen die echten Anfragen.
+Stand: 6. Oktober 2026, abends. Jede Zeile nennt den Suchbegriff, die Seite, die ihn
+beantwortet, und den Status. Keine Suchvolumen-Zahlen; dafür braucht es ein Tool (Google
+Keyword Planner über ein Ads-Konto, Sistrix, Ahrefs). Die Search Console liefert ab etwa vier
+Wochen die echten Anfragen je Seite; dann wird diese Liste gegen die Zahlen geprüft.
+
+Alle Seiten sind live oder gemerged (Deploy läuft automatisch). Jede hat Titel, Beschreibung,
+Canonical, FAQ als strukturierte Daten, Breadcrumb und die gemeinsame Organisation
+`https://hk-growthoperator.de/#organization`. Alle Sitemaps sind in der Search Console, alle URLs
+an IndexNow (Bing) gemeldet.
 
 ## Wer heute für unsere Begriffe rankt
 
 | Begriffsfeld | Wer rankt | Welche Inhalte |
 | --- | --- | --- |
 | Power Dialer, Telefonakquise-Tool | Aircall, CloudTalk, Skipcall | Erklärseiten „Was ist ein Power Dialer“, Funktionsseiten, Zahlen zu Anrufen pro Stunde |
-| CRM für Vertriebsteams, Kaltakquise-CRM | Close, Pipedrive, Breakcold, acquibee, folk | Vergleichsartikel „Beste CRM für Vertrieb“, „X vs. Y“, Review-Seiten |
-| B2B-Leads, Firmendaten, Leadrecherche | Dealfront (Echobot), Implisense, Schober, Rexago | Datenbank-Angebote mit Firmenzahlen, Ratgeber zur B2B-Kaltakquise |
-| Kaltakquise-Ratgeber | OMR Reviews, Brevo, Waalaxy, Blogs der Anbieter | Tipps-Listen, Rechtslage im B2B, Skript-Vorlagen |
-| Prozessautomatisierung Mittelstand, KI-Agentur | Mindverse, Automation-Agenturen, RPA-Anbieter | Erklärartikel RPA vs. KI-Agenten, Einsparungen in Stunden und Euro, Fallstudien |
+| CRM für Vertriebsteams, Kaltakquise-CRM | Close, Pipedrive, Breakcold, acquibee, folk | Vergleichsartikel, „X vs. Y“, Review-Portale (OMR Reviews, Capterra) |
+| B2B-Leads, Firmendaten | Dealfront (Echobot), Implisense, Schober, Rexago | Datenbank-Angebote, Ratgeber zur B2B-Kaltakquise |
+| Kaltakquise-Ratgeber, Rechtslage | OMR Reviews, Brevo, Waalaxy, Anwaltskanzleien, IHKs | Tipps-Listen, § 7 UWG erklärt, Skript-Vorlagen |
+| Prozessautomatisierung Mittelstand, KI-Agentur | Mindverse, Automation-Agenturen, RPA-Anbieter, Systemhäuser | Erklärartikel RPA vs. KI-Agenten, Einsparungen in Stunden, Fallstudien |
+| Webdesign Gummersbach / Oberberg / Köln | lokale Agenturen und Freelancer, Jimdo/Wix-Partner | Leistungsseiten mit Ortsnamen, Referenzen, Preise |
 
-Was daraus folgt: Für generische Begriffe ranken Erklärseiten mit Definition, Zahlen und
-Vergleich, nicht Produktseiten. Die Anbieter beantworten die Frage des Suchenden zuerst und
-verkaufen danach. Genau so sind die neuen DealUno-Ratgeberseiten aufgebaut.
+Was daraus folgt: Für generische Begriffe ranken Erklärseiten mit Definition, Vergleich und FAQ,
+nicht Produktseiten. Für lokale Begriffe ranken Seiten mit echtem Ortsbezug plus
+Google Unternehmensprofil. Genau so sind alle neuen Seiten gebaut.
 
-## DealUno: Begriffe und Seiten
+## 1. DealUno (dealuno.hk-growthoperator.de)
 
-| Seite | Hauptbegriff | Nebenbegriffe |
+### Produktbegriffe
+
+| Suchbegriff | Seite | Status |
 | --- | --- | --- |
-| `/kaltakquise-software/` | Kaltakquise Software | Telefonakquise Software, Kaltakquise Tool, B2B Kaltakquise |
-| `/kaltakquise-software-vergleich/` | Kaltakquise Software Vergleich | CRM oder Dialer, Alternative zu Excel, Checkliste Auswahl |
-| `/crm-fuer-vertriebsteams/` | CRM für Vertriebsteams | Sales CRM, CRM Kaltakquise, CRM Opener Setter Closer |
-| `/vertriebssoftware-kmu/` | Vertriebssoftware KMU | Vertriebssoftware kleine Unternehmen, Sales Software Mittelstand |
-| `/sales-app/` | Sales App | Vertriebs-App, Vertriebssoftware, Sales Tool |
-| `/power-dialer/` | Power Dialer | Dialer Software, Power Dialer vs. Predictive Dialer, Telefonakquise Tool |
-| `/lead-scoring/` | Lead Scoring | Lead Score, B2B Leads finden, Leadrecherche, Leadqualifizierung |
-| `/kaltakquise-skript/` | Kaltakquise Skript | Telefonakquise Skript, Gesprächsleitfaden Kaltakquise, Vorzimmer |
-| `/einwandbehandlung-telefonakquise/` | Einwandbehandlung Telefonakquise | Einwände Kaltakquise, keine Zeit kein Interesse, Einwand Vorwand |
-| `/setter-closer-modell/` | Setter Closer | Opener Setter Closer, Setter Closer Modell, Vertriebsrollen |
-| `/ratgeber/` | Kaltakquise Ratgeber | Übersicht aller Seiten |
+| Kaltakquise Software, Telefonakquise Software, Kaltakquise Tool | `/kaltakquise-software/`, `/telefonakquise-software/` | live |
+| Kaltakquise Software Vergleich, CRM oder Dialer | `/kaltakquise-software-vergleich/` | live |
+| CRM für Vertriebsteams, Sales CRM, CRM Kaltakquise | `/crm-fuer-vertriebsteams/` | live |
+| CRM kleine Unternehmen, einfaches CRM | `/crm-kleine-unternehmen/` | neu |
+| Vertriebssoftware KMU, Sales Software Mittelstand | `/vertriebssoftware-kmu/` | live |
+| Sales App, Vertriebs-App, Sales Tool | `/sales-app/` | live |
+| Power Dialer, Dialer Software | `/power-dialer/` | live |
+| Lead Scoring, B2B Leads finden, Leadqualifizierung | `/lead-scoring/` | live |
+| B2B Leadgenerierung Software, Leadrecherche Tool | `/b2b-leadgenerierung-software/` | neu |
+| Vertriebsautomatisierung, Sales Automation | `/vertriebsautomatisierung/` | neu |
 
-Produktseiten decken zusätzlich: Lead Radar, Anrufsession, Vertriebsprozess, Pakete.
+### Ratgeber (Long-Tail, KI-Zitate)
 
-### Nächste Seiten, in dieser Reihenfolge
-
-1. „Kaltakquise B2B: Was ist erlaubt?“ (Rechtslage UWG, mutmaßliche Einwilligung im B2B;
-   juristisch prüfen lassen). Wird sehr oft gesucht und von jedem Wettbewerber beantwortet.
-2. „Nachfassen nach dem Erstgespräch: Mail, Anruf, Zeitpunkt“.
-3. „Vorzimmer in der Kaltakquise: so kommen Sie durch“.
-4. „Kaltakquise KPIs: Anwahlen, Erreichbarkeit, Terminquote“ mit Richtwerten aus dem
-   eigenen Vertrieb, sobald Zahlen vorliegen.
-5. Vergleichsseiten mit Namen („DealUno als Alternative zu …“). Bringen Suchverkehr von
-   Leuten, die den Wettbewerber schon kennen. Jede Aussage über ein fremdes Produkt muss
-   belegbar und aktuell sein (Wettbewerbsrecht); deshalb nur nach Freigabe und mit Quelle
-   je Behauptung.
-
-## Deal Operator: Begriffe
-
-| Begriff | Seite | Hinweis |
+| Suchbegriff | Seite | Status |
 | --- | --- | --- |
-| Sales Community, Vertriebs-Community | Startseite | Titel und Beschreibung gesetzt |
-| Cold Calling Community, gemeinsam callen | Startseite, So funktioniert’s | |
-| Kaltakquise Challenge, Calling Challenge | fehlt | Eine öffentliche Seite „Für wen ist Deal Operator“ mit Regeln und Beispieltag würde beides abdecken |
-| Setter Closer Community | fehlt | Verweis von DealUno `/setter-closer-modell/` ist gesetzt |
+| Kaltakquise Skript, Telefonakquise Leitfaden | `/kaltakquise-skript/` | live |
+| Einwandbehandlung Telefonakquise, keine Zeit kein Interesse | `/einwandbehandlung-telefonakquise/` | live |
+| Setter Closer Modell, Opener Setter Closer | `/setter-closer-modell/` | live |
+| Kaltakquise B2B erlaubt, Kaltakquise Rechtslage UWG | `/kaltakquise-b2b-erlaubt/` | neu, juristisch gegenlesen lassen |
+| Nachfassen Erstgespräch, Follow-up Vertrieb | `/nachfassen-nach-erstgespraech/` | neu |
+| Vorzimmer Kaltakquise, Durchkommen zum Entscheider | `/vorzimmer-kaltakquise/` | neu |
+| Kaltakquise KPIs, Terminquote, Erreichbarkeit messen | `/kaltakquise-kpis/` | neu |
 
-## HK Growth OS: Begriffe
+### Branchen
 
-| Begriff | Seite | Status |
+| Suchbegriff | Seite | Status |
 | --- | --- | --- |
-| Prozessautomatisierung Mittelstand | Startseite | Titel gesetzt |
-| KI-Betriebssystem, KI Automatisierung Mittelstand | Startseite, System | Titel gesetzt |
-| Auftragssteuerung Software, Auftragsabwicklung automatisieren | System | Titel gesetzt |
-| Nachkalkulation Software, Nachkalkulation automatisieren | System | Titel gesetzt |
-| Rechnungsablauf automatisieren, Rechnungsstellung Mittelstand | System | Titel gesetzt |
-| ROI Prozessautomatisierung | ROI-Rechner | Titel gesetzt |
-| KI Agentur NRW, Automatisierung Agentur Köln / Oberberg | Unternehmen | regionaler Bezug im Titel, mehr Lokalbezug im Text möglich |
-| Branchen (Handwerk, Bau, technischer Service) | fehlt | Je Branche eine Anwendungsseite mit echtem Beispiel; erst mit Referenzfreigabe |
+| Kaltakquise IT-Dienstleister, Neukunden Systemhaus | `/kaltakquise-it-dienstleister/` | neu |
+| Kaltakquise Agentur, Neukunden Agentur | `/kaltakquise-agenturen/` | neu |
+| Kaltakquise Personaldienstleister, Kundengewinnung Zeitarbeit | `/kaltakquise-personaldienstleister/` | neu |
+| Gewerbekunden Handwerk, B2B Akquise Handwerk | `/kaltakquise-handwerk-b2b/` | neu |
 
-Was den Wettbewerbern hier Reichweite bringt: Erklärartikel „RPA vs. KI-Agenten“, Zahlen
-zu eingesparten Stunden je Prozess und Fallstudien. Der ROI-Rechner ist dafür der beste
-Hebel: eine Ergebnisseite je typischem Prozess (Auftragseingang, Zeiterfassung,
-Rechnungslauf) mit Beispielrechnung wäre indexierbar und würde Anfragen bringen.
+### Wettbewerber (Alternativen)
 
-## Webstudio: Begriffe
+| Suchbegriff | Seite | Status |
+| --- | --- | --- |
+| Pipedrive Alternative, Pipedrive deutsch | `/alternative-zu-pipedrive/` | neu, vor Bewerbung gegenlesen |
+| Close CRM Alternative, Close deutsch | `/alternative-zu-close/` | neu, vor Bewerbung gegenlesen |
+| Aircall Alternative, Power Dialer Alternative | `/alternative-zu-aircall/` | neu, vor Bewerbung gegenlesen |
 
-Webdesign Marienheide, Webdesign Gummersbach, Webdesign Oberberg, Webdesign Köln, Website
-erstellen lassen, Unternehmenswebsite, Relaunch, SEO Agentur Oberberg. Live unter
-`website.hk-growthoperator.de`, Sitemap in der Search Console eingereicht.
+Die Alternativen-Seiten beschreiben die Fremdprodukte nur als Kategorie mit dem, was auf deren
+öffentlichen Seiten steht, mit Stand, Quelle und Markenhinweis. Keine Preis- oder
+Qualitätsurteile über Dritte. Weitere Kandidaten, erst nach Freigabe: HubSpot, Salesforce,
+Zoho CRM, Lemlist, CloudTalk.
 
-## Für alle Marken
+### Nächste Seiten für DealUno
 
-- **Google Unternehmensprofil** entscheidet über die lokalen Begriffe (Marienheide,
-  Gummersbach, Oberberg): Produkte, Leistungen, Bewertungen, wöchentlich ein Beitrag.
-- **Bewertungen**: je mehr und je frischer, desto höher im lokalen Ranking.
-- **Backlinks**: Kundenwebsites des Webstudios mit Footer-Link, Deal-Operator-Mitglieder,
-  Branchenverzeichnisse, Gastbeiträge.
-- **KI-Suchen (ChatGPT, Perplexity, Google AI Overviews)** zitieren Seiten mit klarer
-  Definition am Anfang, FAQ und konsistenten Firmendaten. `llms.txt`, FAQPage-Daten und die
-  gemeinsame Organisation sind dafür gesetzt; Bing Webmaster Tools ist der nächste Schritt.
-- **Monatlich in der Search Console**: Anfragen mit Impressionen ohne Klicks sind die
-  Kandidaten für eine neue Seite oder einen besseren Titel.
+1. Fallstudie aus dem eigenen Vertrieb mit echten Zahlen (Anwahlen, Terminquote) sobald sie vorliegen.
+2. „Kaltakquise Skript Vorlage“ als Download (Lead-Magnet mit Einwilligung).
+3. Glossar-Seiten für KI-Zitate: Was ist ein Setter, Was ist ein Opener, Was ist Lead Scoring.
+
+## 2. HK Growth OS (hk-growthoperator.de)
+
+### Prozess
+
+| Suchbegriff | Seite | Status |
+| --- | --- | --- |
+| Prozessautomatisierung Mittelstand, Automatisierung von der Anfrage bis zur Rechnung | `/prozessautomatisierung` | neu |
+| Angebotserstellung automatisieren, Angebote schneller erstellen | `/angebotserstellung-automatisieren` | neu |
+| Auftragsabwicklung automatisieren, Auftragssteuerung Software | `/auftragsabwicklung-automatisieren`, `/system#auftragssteuerung` | neu / live |
+| Rechnungsstellung automatisieren, Rechnungsablauf Mittelstand | `/rechnungsstellung-automatisieren`, `/system#rechnungsablauf` | neu / live |
+| Nachkalkulation Software, Nachkalkulation automatisieren | `/system#nachkalkulation` | live |
+| KI-Betriebssystem, KI Automatisierung Mittelstand | `/`, `/system` | live |
+| ROI Prozessautomatisierung | `/roi-rechner` | live |
+| Einführung Prozessautomatisierung, Pilot | `/einfuehrung` | live |
+| KI Transparenz, AI Act Mittelstand | `/ki-richtlinie` | live |
+
+### Region
+
+| Suchbegriff | Seite | Status |
+| --- | --- | --- |
+| KI Agentur Oberberg, KI Agentur Gummersbach, Digitalisierung Mittelstand Oberberg | `/ki-agentur-oberberg` | neu |
+| KI Agentur Köln, Prozessautomatisierung Köln | `/ki-agentur-koeln` | neu |
+| Unternehmen Marienheide, HK Growth Team | `/unternehmen` | live |
+
+### Branchen
+
+| Suchbegriff | Seite | Status |
+| --- | --- | --- |
+| Digitalisierung Handwerk, Handwerk Prozesse automatisieren | `/automatisierung-handwerk` | neu |
+| Software Bauunternehmen Nachkalkulation, Bauablauf digital | `/automatisierung-bauunternehmen` | neu |
+| Service Management automatisieren, Servicebericht digital | `/automatisierung-technischer-service` | neu |
+| ERP Automatisierung Maschinenbau, Angebotskalkulation Maschinenbau | `/automatisierung-maschinenbau` | neu |
+
+### Nächste Seiten für HK Growth OS
+
+1. Je Prozess eine Beispielrechnung aus dem ROI-Rechner als eigene Seite (Auftragseingang, Zeiterfassung, Rechnungslauf).
+2. Erklärartikel „RPA vs. KI-Agenten vs. Workflow-Automation“ (Wettbewerber ranken damit).
+3. Fallstudien, sobald Referenzfreigaben vorliegen.
+
+## 3. HK Growth Webstudio (website.hk-growthoperator.de)
+
+### Region
+
+| Suchbegriff | Seite | Status |
+| --- | --- | --- |
+| Webdesign Gummersbach, Webseite erstellen lassen Gummersbach, Webseiten Gummersbach, Webagentur Gummersbach | `/webdesign-gummersbach` | neu |
+| Webdesign Marienheide, Website Marienheide | `/webdesign-marienheide` | neu |
+| Webdesign Oberberg, Webdesign Wiehl / Wipperfürth / Waldbröl / Bergneustadt | `/webdesign-oberberg` | neu |
+| Webdesign Köln, Website erstellen lassen Köln, Webagentur Köln Festpreis | `/webdesign-koeln` | neu |
+| Webdesign Bergisches Land, Webdesign Bergisch Gladbach / Overath / Wermelskirchen | `/webdesign-bergisches-land` | neu |
+
+### Leistung
+
+| Suchbegriff | Seite | Status |
+| --- | --- | --- |
+| Website erstellen lassen, Website erstellen lassen Kosten, Homepage Festpreis | `/website-erstellen-lassen` | neu |
+| Website Relaunch, Website überarbeiten lassen | `/website-relaunch` | neu |
+| SEO Agentur Oberberg, SEO Gummersbach, lokale SEO, Google Unternehmensprofil einrichten | `/seo-agentur-oberberg` | neu |
+| GEO Agentur, in ChatGPT gefunden werden, KI Sichtbarkeit, llms.txt | `/ki-sichtbarkeit-geo` | neu |
+| Websites die Anfragen bringen, Terminbuchung Website, Anfrage-Automation | `/` | live |
+
+### Branchen
+
+| Suchbegriff | Seite | Status |
+| --- | --- | --- |
+| Website für Handwerker, Handwerker Homepage | `/website-fuer-handwerker` | neu |
+| Website für Vereine, Vereinshomepage, Website Sportverein | `/website-fuer-vereine` | neu (Referenzen CCRR, SC Merzenich) |
+| Website für Dienstleister, Berater, Kanzlei, Praxis mit Terminbuchung | `/website-fuer-dienstleister` | neu |
+
+### Nächste Seiten für das Webstudio
+
+1. Gastronomie und Hotellerie (Talsperren-Tourismus in Oberberg).
+2. Ärzte und Praxen mit Online-Terminbuchung (berufsrechtlich prüfen).
+3. Weitere Orte nur bei echten Projekten dort (Bergneustadt, Wiehl, Lindlar), sonst Doorway-Risiko.
+
+## 4. Deal Operator (dealoperator.hk-growthoperator.de)
+
+| Suchbegriff | Seite | Status |
+| --- | --- | --- |
+| Sales Community, Vertriebs-Community kostenlos | `/`, `/fuer-wen` | live / neu |
+| Cold Calling Community, gemeinsam callen | `/fuer-wen` | neu |
+| Kaltakquise Challenge, Calling Challenge | `/fuer-wen#challenge` | neu |
+| Setter Closer Community | `/fuer-wen#rollen` | neu |
+| So funktioniert Deal Operator, Tagesabschluss, Serie | `/so-funktionierts` | live |
+
+## Für alle Marken: was nach den Seiten zählt
+
+- **Google Unternehmensprofil** entscheidet über die lokalen Begriffe (Marienheide, Gummersbach,
+  Oberberg, Köln): Produkte, Leistungen, Bewertungen, wöchentlich ein Beitrag. Texte in
+  `GOOGLE-UNTERNEHMENSPROFIL.md`.
+- **Bewertungen**: die ersten fünf entscheiden. Bewertungslink aus dem Unternehmensprofil nach jedem
+  abgeschlossenen Projekt und an aktive Deal-Operator-Mitglieder.
+- **Backlinks**: Kundenwebsites des Webstudios mit Footer-Link („Website: HK Growth Webstudio“),
+  Vereins-Partner, Branchenverzeichnisse (Handwerkskammer-Partner, IHK), lokale Presse (Oberberg
+  Aktuell, Kölner Stadt-Anzeiger Regionalteil) mit der Geschichte „Vier Marken aus Marienheide“.
+- **KI-Suchen**: jede neue Seite hat Definition am Anfang, FAQ als Daten und dieselbe Organisation.
+  Alle Sites sind per IndexNow bei Bing (Copilot, ChatGPT-Suche) gemeldet.
+- **Monatlich in der Search Console**: Anfragen mit Impressionen, aber ohne Klicks, bekommen einen
+  besseren Titel; Anfragen ohne passende Seite bekommen eine neue Seite. Erste Auswertung Anfang
+  November 2026.
+- **Wettbewerber-Begriffe**: Weitere „Alternative zu …“-Seiten nur nach juristischer Freigabe der
+  drei bestehenden.
