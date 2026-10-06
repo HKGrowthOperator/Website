@@ -178,6 +178,14 @@ app.get('/health', (_req, res) => res.type('text/plain').send('ok'));
 
 // One address per page: /system.html and /index.html redirect permanently to the
 // clean URL that canonical tags, sitemap and navigation use.
+// Canonical host: www.* -> apex (one host for Google, needs the www domain in Coolify for TLS).
+app.use((req, res, next) => {
+  if (!['GET', 'HEAD'].includes(req.method)) return next();
+  const host = (req.headers.host || '').toLowerCase();
+  if (!host.startsWith('www.')) return next();
+  return res.redirect(301, `https://${host.slice(4)}${req.originalUrl}`);
+});
+
 app.use((req, res, next) => {
   if (!['GET', 'HEAD'].includes(req.method)) return next();
   if (path.extname(req.path) !== '.html' || req.path.includes('..')) return next();
