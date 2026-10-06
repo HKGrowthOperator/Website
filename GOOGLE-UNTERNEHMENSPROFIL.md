@@ -20,7 +20,7 @@ Profil bearbeiten: `business.google.com` → Profil „HK Growth“ → „Profi
 | Einzugsgebiet | Marienheide, Gummersbach, Oberbergischer Kreis, Köln, Bergisches Land, Nordrhein-Westfalen, Deutschland |
 | E-Mail | info@hk-growthoperator.de |
 
-Sobald das Webstudio live ist, Termin-Link auf `https://webseite.hk-growthoperator.de/#termin` ändern.
+Sobald das Webstudio live ist, Termin-Link auf `https://website.hk-growthoperator.de/#termin` ändern.
 
 ## Unternehmensbeschreibung (max. 750 Zeichen)
 
@@ -66,13 +66,13 @@ Deal Operator ist das kostenfreie Werkzeug fürs gemeinsame Callen. Jeden Callin
 | Produktname | Webstudio · Websites mit SEO und Anfrage-Automation |
 | Kategorie | Webdesign |
 | Preis | Preisangabe weglassen (Festpreis nach Erstgespräch) |
-| Button | Weitere Informationen → https://webseite.hk-growthoperator.de/ |
+| Button | Weitere Informationen → https://website.hk-growthoperator.de/ |
 
 ```
 Unternehmenswebsites in 2 bis 4 Wochen: klare Positionierung, technisches SEO, Sichtbarkeit in Google und KI-Suchen (GEO), Terminbuchung und Anfrage-Automation. Jede Anfrage wird gespeichert, eingeordnet und sofort weitergeleitet, per E-Mail, ins CRM oder in DealUno; der Kunde bekommt automatisch eine Bestätigung. Selbst gehostete Schriften, keine Cookies, keine Tracker. Aus Marienheide für das Bergische Land, Köln und ganz Deutschland. Festpreis nach dem Erstgespräch.
 ```
 
-Erst eintragen, wenn `webseite.hk-growthoperator.de` erreichbar ist.
+Erst eintragen, wenn `website.hk-growthoperator.de` erreichbar ist.
 
 ### 4. HK Growth OS
 
@@ -113,7 +113,7 @@ DealUno ist die Sales-App und das CRM von HK Growth für die Kaltakquise: Lead R
 Deal Operator ist die kostenfreie Sales-Community von HK Growth fürs gemeinsame Callen: Zahlen und Learnings je Calling-Tag festhalten, Rangliste, dranbleiben. https://dealoperator.hk-growthoperator.de/
 
 **Macht HK Growth auch Websites?**
-Ja, das HK Growth Webstudio baut Unternehmenswebsites mit SEO, KI-Sichtbarkeit und Anfrage-Automation. https://webseite.hk-growthoperator.de/
+Ja, das HK Growth Webstudio baut Unternehmenswebsites mit SEO, KI-Sichtbarkeit und Anfrage-Automation. https://website.hk-growthoperator.de/
 
 ## Reihenfolge
 

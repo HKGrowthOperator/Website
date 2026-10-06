@@ -1,7 +1,7 @@
 # Google-Indexierung: alle HK-Growth-Seiten unter einer Marke
 
 Stand: 4. Oktober 2026. Gilt für hk-growthoperator.de, dealuno.hk-growthoperator.de,
-dealoperator.hk-growthoperator.de, webseite.hk-growthoperator.de und luiskummer.de.
+dealoperator.hk-growthoperator.de, website.hk-growthoperator.de und luiskummer.de.
 
 ## Kurzfassung
 
@@ -27,7 +27,7 @@ dealoperator.hk-growthoperator.de, webseite.hk-growthoperator.de und luiskummer.
 | hk-growthoperator.de | ja | ja | ja (.html-URLs) | keine | – | – |
 | dealuno.hk-growthoperator.de | ja | **404** | **404** | keine | nein | **nein** |
 | dealoperator.hk-growthoperator.de | ja | **404** | **404** | keine, kein Canonical | nein | **nein** |
-| webseite.hk-growthoperator.de | **nicht erreichbar** | (ja, im Code) | (ja, im Code) | ja, aber eigene Firma | ja | **nein** |
+| website.hk-growthoperator.de | **nicht erreichbar** | (ja, im Code) | (ja, im Code) | ja, aber eigene Firma | ja | **nein** |
 | luiskummer.de | ja | ja | ja | ja (Person) | ja | **nein** |
 
 Zwei Dinge haben am meisten gefehlt: Die Hauptseite hat keine einzige Marke verlinkt, und
@@ -42,11 +42,11 @@ Dazu kam ein Tippfehler im Webstudio-Repo: Standard-Domain `webseite.hkgrowthope
 Ein Standort, ein Profil. Mehrere Websites lassen sich dort nicht hinterlegen, aber:
 
 - **Website:** `https://hk-growthoperator.de`
-- **Termin-Link:** `https://webseite.hk-growthoperator.de/#termin` oder die DealUno-Demo
+- **Termin-Link:** `https://website.hk-growthoperator.de/#termin` oder die DealUno-Demo
 - **Produkte** (eigener Bereich im Profil, jedes mit Bild, Text und Button-Link):
   - DealUno: Sales-App & CRM für die Kaltakquise → `https://dealuno.hk-growthoperator.de/`
   - Deal Operator: kostenfreie Sales-Community → `https://dealoperator.hk-growthoperator.de/`
-  - HK Growth Webstudio: Websites mit SEO und Anfrage-Automation → `https://webseite.hk-growthoperator.de/`
+  - HK Growth Webstudio: Websites mit SEO und Anfrage-Automation → `https://website.hk-growthoperator.de/`
   - HK Growth OS: Prozessautomatisierung von der Anfrage bis zur Rechnung → `https://hk-growthoperator.de/system`
 - **Beschreibung:** alle vier Marken namentlich nennen.
 - **Name, Adresse, Telefon** exakt wie im Impressum (Weststraße 2, 51709 Marienheide,
@@ -79,7 +79,7 @@ die Hauptseite, Erwähnungen auf fremden Seiten.
 | hk-growthoperator.de | Prozessautomatisierung Mittelstand, KI-Betriebssystem, Auftragssteuerung, von der Anfrage bis zur Rechnung | Titel/Beschreibung vorhanden; Organisation, Marken und Produkte als strukturierte Daten; Footer-Links | Ein Abschnitt „Unsere Marken“ auf `/unternehmen` mit je einem Absatz und Link zu DealUno, Deal Operator, Webstudio. Footer-Links allein sind ein schwaches Signal. |
 | dealuno.hk-growthoperator.de | CRM, Sales-App, Kaltakquise Software, Vertriebssoftware, Power Dialer, Lead Score, Opener Setter Closer | Seitentitel und Beschreibungen nennen die Begriffe; SoftwareApplication-Daten mit Funktionen und Stichwörtern | Für generische Begriffe wie „CRM“ oder „Sales App“ braucht es eigene Inhaltsseiten (z. B. „Power Dialer für die Kaltakquise“, „CRM für Opener, Setter und Closer“, Vergleich, FAQ). Produktseiten allein ranken dafür nicht. |
 | dealoperator.hk-growthoperator.de | Sales-Community, Cold-Calling-Community, gemeinsam callen, Kaltakquise Rangliste | Titel/Beschreibung, WebApplication-Daten (kostenfrei) | „So funktioniert’s“ ist die einzige Textseite. Ein kurzer öffentlicher Text „Für wen ist Deal Operator“ hilft. |
-| webseite.hk-growthoperator.de | Webdesign Marienheide, Gummersbach, Oberberg, Köln; Website erstellen lassen | Im Code vollständig (FAQ, Angebote, Referenzen) | Seite muss live gehen; Domain zeigt derzeit auf einen Server, der nicht antwortet. |
+| website.hk-growthoperator.de | Webdesign Marienheide, Gummersbach, Oberberg, Köln; Website erstellen lassen | Im Code vollständig (FAQ, Angebote, Referenzen) | Seite muss live gehen; Domain zeigt derzeit auf einen Server, der nicht antwortet. |
 | luiskummer.de | Luis Kummer, Luis Kummer HK Growth, Luis Kummer DealUno | Person-Daten mit Verweis auf die HK-Growth-Organisation | nichts Dringendes |
 
 ## Was in diesem Branch geändert wurde
@@ -122,9 +122,9 @@ Branch in allen Repos: `claude/google-indexierung-domains-t5t7cd`.
 - Footer: ein Link „HK Growth“.
 - Geprüft: Lint, Typecheck, 262 Tests, `next build`, Smoke-Test.
 
-**HKGrowthOperator/WEBSEITE** (webseite.hk-growthoperator.de)
+**HKGrowthOperator/WEBSEITE** (website.hk-growthoperator.de)
 
-- Standard-Domain korrigiert: `webseite.hk-growthoperator.de` (Code, `.env.example`,
+- Standard-Domain korrigiert: `website.hk-growthoperator.de` (Code, `.env.example`,
   README, Launch-Checkliste). In Coolify `SITE_URL` prüfen.
 - Strukturierte Daten: Das Webstudio heißt jetzt „HK Growth Webstudio“ mit der UG als
   `legalName` und `parentOrganization` auf die HK-Growth-Organisation.
@@ -187,7 +187,7 @@ FAQPage-Daten hinterlegt, `llms.txt` beschreibt Firma und Marken für KI-Suchen.
 
 1. **Branches mergen und deployen** (Coolify), danach je Seite prüfen:
    `/robots.txt`, `/sitemap.xml`, Startseite im Quelltext auf `application/ld+json`.
-2. **webseite.hk-growthoperator.de erreichbar machen.** DNS zeigt auf `85.13.166.26`, die
+2. **website.hk-growthoperator.de erreichbar machen.** DNS zeigt auf `85.13.166.26`, die
    anderen Seiten liegen auf `167.233.76.202` (Hetzner/Coolify). Entweder A-Record
    umstellen oder den Dienst dort starten. Bis dahin kann Google die Seite nicht indexieren.
 3. **Search Console:** Domain-Property `hk-growthoperator.de` anlegen und per DNS
@@ -196,7 +196,7 @@ FAQPage-Daten hinterlegt, `llms.txt` beschreibt Firma und Marken für KI-Suchen.
    - `https://hk-growthoperator.de/sitemap.xml`
    - `https://dealuno.hk-growthoperator.de/sitemap.xml`
    - `https://dealoperator.hk-growthoperator.de/sitemap.xml`
-   - `https://webseite.hk-growthoperator.de/sitemap.xml`
+   - `https://website.hk-growthoperator.de/sitemap.xml`
    - in der zweiten Property: `https://luiskummer.de/sitemap.xml`
 5. **URL-Prüfung** für die fünf Startseiten und die DealUno-Produktseiten ausführen und
    „Indexierung beantragen“. Das beschleunigt den ersten Crawl um Tage.
