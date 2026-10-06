@@ -167,6 +167,32 @@ Zoho CRM, Lemlist, CloudTalk.
 | Setter Closer Community | `/fuer-wen#rollen` | neu |
 | So funktioniert Deal Operator, Tagesabschluss, Serie | `/so-funktionierts` | live |
 
+## 5. KI-Suchen (GEO) auf allen vier Sites
+
+Was KI-Suchen (ChatGPT, Perplexity, Copilot, Google AI Overviews, Claude) brauchen, um uns zu zitieren, und
+was dafür live ist:
+
+| Baustein | Hauptseite | DealUno | Webstudio | Deal Operator |
+| --- | --- | --- | --- | --- |
+| `llms.txt` (Übersicht, Fakten, Links) | ja | ja | ja | ja |
+| `llms-full.txt` (Volltext aller Seiten als Markdown) | ja, 11 Seiten | ja, 25 Seiten + Glossar | ja, Startseite + 12 Seiten + Glossar | ja, öffentliche Seiten |
+| robots.txt mit ausdrücklicher Erlaubnis für KI-Crawler (GPTBot, OAI-SearchBot, PerplexityBot, ClaudeBot, Google-Extended, Bingbot, Applebot …) | ja | ja | ja | ja |
+| Glossar mit `DefinedTermSet` (zitierfähige Definitionen) | `/glossar`, 17 Begriffe | `/glossar/`, 20 Begriffe | `/glossar`, 17 Begriffe | nein (App) |
+| `Article` mit Autor (Person Luis Kummer), Datum, Rubrik | 10 neue Seiten | 25 Ratgeber | nein (Service-Seiten) | nein |
+| Sichtbare Autorenzeile und „Kurz gesagt“-Antwort im Hero | 10 neue Seiten | 25 Ratgeber | nein | nein |
+| FAQ als `FAQPage` | alle neuen Seiten | alle Ratgeber | alle Landingpages | /fuer-wen |
+| Robots-Meta `max-snippet:-1` (volle Zitate erlaubt) | alle Seiten | alle Seiten | alle Seiten | Standard |
+| Eine Organisation (`#organization`) auf allen Seiten | ja | ja | ja | ja |
+| Bing/IndexNow (speist Copilot und ChatGPT-Suche) | ja | ja | ja | ja |
+
+Was noch fehlt und nur mit Zeit kommt: Nennungen von außen (Branchenverzeichnisse, Presse, Kundenwebsites),
+Bewertungen im Unternehmensprofil und echte Zahlen aus dem eigenen Vertrieb für Fallstudien. KI-Suchen
+gewichten Quellen, die auch andere zitieren.
+
+Prüfen: einmal im Monat dieselben zehn Fragen in ChatGPT, Perplexity und Google stellen („Welche Sales-App
+für Kaltakquise aus Deutschland …“, „Webdesign Gummersbach …“, „Prozessautomatisierung Handwerk …“) und
+festhalten, ob und mit welcher Seite wir genannt werden.
+
 ## Für alle Marken: was nach den Seiten zählt
 
 - **Google Unternehmensprofil** entscheidet über die lokalen Begriffe (Marienheide, Gummersbach,
