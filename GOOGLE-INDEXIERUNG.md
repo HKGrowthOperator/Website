@@ -27,7 +27,7 @@ dealoperator.hk-growthoperator.de, website.hk-growthoperator.de und luiskummer.d
 | hk-growthoperator.de | ja | ja | ja (.html-URLs) | keine | – | – |
 | dealuno.hk-growthoperator.de | ja | **404** | **404** | keine | nein | **nein** |
 | dealoperator.hk-growthoperator.de | ja | **404** | **404** | keine, kein Canonical | nein | **nein** |
-| website.hk-growthoperator.de | **nicht erreichbar** | (ja, im Code) | (ja, im Code) | ja, aber eigene Firma | ja | **nein** |
+| website.hk-growthoperator.de | ja | ja | ja | ja, aber eigene Firma | ja | **nein** |
 | luiskummer.de | ja | ja | ja | ja (Person) | ja | **nein** |
 
 Zwei Dinge haben am meisten gefehlt: Die Hauptseite hat keine einzige Marke verlinkt, und
@@ -79,7 +79,7 @@ die Hauptseite, Erwähnungen auf fremden Seiten.
 | hk-growthoperator.de | Prozessautomatisierung Mittelstand, KI-Betriebssystem, Auftragssteuerung, von der Anfrage bis zur Rechnung | Titel/Beschreibung vorhanden; Organisation, Marken und Produkte als strukturierte Daten; Footer-Links | Ein Abschnitt „Unsere Marken“ auf `/unternehmen` mit je einem Absatz und Link zu DealUno, Deal Operator, Webstudio. Footer-Links allein sind ein schwaches Signal. |
 | dealuno.hk-growthoperator.de | CRM, Sales-App, Kaltakquise Software, Vertriebssoftware, Power Dialer, Lead Score, Opener Setter Closer | Seitentitel und Beschreibungen nennen die Begriffe; SoftwareApplication-Daten mit Funktionen und Stichwörtern | Für generische Begriffe wie „CRM“ oder „Sales App“ braucht es eigene Inhaltsseiten (z. B. „Power Dialer für die Kaltakquise“, „CRM für Opener, Setter und Closer“, Vergleich, FAQ). Produktseiten allein ranken dafür nicht. |
 | dealoperator.hk-growthoperator.de | Sales-Community, Cold-Calling-Community, gemeinsam callen, Kaltakquise Rangliste | Titel/Beschreibung, WebApplication-Daten (kostenfrei) | „So funktioniert’s“ ist die einzige Textseite. Ein kurzer öffentlicher Text „Für wen ist Deal Operator“ hilft. |
-| website.hk-growthoperator.de | Webdesign Marienheide, Gummersbach, Oberberg, Köln; Website erstellen lassen | Im Code vollständig (FAQ, Angebote, Referenzen) | Seite muss live gehen; Domain zeigt derzeit auf einen Server, der nicht antwortet. |
+| website.hk-growthoperator.de | Webdesign Marienheide, Gummersbach, Oberberg, Köln; Website erstellen lassen | Live, Sitemap eingereicht, FAQ, Angebote und Referenzen vorhanden | Referenzen mit Zahlen ergänzen; Kunden-Websites mit Footer-Link zurück. |
 | luiskummer.de | Luis Kummer, Luis Kummer HK Growth, Luis Kummer DealUno | Person-Daten mit Verweis auf die HK-Growth-Organisation | nichts Dringendes |
 
 ## Was in diesem Branch geändert wurde
@@ -187,9 +187,9 @@ FAQPage-Daten hinterlegt, `llms.txt` beschreibt Firma und Marken für KI-Suchen.
 
 1. **Branches mergen und deployen** (Coolify), danach je Seite prüfen:
    `/robots.txt`, `/sitemap.xml`, Startseite im Quelltext auf `application/ld+json`.
-2. **website.hk-growthoperator.de erreichbar machen.** DNS zeigt auf `85.13.166.26`, die
-   anderen Seiten liegen auf `167.233.76.202` (Hetzner/Coolify). Entweder A-Record
-   umstellen oder den Dienst dort starten. Bis dahin kann Google die Seite nicht indexieren.
+2. **Webstudio-Host:** Die Seite läuft unter `website.hk-growthoperator.de` auf Hetzner und
+   ist erreichbar. Der Eintrag `webseite.hk-growthoperator.de` bei All-Inkl zeigt auf einen
+   leeren Webspace und kann im KAS gelöscht werden, damit keine zweite, leere Adresse existiert.
 3. **Search Console:** Domain-Property `hk-growthoperator.de` anlegen und per DNS
    bestätigen; Property `luiskummer.de` anlegen.
 4. **Sitemaps einreichen** (alle in der Domain-Property):

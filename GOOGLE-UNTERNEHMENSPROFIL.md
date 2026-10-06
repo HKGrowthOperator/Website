@@ -20,7 +20,7 @@ Profil bearbeiten: `business.google.com` → Profil „HK Growth“ → „Profi
 | Einzugsgebiet | Marienheide, Gummersbach, Oberbergischer Kreis, Köln, Bergisches Land, Nordrhein-Westfalen, Deutschland |
 | E-Mail | info@hk-growthoperator.de |
 
-Sobald das Webstudio live ist, Termin-Link auf `https://website.hk-growthoperator.de/#termin` ändern.
+Alternativ als Termin-Link: `https://website.hk-growthoperator.de/#termin`.
 
 ## Unternehmensbeschreibung (max. 750 Zeichen)
 
@@ -72,8 +72,6 @@ Deal Operator ist das kostenfreie Werkzeug fürs gemeinsame Callen. Jeden Callin
 Unternehmenswebsites in 2 bis 4 Wochen: klare Positionierung, technisches SEO, Sichtbarkeit in Google und KI-Suchen (GEO), Terminbuchung und Anfrage-Automation. Jede Anfrage wird gespeichert, eingeordnet und sofort weitergeleitet, per E-Mail, ins CRM oder in DealUno; der Kunde bekommt automatisch eine Bestätigung. Selbst gehostete Schriften, keine Cookies, keine Tracker. Aus Marienheide für das Bergische Land, Köln und ganz Deutschland. Festpreis nach dem Erstgespräch.
 ```
 
-Erst eintragen, wenn `website.hk-growthoperator.de` erreichbar ist.
-
 ### 4. HK Growth OS
 
 | Feld | Wert |
@@ -118,7 +116,7 @@ Ja, das HK Growth Webstudio baut Unternehmenswebsites mit SEO, KI-Sichtbarkeit u
 ## Reihenfolge
 
 1. Stammdaten und Beschreibung prüfen, Website und Termin-Link setzen.
-2. Produkte 1, 2 und 4 anlegen; Produkt 3, sobald das Webstudio live ist.
+2. Die vier Produkte anlegen.
 3. Leistungen ergänzen.
 4. Beitrag veröffentlichen, Fragen und Antworten eintragen.
 5. Logo und Titelbild in Markenfarben hochladen, Öffnungszeiten eintragen.
