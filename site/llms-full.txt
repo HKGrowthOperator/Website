@@ -1,0 +1,542 @@
+# HK Growth OS · HK Growth Operator
+
+> KI-Betriebssystem und Prozessautomatisierung für den Mittelstand: Anfragen, Angebote, Aufträge, Zeiterfassung, Nachkalkulation und Rechnungen in einem Ablauf. KI übernimmt Vorarbeit, Menschen prüfen, entscheiden und führen. ERP, CRM und Buchhaltung bleiben angebunden.
+
+Anbieter: HK Growth UG (haftungsbeschränkt), Weststraße 2, 51709 Marienheide, Deutschland. Telefon +49 175 4547011, info@hk-growthoperator.de.
+Zur Gruppe gehören: DealUno (Sales-App und CRM, https://dealuno.hk-growthoperator.de/), Deal Operator (kostenfreie Sales-Community, https://dealoperator.hk-growthoperator.de/), HK Growth Webstudio (Websites mit SEO, GEO und Anfrage-Automation, https://website.hk-growthoperator.de/).
+Autor: Luis Kummer, Geschäftsführer (https://luiskummer.de/). Stand: 6. Oktober 2026.
+Übersicht: https://hk-growthoperator.de/llms.txt
+
+Diese Datei enthält den vollständigen Text der Seiten zu Prozessautomatisierung, Region, Branchen und des Glossars. Die übrigen Seiten sind mit Kurzbeschreibung aufgeführt. Zitate bitte mit URL der jeweiligen Seite.
+
+# Überblick der Site
+
+- [Startseite](https://hk-growthoperator.de/): KI-Betriebssystem für den Mittelstand: Anfragen, Angebote, Aufträge, Zeiterfassung, Nachkalkulation und Rechnungen in einem Ablauf. Prozess-Check und ROI-Rechner kostenlos.
+- [System](https://hk-growthoperator.de/system): Systemarchitektur: Auftragssteuerung, Nachkalkulation und Rechnungsablauf als operative Ebene zwischen ERP, CRM und Buchhaltung.
+- [Anwendungsfälle](https://hk-growthoperator.de/anwendungsfaelle): Anwendungsfälle nach Rolle: Geschäftsführung, Verwaltung, Projektleitung und Ausführung.
+- [Einführung](https://hk-growthoperator.de/einfuehrung): Einführung in vier Phasen: Prozessaufnahme, Systemlogik, Build und Test, Rollout.
+- [ROI-Rechner](https://hk-growthoperator.de/roi-rechner): Kostenloser ROI-Rechner: manuellen Aufwand, Kapazitätswert und Amortisation für Ihre Zahlen berechnen.
+- [Unternehmen](https://hk-growthoperator.de/unternehmen): Das Team hinter HK Growth OS, DealUno, Deal Operator und dem HK Growth Webstudio aus Marienheide.
+- [KI-Richtlinie](https://hk-growthoperator.de/ki-richtlinie): Öffentliche KI-Transparenz: EU AI Act, menschliche Kontrolle, Einsatz in Kundenprojekten.
+
+# Seiten im Volltext
+
+## Prozessautomatisierung
+
+URL: https://hk-growthoperator.de/prozessautomatisierung
+Kurz gesagt: Prozessautomatisierung für den Mittelstand: Anfrage, Angebot, Auftrag, Einsatz, Zeiterfassung, Nachkalkulation und Rechnung in einem Ablauf. KI übernimmt Vorarbeit, Menschen entscheiden. ERP, CRM und Buchhaltung bleiben. Prozess-Check kostenlos.
+
+### Von der Anfrage bis zur Rechnung. Ein Ablauf, keine Übergaben.
+
+Die meisten Betriebe haben nicht zu wenig Software, sondern zu viele Übergaben: Die Anfrage kommt per Mail, das Angebot entsteht in Excel, der Auftrag im ERP, die Stunden auf Zetteln, die Rechnung am Monatsende mit Nachfragen. HK Growth OS verbindet diese Schritte zu einem Ablauf, in dem KI die Vorarbeit übernimmt und Menschen prüfen, entscheiden und führen.
+
+### Sieben Schritte, die heute sieben Mal übertragen werden.
+
+So sieht der Weg einer Anfrage in einem typischen technischen B2B-Betrieb aus, und was HK Growth OS an jeder Stelle übernimmt.
+
+- **01 Anfrage · Anfrage erfassen und einordnen:** E-Mail, Formular oder Anruf werden zu einem strukturierten Vorgang: Kunde, Anliegen, Dringlichkeit, Zuständigkeit. KI liest die Anfrage vor und schlägt die Einordnung vor. Ergebnis: kein Postfach-Suchen, jede Anfrage hat einen Status.
+- **02 Angebot · Angebot vorbereiten:** Positionen, Preise und Texte werden aus Vorgängervorgängen und Stammdaten vorgeschlagen. Der Vertrieb prüft, passt an, gibt frei. Ergebnis: Angebote in Stunden statt Tagen, einheitlich kalkuliert.
+- **03 Auftrag · Auftrag anlegen und steuern:** Aus dem angenommenen Angebot entsteht der Auftrag im ERP, mit Zuständigkeit, Terminen und Status. Übergaben an Planung und Ausführung laufen automatisch. Ergebnis: Auftragssteuerung ohne Nachfragen, Status für alle sichtbar.
+- **04 Einsatz · Einsatz und Ausführung:** Mitarbeiter sehen Auftrag, Material und Termin an einer Stelle. Rückmeldungen aus der Ausführung fließen direkt in den Vorgang. Ergebnis: aktuelle Informationen im Ablauf, nicht im Kopf einzelner Personen.
+- **05 Zeiten · Zeiterfassung am Auftrag:** Stunden und Material werden am Auftrag erfasst, nicht auf Zetteln. Abweichungen vom Plan werden sofort sichtbar. Ergebnis: belastbare Ist-Daten für Nachkalkulation und Rechnung.
+- **06 Nachkalkulation · Soll und Ist im laufenden Auftrag:** Kalkulierte und tatsächliche Kosten stehen nebeneinander, pro Auftrag und pro Position. Abweichungen werden gemeldet, bevor der Auftrag abgeschlossen ist. Ergebnis: Lernen für die nächste Kalkulation, Nachträge rechtzeitig.
+- **07 Rechnung · Rechnungsablauf vorbereiten:** Abschlussdaten werden geprüft, die Rechnung vorbereitet, Freigaben eingeholt und an die Buchhaltung übergeben. Offene Posten und Mahnläufe folgen dem gleichen Prinzip. Ergebnis: Rechnung kurz nach Abschluss, nicht am Monatsende.
+
+### Verbinden statt ersetzen. Vorarbeit statt Vollautomatik.
+
+Drei Grundsätze, nach denen jede Automatisierung bei HK Growth gebaut wird.
+
+- **Bestehende Systeme bleiben:** ERP, Zeiterfassung, CRM und Buchhaltung werden angebunden, nicht ersetzt. HK Growth OS ist die operative Ebene dazwischen, die Übergaben automatisiert.
+- **KI macht die Vorarbeit:** Einordnen, vorschlagen, vorbereiten, prüfen. Freigaben, Preise und Entscheidungen bleiben bei Menschen, nachvollziehbar protokolliert.
+- **Ein Prozess zuerst:** Die Einführung beginnt mit dem Ablauf, der heute am meisten Reibung erzeugt. Erst nach fachlicher Abnahme werden weitere Schritte angebunden.
+
+### Technische B2B-Unternehmen und Mittelstand mit Auftragsgeschäft.
+
+Überall dort, wo Anfragen zu Aufträgen werden und Aufträge zu Rechnungen, mit vielen Beteiligten dazwischen.
+
+- **Handwerk und Bau:** Aufmaß, Angebot, Einsatzplanung, Stunden, Nachträge, Abschlagsrechnungen. Mehr dazu auf den Branchenseiten.
+- **Technischer Service:** Störungsmeldung, Einsatz, Servicebericht, Wartungsvertrag, Rechnung. Wiederkehrende Abläufe mit vielen Rückmeldungen.
+- **Fertigung und Maschinenbau:** Spezifikation, Kalkulation, Auftrag, Fertigung, Lieferung, Rechnung, Ersatzteile. Lange Vorgänge mit vielen Übergaben.
+
+### Zwei kostenlose Werkzeuge, bevor Sie mit uns sprechen.
+
+Sie müssen uns nicht glauben, dass sich das lohnt. Rechnen Sie es nach.
+
+**Prozess-Check und ROI-Rechner.** Im Prozess-Check beschreiben Sie den Ablauf, der heute am meisten Zeit kostet; wir antworten mit einer Einschätzung, was automatisierbar ist. Der ROI-Rechner zeigt manuellen Aufwand, Kapazitätswert und Amortisation für Ihre Zahlen, lokal im Browser, ohne Anmeldung.
+
+### Häufige Fragen
+
+**Was ist Prozessautomatisierung im Mittelstand konkret?**
+Die Verbindung der Schritte zwischen Anfrage und Rechnung zu einem Ablauf: Anfragen einordnen, Angebote vorbereiten, Aufträge steuern, Zeiten erfassen, nachkalkulieren, Rechnungen vorbereiten. Nicht eine neue Software für alles, sondern automatisierte Übergaben zwischen den Systemen, die Sie schon haben.
+
+**Müssen wir unser ERP oder unsere Buchhaltung wechseln?**
+Nein. HK Growth OS bindet bestehende Systeme an und übernimmt die Übergaben dazwischen. Neue Komponenten kommen nur dort hinzu, wo heute eine Lücke besteht.
+
+**Was übernimmt die KI, was bleibt beim Menschen?**
+KI liest, ordnet ein, schlägt vor und bereitet vor. Preise, Freigaben, Nachträge und Entscheidungen bleiben bei Ihren Leuten, protokolliert und nachvollziehbar. Mehr dazu in unserer KI-Richtlinie.
+
+**Wie startet ein Projekt?**
+Mit einer Prozessaufnahme: Ist-Ablauf, Rollen, Systeme, Ausnahmen. Dann ein begrenzter Pilot für einen Prozess, Build und Test, fachliche Abnahme, danach Rollout. Die Einführungsseite beschreibt die vier Phasen.
+
+**Was kostet Prozessautomatisierung?**
+Das hängt vom Prozess, den Schnittstellen und der Datenlage ab. Der ROI-Rechner zeigt vorab, was der heutige manuelle Aufwand kostet; im Erstgespräch grenzen wir den Pilot ab und nennen einen Rahmen.
+
+## Angebotserstellung
+
+URL: https://hk-growthoperator.de/angebotserstellung-automatisieren
+Kurz gesagt: Angebotserstellung automatisieren im Mittelstand: Anfragen strukturiert erfassen, Positionen und Preise aus Stammdaten und Vorgängen vorschlagen, Freigabe durch den Vertrieb, Übergabe in Auftrag und ERP. Weniger Tage bis zum Angebot, einheitliche Kalkulation.
+
+### Angebote in Stunden statt Tagen.
+
+Zwischen Anfrage und Angebot vergehen in vielen Betrieben Tage: Die Mail liegt im Postfach, der Kalkulator sucht die letzte ähnliche Kalkulation, der Vertrieb formuliert den Text neu. HK Growth OS erfasst die Anfrage strukturiert, schlägt Positionen, Preise und Texte vor und lässt den Vertrieb prüfen und freigeben. Das Angebot geht raus, solange der Kunde noch wartet.
+
+### Drei Gründe, warum Angebote liegen bleiben.
+
+Nicht die Kalkulation dauert, sondern alles drumherum.
+
+- **Die Anfrage ist unstrukturiert:** Eine Mail mit Anhang, ein Anruf mit Notiz, ein Formular ohne Pflichtfelder. Bevor kalkuliert werden kann, muss jemand nachfragen.
+- **Wissen steckt in alten Dateien:** Die letzte ähnliche Kalkulation liegt irgendwo. Preise, Zuschläge und Texte werden jedes Mal neu zusammengesucht.
+- **Freigabe ohne Überblick:** Wer gibt frei, welche Marge ist drin, was wurde dem Kunden zuletzt angeboten? Ohne Vorgangshistorie entscheidet das Bauchgefühl.
+
+### Vier Schritte vom Eingang bis zur Freigabe.
+
+Jeder Schritt bleibt nachvollziehbar, jede Entscheidung bleibt beim Menschen.
+
+- **Schritt 1 · Anfrage strukturiert erfassen:** E-Mail, Formular oder Anruf werden zu einem Vorgang mit Kunde, Anliegen, Mengen, Terminwunsch und Zuständigkeit. KI liest Anhänge vor und füllt vor, fehlende Angaben werden gezielt nachgefragt. Ergebnis: vollständige Anfrage am ersten Tag.
+- **Schritt 2 · Positionen und Preise vorschlagen:** Aus Stammdaten, Preislisten und vergleichbaren Vorgängen entsteht ein Kalkulationsvorschlag mit Positionen, Mengen, Zuschlägen und Texten. Ergebnis: einheitliche Kalkulation, kein leeres Dokument.
+- **Schritt 3 · Prüfen und freigeben:** Der Vertrieb sieht Vorschlag, Marge, Historie des Kunden und offene Punkte. Er passt an und gibt frei; die Freigabe wird protokolliert. Ergebnis: Angebot mit geprüfter Marge, Verantwortung klar.
+- **Schritt 4 · Versenden und nachfassen:** Das Angebot geht an den Kunden, der Vorgang bekommt eine Wiedervorlage. Bei Annahme entsteht der Auftrag im ERP ohne erneutes Abtippen. Ergebnis: kein Angebot ohne Nachfassen, kein Auftrag ohne Daten.
+
+### Ihr ERP bleibt. Ihre Preislisten bleiben.
+
+**HK Growth OS liest und schreibt in Ihre bestehenden Systeme.** Stammdaten und Preise kommen aus ERP oder Warenwirtschaft, Kundenhistorie aus dem CRM, das angenommene Angebot wird als Auftrag zurückgeschrieben. Welche Schnittstellen es gibt und wie Daten gehalten werden, steht auf der Systemseite.
+
+### Häufige Fragen
+
+**Kann die KI Preise selbst festlegen?**
+Sie schlägt Preise aus Preislisten, Stammdaten und vergleichbaren Vorgängen vor. Festgelegt und freigegeben wird vom Vertrieb. Jede Freigabe wird protokolliert.
+
+**Funktioniert das mit unseren bestehenden Angebotsvorlagen?**
+Ja. Layout, Textbausteine und Rechtsangaben Ihrer Vorlagen werden übernommen. Was sich ändert, ist der Weg dorthin: vorgefüllt statt leer.
+
+**Was passiert mit Anfragen, die nicht passen?**
+Sie werden ebenfalls eingeordnet und bekommen eine Antwort, zum Beispiel eine Absage mit Begründung oder eine Weiterleitung. Nichts bleibt unbeantwortet im Postfach liegen.
+
+**Wie lange dauert die Einführung für die Angebotserstellung?**
+Als begrenzter Pilot für einen Angebotstyp typischerweise wenige Wochen: Prozessaufnahme, Systemlogik, Build und Test, Abnahme. Die Einführungsseite beschreibt die Phasen.
+
+## Auftragsabwicklung
+
+URL: https://hk-growthoperator.de/auftragsabwicklung-automatisieren
+Kurz gesagt: Auftragsabwicklung automatisieren: Aufträge aus dem Angebot anlegen, Zuständigkeit, Termine und Status steuern, Übergaben an Planung und Ausführung, Zeiterfassung und Rückmeldungen am Auftrag, Nachkalkulation im laufenden Vorgang. ERP bleibt angebunden.
+
+### Auftragssteuerung, die niemand nachfragen muss.
+
+„Wo steht der Auftrag?“ ist die teuerste Frage im Betrieb: Sie wird täglich gestellt, jedes Mal von jemandem beantwortet, der gerade etwas anderes tun sollte. HK Growth OS legt den Auftrag aus dem Angebot an, steuert Zuständigkeit, Termine und Status, übergibt an Planung und Ausführung und sammelt Rückmeldungen und Stunden am Auftrag. Der Status ist sichtbar, bevor jemand fragt.
+
+### Jede Rolle sieht, was sie braucht.
+
+Dieselben Auftragsdaten, vier Sichten. Mehr dazu auf den Anwendungsfällen.
+
+- **Geschäftsführung:** Abweichungen, Zahlen und Status ohne Nachfragen: welche Aufträge laufen, welche kippen, wo die Marge wegrutscht.
+- **Projektleitung:** Aufträge zuordnen, prüfen und steuern. Termine, Material und Zuständigkeiten an einer Stelle, Rückmeldungen aus der Ausführung direkt im Vorgang.
+- **Ausführung:** Klare Aufträge und aktuelle Informationen: was, wo, wann, mit welchem Material. Rückmeldung und Stunden am Auftrag, nicht auf dem Zettel.
+
+### Vom angenommenen Angebot bis zur Abschlussmeldung.
+
+- **Schritt 1 · Auftrag anlegen:** Aus dem angenommenen Angebot entsteht der Auftrag im ERP, mit Positionen, Terminen und Zuständigkeit. Kein erneutes Abtippen, keine zweite Wahrheit. Ergebnis: ein Vorgang von Anfrage bis Auftrag.
+- **Schritt 2 · Planen und übergeben:** Zuständigkeiten, Termine und Material werden zugewiesen. Die Übergabe an Planung und Ausführung läuft automatisch, mit allen Informationen aus dem Vorgang. Ergebnis: keine Übergabe per Zuruf oder Mail.
+- **Schritt 3 · Ausführen und rückmelden:** Mitarbeiter sehen den Auftrag, melden Fortschritt, Stunden, Material und Abweichungen zurück. Der Status aktualisiert sich von selbst. Ergebnis: aktueller Stand ohne Nachfragen.
+- **Schritt 4 · Abschließen und übergeben:** Abschlussdaten werden geprüft, die Nachkalkulation steht, der Vorgang geht in den Rechnungsablauf. Ergebnis: Rechnung kurz nach Abschluss.
+
+### Soll und Ist, solange man noch etwas ändern kann.
+
+**Nachkalkulation ist kein Bericht am Quartalsende.** Weil Stunden und Material am Auftrag erfasst werden, stehen kalkulierte und tatsächliche Kosten im laufenden Vorgang nebeneinander. Abweichungen werden gemeldet, Nachträge können rechtzeitig gestellt werden, und die nächste Kalkulation lernt aus der letzten. Details auf der Systemseite unter Nachkalkulation.
+
+### Häufige Fragen
+
+**Ersetzt HK Growth OS unser ERP?**
+Nein. Der Auftrag lebt weiter im ERP. HK Growth OS steuert die Übergaben, sammelt Rückmeldungen und macht den Status sichtbar. Welche ERP-Systeme und Schnittstellen angebunden werden, klären wir in der Prozessaufnahme.
+
+**Wie erfassen Mitarbeiter Stunden und Rückmeldungen?**
+Am Auftrag, über das Gerät, das sie ohnehin dabeihaben. Bestehende Zeiterfassungssysteme werden angebunden, nicht ersetzt.
+
+**Was ist, wenn sich ein Auftrag ändert?**
+Änderungen werden am Vorgang erfasst, Beteiligte werden informiert, die Nachkalkulation passt sich an. Nachträge werden als eigener Schritt vorbereitet.
+
+**Womit starten wir?**
+Mit dem Auftragstyp, der heute am meisten Nachfragen erzeugt. Ein begrenzter Pilot, fachliche Abnahme, dann die nächsten Typen.
+
+## Rechnungsstellung
+
+URL: https://hk-growthoperator.de/rechnungsstellung-automatisieren
+Kurz gesagt: Rechnungsstellung im Mittelstand automatisieren: Abschlussdaten prüfen, Rechnung aus Auftrag und Ist-Daten vorbereiten, Freigabe einholen, an die Buchhaltung übergeben, offene Posten nachhalten. Rechnungen kurz nach Abschluss statt am Monatsende.
+
+### Die Rechnung folgt dem Auftrag. Nicht dem Monatsende.
+
+In vielen Betrieben entstehen Rechnungen gesammelt am Monatsende: Stundenzettel zusammensuchen, Lieferscheine prüfen, Nachträge erinnern, Rückfragen klären. Das kostet Liquidität und Nerven. HK Growth OS bereitet die Rechnung aus Auftrag und Ist-Daten vor, sobald der Auftrag abgeschlossen ist, holt die Freigabe ein und übergibt an die Buchhaltung.
+
+### Warum Rechnungen liegen bleiben.
+
+- **Daten liegen verstreut:** Stunden im einen System, Material im anderen, Nachträge in Mails. Bevor die Rechnung geschrieben werden kann, muss jemand sammeln.
+- **Niemand weiß, ob alles drin ist:** Fehlt eine Position, ist die Marge weg. Ist eine zu viel, kommt die Reklamation. Beides fällt erst auf, wenn es zu spät ist.
+- **Freigabe dauert:** Die Rechnung wartet auf eine Unterschrift, die Unterschrift wartet auf Informationen, die Informationen liegen beim Projektleiter auf der Baustelle.
+
+### Vier Schritte vom Abschluss bis zur Buchhaltung.
+
+- **Schritt 1 · Abschlussdaten prüfen:** Mit Auftragsabschluss prüft das System Stunden, Material, Lieferungen und Nachträge gegen den Auftrag. Lücken und Abweichungen werden gemeldet. Ergebnis: vollständige Grundlage, keine vergessenen Positionen.
+- **Schritt 2 · Rechnung vorbereiten:** Positionen, Mengen und Preise kommen aus Auftrag und Ist-Daten, Texte und Rechtsangaben aus Ihren Vorlagen. Abschlags- und Schlussrechnungen folgen demselben Prinzip. Ergebnis: Rechnungsentwurf ohne Abtippen.
+- **Schritt 3 · Freigeben:** Die zuständige Person sieht Entwurf, Auftrag und Abweichungen nebeneinander und gibt frei, auch unterwegs. Die Freigabe wird protokolliert. Ergebnis: klare Verantwortung, kurze Wege.
+- **Schritt 4 · Übergeben und nachhalten:** Die Rechnung geht an den Kunden und in Ihre Buchhaltung. Offene Posten, Erinnerungen und Mahnstufen laufen als Wiedervorlagen im Vorgang. Ergebnis: Liquidität früher, Mahnwesen ohne Excel.
+
+### Ihre Buchhaltung bleibt Ihre Buchhaltung.
+
+**Ob DATEV, Lexware, sevdesk oder ein ERP-Modul:** HK Growth OS übergibt fertige, geprüfte Rechnungsdaten an das System, mit dem Ihr Steuerberater oder Ihre Buchhaltung heute arbeitet. Was angebunden wird und wie Daten gehalten werden, klären wir in der Prozessaufnahme und beschreiben es auf der Systemseite.
+
+### Häufige Fragen
+
+**Erstellt die KI die Rechnung allein?**
+Sie bereitet sie vor und prüft sie gegen Auftrag und Ist-Daten. Freigegeben wird von einer zuständigen Person; ohne Freigabe geht nichts raus.
+
+**Funktioniert das mit Abschlagsrechnungen und Nachträgen?**
+Ja. Abschläge, Nachträge und Schlussrechnung sind Schritte im selben Vorgang. Nachträge werden bereits in der Nachkalkulation sichtbar und nicht erst beim Rechnungsschreiben.
+
+**Welche Buchhaltungssysteme können angebunden werden?**
+Grundsätzlich alle mit Schnittstelle oder Import, zum Beispiel DATEV, Lexware oder sevdesk sowie ERP-Module. Den konkreten Weg legen wir in der Prozessaufnahme fest.
+
+**Was bringt es finanziell?**
+Rechnungen gehen Tage bis Wochen früher raus, vergessene Positionen werden seltener, Mahnläufe laufen automatisch. Den Wert für Ihren Betrieb können Sie mit dem ROI-Rechner abschätzen.
+
+## KI-Agentur Oberberg
+
+URL: https://hk-growthoperator.de/ki-agentur-oberberg
+Kurz gesagt: KI und Prozessautomatisierung für Betriebe im Oberbergischen Kreis: HK Growth aus Marienheide verbindet Anfrage, Angebot, Auftrag, Zeiterfassung und Rechnung zu einem Ablauf. Für Handwerk, Industrie und Dienstleister in Gummersbach, Wiehl, Wipperfürth, Bergneustadt und Umgebung.
+
+### Die KI-Agentur aus dem Oberbergischen.
+
+HK Growth sitzt in Marienheide. Wir bauen KI-Betriebssysteme und Prozessautomatisierung für Betriebe im Oberbergischen Kreis: von Gummersbach über Wiehl, Wipperfürth und Bergneustadt bis Waldbröl und Radevormwald. Mittelstand, Handwerk, Zulieferer, technischer Service. Vor Ort in der Prozessaufnahme, mit kurzen Wegen in der Einführung.
+
+### Oberberg ist Mittelstandsland. Genau dafür bauen wir.
+
+Metall und Kunststoff entlang der Agger, Handwerk in jeder Gemeinde, Dienstleister in Gummersbach und Wiehl, technischer Service für Industrie und Energie. Viele Betriebe mit Auftragsgeschäft, wenigen Leuten in der Verwaltung und gewachsenen Abläufen.
+
+- **Industrie und Zulieferer:** Anfrage, Kalkulation, Auftrag, Fertigung, Lieferung, Rechnung mit vielen Übergaben. Wir verbinden ERP, Zeiterfassung und Buchhaltung zu einem Ablauf.
+- **Handwerk und Bau:** Aufmaß, Angebot, Einsatzplanung, Stunden, Nachträge, Abschlagsrechnungen. Weniger Zettel, frühere Rechnungen, sichtbare Nachkalkulation.
+- **Dienstleister und Service:** Anfragen einordnen, Angebote vorbereiten, Einsätze steuern, Serviceberichte in Rechnungen überführen. Wiederkehrende Abläufe automatisiert.
+
+### Drei Gründe für einen Partner, der die A4 kennt.
+
+- **Prozessaufnahme im Betrieb:** Wir sitzen bei Ihnen am Tisch, laufen durch Werkstatt oder Lager und sehen den Ablauf, bevor wir ihn automatisieren. Das geht von Marienheide aus in jeden Ort des Kreises.
+- **Keine Konzernlösung:** Wir bauen auf dem auf, was Sie haben: ERP, Zeiterfassung, Buchhaltung bleiben. Ein Prozess als Pilot, dann der nächste. Passend zu Betrieben mit 10 bis 250 Leuten.
+- **Erreichbar:** Ein Ansprechpartner, der Ihre Branche und Ihre Region kennt. Kein Ticketsystem, keine Hotline.
+
+### Kostenlos anfangen: Prozess-Check und ROI-Rechner.
+
+**Bevor Sie mit uns sprechen, rechnen Sie nach.** Der ROI-Rechner zeigt, was der heutige manuelle Aufwand in Ihrem Betrieb kostet. Im Prozess-Check beschreiben Sie den Ablauf mit der meisten Reibung; wir antworten mit einer Einschätzung. Danach ein Erstgespräch bei Ihnen in Oberberg oder per Video.
+
+### Häufige Fragen
+
+**Für welche Orte im Oberbergischen Kreis arbeiten Sie?**
+Für alle 13 Städte und Gemeinden: Bergneustadt, Engelskirchen, Gummersbach, Hückeswagen, Lindlar, Marienheide, Morsbach, Nümbrecht, Radevormwald, Reichshof, Waldbröl, Wiehl und Wipperfürth. Prozessaufnahme und Abnahmen vor Ort, Build und Betrieb remote.
+
+**Was unterscheidet eine KI-Agentur von einem Softwareanbieter?**
+Wir verkaufen keine Software, die Sie an Ihren Betrieb anpassen müssen. Wir nehmen Ihren Prozess auf und bauen die Automatisierung darum, mit Ihren bestehenden Systemen. Das Ergebnis ist ein Ablauf, kein Lizenzpaket.
+
+**Ab welcher Betriebsgröße lohnt sich das?**
+Sobald mehrere Personen an einem Auftrag beteiligt sind und Informationen zwischen ihnen übertragen werden. Das beginnt bei Betrieben mit rund zehn Mitarbeitern.
+
+**Wie schnell kann ein Pilot starten?**
+Nach dem Erstgespräch und der Prozessaufnahme typischerweise innerhalb weniger Wochen. Die Einführungsseite beschreibt die vier Phasen bis zum Rollout.
+
+## KI-Agentur Köln
+
+URL: https://hk-growthoperator.de/ki-agentur-koeln
+Kurz gesagt: KI-Agentur für Köln und das Rheinland: HK Growth automatisiert Abläufe von der Anfrage bis zur Rechnung für technische B2B-Unternehmen und Mittelstand. ERP, CRM und Buchhaltung bleiben angebunden. Erstgespräch in Köln oder per Video, Sitz 45 Minuten östlich in Marienheide.
+
+### KI-Agentur für Kölner Unternehmen, die Aufträge abwickeln.
+
+Köln hat viele Agenturen für KI-Strategie und Workshops. Wir bauen das, was danach kommt: Prozessautomatisierung im operativen Geschäft, von der Anfrage über Angebot, Auftrag und Zeiterfassung bis zur Rechnung. Für Unternehmen in Köln, Leverkusen, dem Rhein-Erft-Kreis und dem Rheinisch-Bergischen, mit Sitz 45 Minuten östlich in Marienheide.
+
+### Für Unternehmen mit Auftragsgeschäft im Rheinland.
+
+Wenn Anfragen zu Aufträgen werden und Aufträge zu Rechnungen, mit vielen Beteiligten dazwischen, ist unser Ansatz der richtige.
+
+- **Technische Dienstleister:** Anlagen, Gebäudetechnik, IT-Service, Instandhaltung: Störungsmeldung, Einsatz, Servicebericht, Rechnung. Wiederkehrende Abläufe mit vielen Rückmeldungen.
+- **Fertigung und Handel:** Kalkulation, Angebot, Auftrag, Lieferung, Rechnung mit ERP und Warenwirtschaft. Übergaben automatisiert, Nachkalkulation sichtbar.
+- **Handwerk und Bau im Großraum:** Aufmaß, Angebot, Einsatzplanung, Nachträge, Abschlagsrechnungen. Vom Kölner Stadtgebiet bis ins Bergische.
+
+### Vier Phasen, vor Ort und remote.
+
+Die Einführung beginnt nicht mit einer Softwaremigration, sondern mit einem Prozess.
+
+- **Phase 01 · Prozessaufnahme in Köln:** Wir kommen zu Ihnen: Ist-Ablauf, Rollen, Systeme, Ausnahmen und manuelle Übergaben werden dokumentiert, der Pilot wird abgegrenzt. Ergebnis: Prozessbild, Ziel, Erfolgskriterien.
+- **Phase 02 · Systemlogik und Daten:** Schnittstellen zu ERP, CRM, Zeiterfassung und Buchhaltung, Datenfelder, Regeln und Freigaben werden definiert. Ergebnis: fachliche und technische Spezifikation.
+- **Phase 03 · Build und Test:** Automation, Oberfläche und Integrationen werden umgesetzt und mit Ihren Testfällen geprüft, inklusive Rückfallwegen. Ergebnis: testbarer Pilot.
+- **Phase 04 · Abnahme und Rollout:** Fachliche Abnahme bei Ihnen, dann produktiver Betrieb. Weitere Prozesse erst nach nachgewiesener Wirkung. Ergebnis: ein laufender Ablauf, belastbare Grundlage für den nächsten.
+
+### Nachvollziehbar, dokumentiert, AI-Act-konform geplant.
+
+**KI übernimmt Vorarbeit, Menschen entscheiden.** Jede Einordnung, jeder Vorschlag und jede Freigabe wird protokolliert. Was das für Ihre Dokumentationspflichten bedeutet, steht in unserer KI-Richtlinie.
+
+### Häufige Fragen
+
+**Arbeiten Sie mit Kölner Unternehmen vor Ort?**
+Ja. Prozessaufnahme, Workshops und Abnahmen finden bei Ihnen in Köln statt, Build und Betrieb laufen remote. Von Marienheide aus sind wir über die A4 in rund 45 Minuten da.
+
+**Machen Sie auch KI-Strategie oder Schulungen?**
+Unser Schwerpunkt ist die Umsetzung im operativen Geschäft. Strategie entsteht bei uns als Nebenprodukt der Prozessaufnahme: Welche Abläufe lohnen sich, in welcher Reihenfolge, mit welchem Nutzen.
+
+**Welche Systeme binden Sie an?**
+ERP, Warenwirtschaft, CRM, Zeiterfassung, Buchhaltung und Branchensoftware mit Schnittstelle oder Import. Die Systemseite beschreibt Architektur und Datenhaltung.
+
+**Wie groß sollte unser Unternehmen sein?**
+Ab etwa zehn Mitarbeitern, sobald mehrere Personen an einem Auftrag beteiligt sind. Nach oben begrenzt nur der Prozess, nicht die Mitarbeiterzahl.
+
+## Handwerk
+
+URL: https://hk-growthoperator.de/automatisierung-handwerk
+Kurz gesagt: Digitalisierung und Automatisierung für Handwerksbetriebe: Anfragen einordnen, Angebote aus Aufmaß und Preislisten vorbereiten, Einsätze steuern, Stunden am Auftrag erfassen, Nachkalkulation sehen, Rechnungen direkt nach Abschluss. Bestehende Handwerkersoftware bleibt.
+
+### Weniger Büro. Mehr Baustelle.
+
+Ein Handwerksbetrieb verdient auf der Baustelle und verliert im Büro: Anfragen beantworten, Angebote schreiben, Einsätze planen, Stundenzettel abtippen, Rechnungen am Monatsende. HK Growth OS verbindet diese Schritte zu einem Ablauf, mit Ihrer bestehenden Handwerkersoftware und Buchhaltung. Die Chefin oder der Meister entscheidet, das System bereitet vor.
+
+### Von der Anfrage bis zur Schlussrechnung.
+
+Elektro, SHK, Dach, Maler, Metallbau, Garten- und Landschaftsbau: Die Begriffe unterscheiden sich, der Weg ist derselbe.
+
+- **Anfrage · Anfrage einordnen und Termin für das Aufmaß:** Mail, Anruf oder Website-Formular werden zum Vorgang. Dringlichkeit, Gewerk und Zuständigkeit werden vorgeschlagen, der Aufmaßtermin wird angeboten. Ergebnis: jede Anfrage beantwortet, nichts vergessen.
+- **Angebot · Angebot aus Aufmaß und Preislisten:** Positionen und Preise kommen aus Ihren Leistungsverzeichnissen und vergleichbaren Aufträgen. Der Meister prüft und gibt frei. Ergebnis: Angebot am Tag nach dem Aufmaß.
+- **Einsatz · Einsatzplanung und Material:** Aus dem Auftrag werden Einsätze mit Kolonne, Termin und Material. Die Mitarbeiter sehen alles auf dem Handy, Änderungen kommen sofort an. Ergebnis: weniger Rückfragen vom Fahrzeug aus.
+- **Stunden · Stunden und Material am Auftrag:** Rückmeldung von der Baustelle direkt am Auftrag. Soll und Ist stehen nebeneinander, Nachträge werden rechtzeitig erkannt. Ergebnis: Nachkalkulation ohne Monatsabschluss.
+- **Rechnung · Abschlag, Nachtrag, Schlussrechnung:** Rechnungen werden aus Auftrag und Ist-Daten vorbereitet, freigegeben und an die Buchhaltung übergeben. Mahnungen laufen als Wiedervorlagen. Ergebnis: Liquidität früher, weniger vergessene Positionen.
+
+### Ihre Handwerkersoftware bleibt.
+
+Wir bauen keine neue Insel. Wir verbinden die, die Sie haben.
+
+- **Handwerkersoftware und Kalkulation:** Leistungsverzeichnisse, Preislisten und Stammdaten bleiben in Ihrem System. HK Growth OS liest sie für Vorschläge und schreibt Aufträge zurück.
+- **Zeiterfassung:** Bestehende Apps oder Terminals werden angebunden. Stunden landen am Auftrag, nicht in einer zweiten Liste.
+- **Buchhaltung und Steuerberater:** Geprüfte Rechnungsdaten gehen an DATEV, Lexware oder Ihr Buchhaltungsmodul. Ihr Steuerberater bekommt saubere Daten statt Belegstapel.
+
+### Mit dem Prozess anfangen, der die meisten Abende kostet.
+
+**Meist ist es die Rechnung oder das Angebot.** Beschreiben Sie den Ablauf im Prozess-Check. Wir sagen Ihnen, was sich davon automatisieren lässt, was ein Pilot kostet und wie lange er dauert. Der ROI-Rechner zeigt vorab, was der heutige Aufwand im Jahr bedeutet.
+
+### Häufige Fragen
+
+**Wir sind ein kleiner Betrieb. Lohnt sich das?**
+Ab etwa zehn Mitarbeitern ja, weil dann mehrere Personen an einem Auftrag beteiligt sind und Informationen übertragen werden. Darunter helfen oft schon Terminbuchung und Anfrage-Automation über die Website; das macht unser Webstudio.
+
+**Müssen meine Leute eine neue App lernen?**
+Nur das, was sie wirklich brauchen: Auftrag ansehen, Rückmelden, Stunden erfassen. Bestehende Zeiterfassung bleibt, wenn sie funktioniert.
+
+**Was ist mit Nachträgen?**
+Nachträge werden in der Nachkalkulation sichtbar, sobald Ist-Stunden oder Material vom Plan abweichen, und als eigener Schritt vorbereitet. Kein Nachtrag mehr, der erst beim Rechnungsschreiben auffällt.
+
+**Wie lange dauert die Einführung?**
+Ein begrenzter Pilot, zum Beispiel der Rechnungsablauf, braucht typischerweise wenige Wochen von der Prozessaufnahme bis zur Abnahme. Dann folgt der nächste Schritt.
+
+## Bauunternehmen
+
+URL: https://hk-growthoperator.de/automatisierung-bauunternehmen
+Kurz gesagt: Automatisierung für Bauunternehmen und Bauhandwerk: Anfragen und Ausschreibungen einordnen, Kalkulation vorbereiten, Bauablauf und Kolonnen steuern, Stunden und Material je Bauvorhaben erfassen, Nachträge erkennen, Abschlags- und Schlussrechnungen vorbereiten. ERP und Baukalkulation bleiben.
+
+### Jedes Bauvorhaben ein Vorgang. Jeder Nachtrag rechtzeitig.
+
+Im Bau entscheidet die Nachkalkulation über das Jahresergebnis, und sie kommt meistens zu spät. HK Growth OS verbindet Kalkulation, Bauablauf, Stundenerfassung, Material und Abrechnung je Bauvorhaben zu einem Vorgang. Abweichungen werden sichtbar, solange man noch einen Nachtrag stellen kann, und Abschlagsrechnungen folgen dem Baufortschritt statt dem Kalender.
+
+### Vom Angebot bis zur Schlussrechnung.
+
+Hochbau, Tiefbau, Ausbau, GaLaBau: Die Schritte sind dieselben, die Summen groß genug, dass Reibung teuer wird.
+
+- **Anfrage · Anfrage oder Ausschreibung einordnen:** Unterlagen werden zum Vorgang, Fristen und Zuständigkeit gesetzt, fehlende Angaben nachgefragt. KI liest Leistungsverzeichnisse vor. Ergebnis: keine verpasste Frist, klare Zuständigkeit.
+- **Kalkulation · Kalkulation und Angebot vorbereiten:** Positionen und Preise aus Ihrer Baukalkulation und vergleichbaren Projekten als Vorschlag. Bauleitung und Kalkulator prüfen und geben frei. Ergebnis: Angebot schneller, Margen vergleichbar.
+- **Bauablauf · Kolonnen, Termine, Material steuern:** Aus dem Auftrag entstehen Einsätze mit Kolonnen, Terminen, Geräten und Material. Änderungen erreichen alle Beteiligten sofort. Ergebnis: Baustellen wissen, was wann ansteht.
+- **Baustelle · Stunden, Material, Bautagebuch am Vorgang:** Rückmeldungen von der Baustelle landen am Bauvorhaben: Stunden, Material, Fotos, Behinderungen. Soll und Ist stehen täglich nebeneinander. Ergebnis: Nachkalkulation während des Baus, nicht danach.
+- **Abrechnung · Abschläge, Nachträge, Schlussrechnung:** Abschlagsrechnungen werden aus Baufortschritt und Ist-Daten vorbereitet, Nachträge aus den erkannten Abweichungen, die Schlussrechnung aus dem Gesamtvorgang. Ergebnis: Liquidität nach Fortschritt, Nachträge belegt.
+
+### Was Geschäftsführung, Bauleitung und Verwaltung davon haben.
+
+- **Geschäftsführung:** Je Bauvorhaben Marge, Abweichung und Status ohne Nachfragen. Welche Baustellen kippen, sieht man in der Woche, nicht im Quartal.
+- **Bauleitung:** Einsätze, Material und Nachträge an einer Stelle. Rückmeldungen von der Baustelle kommen strukturiert statt per Anruf.
+- **Verwaltung:** Abschlussdaten liegen vor, Rechnungen sind vorbereitet, Freigaben laufen digital. Weniger Zusammensuchen, weniger Rückfragen auf die Baustelle.
+
+### Baukalkulation, ERP und Buchhaltung bleiben.
+
+**HK Growth OS ist die operative Ebene dazwischen.** Kalkulationsdaten, Leistungsverzeichnisse und Stammdaten bleiben in Ihrer Bausoftware, Rechnungen gehen in Ihre Buchhaltung. Wir automatisieren Übergaben, Rückmeldungen und Freigaben. Architektur und Datenhaltung stehen auf der Systemseite.
+
+### Häufige Fragen
+
+**Funktioniert das mit unserer Baukalkulations-Software?**
+Grundsätzlich mit jeder Software, die Daten exportiert oder eine Schnittstelle hat. Welche das bei Ihnen ist und wie der Datenweg aussieht, klären wir in der Prozessaufnahme.
+
+**Wie kommen Daten von der Baustelle ins System?**
+Über das Handy oder Tablet der Kolonne: Stunden, Material, Fotos, Behinderungen am Bauvorhaben. Bestehende Zeiterfassung wird angebunden.
+
+**Erkennt das System Nachträge automatisch?**
+Es erkennt Abweichungen zwischen Kalkulation und Ist-Daten und meldet sie. Ob daraus ein Nachtrag wird und wie er begründet ist, entscheidet die Bauleitung. Die Belege liegen dann bereits vor.
+
+**Womit fangen wir an?**
+Meist mit Stunden- und Materialerfassung je Bauvorhaben plus Nachkalkulation, weil dort der größte Hebel liegt. Dann Abrechnung, dann Kalkulation.
+
+## Technischer Service
+
+URL: https://hk-growthoperator.de/automatisierung-technischer-service
+Kurz gesagt: Automatisierung für technischen Service und Instandhaltung: Störungsmeldungen einordnen, Techniker disponieren, Serviceberichte strukturiert erfassen, Wartungsverträge und Intervalle steuern, Rechnungen aus dem Einsatz vorbereiten. Für Anlagenbau, Gebäudetechnik, Maschinenservice und IT-Service.
+
+### Vom Anruf bis zur Rechnung in einem Einsatz.
+
+Im technischen Service entscheidet die Geschwindigkeit zwischen Störungsmeldung und Rechnung über Kundenzufriedenheit und Liquidität. HK Growth OS nimmt die Meldung strukturiert auf, disponiert den Einsatz, erfasst den Servicebericht am Vorgang und bereitet die Rechnung vor, bevor der Techniker wieder im Auto sitzt. Wartungsverträge und Intervalle laufen als Wiedervorlagen mit.
+
+### Fünf Schritte, die heute fünf Mal übertragen werden.
+
+Anlagenbau, Gebäudetechnik, Maschinen- und Geräteservice, IT-Service: Unterschiedliche Technik, derselbe Ablauf.
+
+- **Meldung · Störung oder Wartung aufnehmen:** Anruf, Mail, Portal oder Sensor werden zur strukturierten Meldung: Anlage, Kunde, Symptom, Vertrag, Dringlichkeit. KI schlägt Priorität und Qualifikation vor. Ergebnis: keine Meldung ohne Vorgang.
+- **Disposition · Techniker und Material planen:** Aus Qualifikation, Standort, Ersatzteilen und Vertragsreaktionszeit entsteht der Einsatzvorschlag. Die Disposition bestätigt oder ändert. Ergebnis: Reaktionszeiten eingehalten, Fahrten gebündelt.
+- **Einsatz · Einsatz mit allen Informationen:** Der Techniker sieht Anlage, Historie, Vertrag und Material auf dem Gerät. Rückmeldungen gehen direkt in den Vorgang. Ergebnis: weniger Rückfragen in die Zentrale.
+- **Bericht · Servicebericht strukturiert erfassen:** Tätigkeiten, Zeiten, Material, Fotos und Kundenunterschrift am Vorgang. Der Bericht ist zugleich Grundlage für Rechnung und Anlagenhistorie. Ergebnis: kein Abtippen von Papierberichten.
+- **Rechnung · Rechnung und Folgetermin:** Rechnung oder Vertragsabrechnung werden aus dem Einsatz vorbereitet und freigegeben. Der nächste Wartungstermin steht als Wiedervorlage. Ergebnis: Rechnung am selben Tag, Wartung nie vergessen.
+
+### Verträge, Intervalle und Reaktionszeiten im System.
+
+- **Intervalle automatisch:** Wartungsintervalle je Anlage erzeugen Einsätze als Wiedervorlagen. Fällige Wartungen werden gebündelt und disponiert, bevor der Kunde anruft.
+- **Reaktionszeiten sichtbar:** Vertragliche Reaktionszeiten steuern die Priorität der Meldung. Drohende Verstöße werden gemeldet, nicht erst reklamiert.
+- **Anlagenhistorie als Wissen:** Jeder Einsatz landet an der Anlage. Beim nächsten Mal sieht der Techniker, was wann gemacht wurde, und die Kalkulation lernt daraus.
+
+### Ihr Servicetool, Ihr ERP, Ihre Buchhaltung bleiben.
+
+**Wir ersetzen keine Servicesoftware.** Anlagen- und Vertragsdaten bleiben, wo sie sind; HK Growth OS steuert Meldung, Disposition, Rückmeldung und Abrechnung dazwischen. Details zu Architektur und Schnittstellen auf der Systemseite.
+
+### Häufige Fragen
+
+**Können Störungsmeldungen auch automatisch aus Anlagen kommen?**
+Ja, wenn Anlagen Meldungen per E-Mail, Schnittstelle oder Sensor absetzen. Sie werden wie jede andere Meldung zum Vorgang und priorisiert.
+
+**Wie erfasst der Techniker den Servicebericht?**
+Auf Handy oder Tablet am Vorgang: Tätigkeiten, Zeiten, Material, Fotos, Unterschrift des Kunden. Daraus entstehen Rechnung und Anlagenhistorie ohne Abtippen.
+
+**Funktioniert das mit Wartungsverträgen und Pauschalen?**
+Ja. Vertragsleistungen werden gegen den Vertrag abgerechnet, Zusatzleistungen separat vorbereitet. Intervalle und Reaktionszeiten steuern Planung und Priorität.
+
+**Womit startet ein Pilot im Service?**
+Meist mit dem Weg von der Meldung bis zum Servicebericht für eine Anlagengruppe. Dann Abrechnung, dann Verträge und Intervalle.
+
+## Maschinenbau und Fertigung
+
+URL: https://hk-growthoperator.de/automatisierung-maschinenbau
+Kurz gesagt: Automatisierung für Maschinenbau, Metallverarbeitung und Fertigungsbetriebe: Anfragen und Spezifikationen einordnen, Kalkulation und Angebot vorbereiten, Aufträge und Fertigungsübergaben steuern, Zeiten und Material am Auftrag, Nachkalkulation je Auftrag, Rechnung und Ersatzteilgeschäft. ERP bleibt führend.
+
+### Lange Vorgänge, viele Übergaben. Ein Ablauf.
+
+Im Maschinenbau und in der Fertigung dauert ein Vorgang Wochen bis Monate: Anfrage mit Spezifikation, Kalkulation, Angebot, Auftrag, Konstruktion, Fertigung, Montage, Lieferung, Rechnung, Ersatzteile. An jeder Übergabe gehen Informationen verloren. HK Growth OS verbindet die Schritte um Ihr ERP herum, macht Soll und Ist je Auftrag sichtbar und bereitet Angebote und Rechnungen vor, statt sie am Ende zusammenzusuchen.
+
+### Von der Spezifikation bis zum Ersatzteil.
+
+Sondermaschinen, Serienfertigung, Lohnfertigung, Metallverarbeitung: unterschiedliche Losgrößen, dieselben Übergaben.
+
+- **Anfrage · Anfrage und Spezifikation einordnen:** Zeichnungen, Stücklisten und Anforderungen werden zum Vorgang. KI liest Unterlagen vor, ordnet Produktgruppe und Zuständigkeit zu, fragt Fehlendes nach. Ergebnis: vollständige Anfrage, klare Zuständigkeit.
+- **Kalkulation · Kalkulation und Angebot vorbereiten:** Material, Fertigungszeiten und Zukaufteile aus ERP, Stücklisten und vergleichbaren Aufträgen als Vorschlag. Vertrieb und Arbeitsvorbereitung prüfen und geben frei. Ergebnis: Angebote schneller und vergleichbar kalkuliert.
+- **Auftrag · Auftrag und Fertigungsübergabe:** Der Auftrag entsteht im ERP, Übergaben an Konstruktion, Arbeitsvorbereitung, Fertigung und Einkauf laufen mit Status und Terminen. Ergebnis: jeder weiß, was wann ansteht.
+- **Fertigung · Zeiten, Material, Abweichungen am Auftrag:** Rückmeldungen aus Fertigung und Montage landen am Auftrag. Soll und Ist stehen nebeneinander, Abweichungen werden gemeldet. Ergebnis: Nachkalkulation je Auftrag, Lernen für die nächste.
+- **Rechnung · Lieferung, Rechnung, Ersatzteile:** Rechnungen und Teilrechnungen werden aus Auftrag und Ist-Daten vorbereitet. Ersatzteilanfragen laufen als eigener, schneller Vorgang mit Historie der Maschine. Ergebnis: Rechnung mit Lieferung, Ersatzteile ohne Suchen.
+
+### Vertrieb, Arbeitsvorbereitung, Geschäftsführung.
+
+- **Vertrieb:** Angebote aus Vorschlägen statt aus leeren Kalkulationsblättern, Kundenhistorie am Vorgang, Nachfassen als Wiedervorlage.
+- **Arbeitsvorbereitung und Fertigung:** Übergaben mit allen Informationen, Rückmeldungen am Auftrag, Abweichungen sichtbar, bevor sie den Liefertermin gefährden.
+- **Geschäftsführung:** Marge je Auftrag und je Produktgruppe aus echten Ist-Daten. Welche Aufträge Geld verdienen und welche nicht, ohne Monatsabschluss.
+
+### Das ERP bleibt das führende System.
+
+**HK Growth OS automatisiert die Übergaben um das ERP herum.** Stammdaten, Stücklisten und Aufträge bleiben im ERP; Zeiterfassung, CAD-Ablage, Einkauf und Buchhaltung werden angebunden. Welche Schnittstellen und Datenwege es gibt, beschreibt die Systemseite.
+
+### Häufige Fragen
+
+**Wir haben ein großes ERP. Was bringt HK Growth OS zusätzlich?**
+Die Übergaben zwischen den Abteilungen und Systemen, die das ERP nicht abbildet: Anfragen einordnen, Angebote vorbereiten, Rückmeldungen strukturieren, Freigaben steuern, Nachkalkulation im laufenden Auftrag. Das ERP bleibt führend.
+
+**Kann die KI Zeichnungen und Stücklisten lesen?**
+Sie liest Unterlagen vor, extrahiert Angaben und ordnet den Vorgang ein. Technische Prüfung und Freigabe bleiben bei Konstruktion und Arbeitsvorbereitung.
+
+**Wie kommen Rückmeldungen aus der Fertigung ins System?**
+Über bestehende BDE- oder Zeiterfassungssysteme, Terminals oder Tablets am Arbeitsplatz. Sie landen am Auftrag, nicht in einer zweiten Liste.
+
+**Womit startet ein Pilot?**
+Häufig mit der Angebotsvorbereitung oder mit dem Ersatzteilgeschäft, weil dort der Hebel schnell sichtbar wird. Dann Fertigungsrückmeldung und Nachkalkulation.
+
+## Glossar
+
+URL: https://hk-growthoperator.de/glossar
+Kurz gesagt: 17 Begriffe aus Prozessautomatisierung und KI im Mittelstand in je drei Sätzen erklärt. Von Auftragssteuerung und Nachkalkulation über Pilot, Rollout und ROI bis KI-Agent, RPA und AI Act.
+
+### Prozessautomatisierung: die Begriffe in drei Sätzen.
+
+Was ein KI-Betriebssystem ist, worin sich KI-Agenten von RPA unterscheiden, was Nachkalkulation im laufenden Auftrag bedeutet: die Begriffe, die in Gesprächen über Automatisierung fallen, definiert und mit dem Bezug zu HK Growth OS.
+
+### Definition zuerst, Bezug zur Praxis danach.
+
+Jeder Begriff ist so formuliert, dass er für sich steht und zitiert werden kann.
+
+**Prozessautomatisierung** (https://hk-growthoperator.de/glossar#prozessautomatisierung)
+Prozessautomatisierung verbindet die Schritte eines Geschäftsablaufs so, dass Übergaben, Prüfungen und Vorbereitungen ohne manuelles Übertragen laufen. Im Mittelstand betrifft das vor allem den Weg von der Anfrage über Angebot, Auftrag, Zeiterfassung und Nachkalkulation bis zur Rechnung. HK Growth OS automatisiert diese Übergaben zwischen bestehenden Systemen.
+
+**KI-Betriebssystem** (https://hk-growthoperator.de/glossar#ki-betriebssystem)
+Ein KI-Betriebssystem ist die operative Ebene zwischen den Fachsystemen eines Unternehmens (ERP, CRM, Zeiterfassung, Buchhaltung), die Vorgänge einordnet, Vorschläge vorbereitet, Übergaben steuert und Freigaben einholt. KI übernimmt die Vorarbeit, Menschen entscheiden. HK Growth OS ist ein solches System für den Mittelstand.
+
+**Operative Ebene** (https://hk-growthoperator.de/glossar#operative-ebene)
+Die operative Ebene ist die Schicht, in der Vorgänge tatsächlich bearbeitet werden: Anfrage einordnen, Angebot vorbereiten, Auftrag steuern, Rückmeldungen sammeln, Rechnung vorbereiten. Fachsysteme halten die Daten, die operative Ebene verbindet die Schritte. HK Growth OS ersetzt keine Fachsysteme, sondern diese Ebene.
+
+**Auftragssteuerung** (https://hk-growthoperator.de/glossar#auftragssteuerung)
+Auftragssteuerung umfasst Anlegen, Zuweisen, Terminieren und Verfolgen von Aufträgen inklusive der Übergaben an Planung und Ausführung. Ziel ist ein Status, der sichtbar ist, bevor jemand nachfragt. In HK Growth OS entsteht der Auftrag aus dem Angebot und wandert mit allen Informationen durch den Ablauf.
+
+**Nachkalkulation** (https://hk-growthoperator.de/glossar#nachkalkulation)
+Nachkalkulation vergleicht die kalkulierten Kosten eines Auftrags mit den tatsächlichen Stunden, Materialien und Zukaufteilen. Sie zeigt, welche Aufträge Geld verdienen und wo Nachträge nötig sind. In HK Growth OS stehen Soll und Ist im laufenden Auftrag nebeneinander, nicht erst am Quartalsende.
+
+**Rechnungsablauf** (https://hk-growthoperator.de/glossar#rechnungsablauf)
+Der Rechnungsablauf reicht vom Prüfen der Abschlussdaten über das Vorbereiten der Rechnung und die Freigabe bis zur Übergabe an die Buchhaltung und das Nachhalten offener Posten. Automatisiert folgt die Rechnung dem Auftragsabschluss statt dem Monatsende.
+
+**Übergabe** (https://hk-growthoperator.de/glossar#uebergabe)
+Eine Übergabe ist der Moment, in dem ein Vorgang von einer Person, Rolle oder einem System an die nächste wechselt: von der Anfrage zum Angebot, vom Vertrieb zur Planung, von der Ausführung zur Rechnung. An Übergaben gehen Informationen verloren; sie sind der Hauptansatzpunkt der Prozessautomatisierung.
+
+**Prozessaufnahme** (https://hk-growthoperator.de/glossar#prozessaufnahme)
+Die Prozessaufnahme dokumentiert den Ist-Ablauf: Rollen, Systeme, Eingaben, Ausgaben, Ausnahmen und manuelle Übergaben. Sie legt fest, was Teil des Piloten ist und was nicht. Bei HK Growth ist sie die erste der vier Einführungsphasen und findet im Betrieb statt.
+
+**Pilot** (https://hk-growthoperator.de/glossar#pilot)
+Ein Pilot ist die Automatisierung eines klar abgegrenzten Prozesses im Echtbetrieb mit fachlicher Abnahme vor dem Rollout. Er löst eine konkrete Reibung zuverlässig und macht Datenqualität sichtbar. HK Growth beginnt jede Einführung mit genau einem Prozess als Pilot.
+
+**Rollout** (https://hk-growthoperator.de/glossar#rollout)
+Der Rollout erweitert eine abgenommene Automatisierung auf weitere Rollen, Standorte oder Prozessschritte. Er folgt erst, wenn der Pilot die gewünschte Wirkung nachweislich erreicht hat. Nicht automatisch größer, erst besser.
+
+**ROI und Amortisation** (https://hk-growthoperator.de/glossar#roi)
+Der ROI (Return on Investment) setzt den Nutzen einer Automatisierung, etwa eingesparte Stunden und frühere Rechnungen, ins Verhältnis zu ihren Kosten; die Amortisation ist der Zeitpunkt, ab dem der Nutzen die Kosten übersteigt. Der ROI-Rechner von HK Growth berechnet beides lokal im Browser aus Ihren Zahlen.
+
+**KI-Agent** (https://hk-growthoperator.de/glossar#ki-agent)
+Ein KI-Agent ist eine Softwarekomponente, die mit Hilfe von Sprachmodellen Eingaben liest, einordnet und Vorschläge oder Vorbereitungen erzeugt, zum Beispiel eine Anfrage in einen strukturierten Vorgang verwandelt. In HK Growth OS arbeiten KI-Agenten vor; Freigaben und Entscheidungen bleiben bei Menschen.
+
+**RPA** (https://hk-growthoperator.de/glossar#rpa)
+RPA (Robotic Process Automation) automatisiert Klickfolgen in bestehenden Oberflächen, ohne die Systeme zu verbinden. Es ist schnell eingeführt, aber empfindlich gegen Änderungen der Oberfläche und kann keine unstrukturierten Eingaben einordnen. HK Growth OS arbeitet stattdessen mit Schnittstellen und KI-Vorarbeit.
+
+**Freigabe** (https://hk-growthoperator.de/glossar#freigabe)
+Eine Freigabe ist die bewusste Entscheidung einer zuständigen Person, dass ein vorbereiteter Schritt ausgeführt wird: ein Angebot geht raus, eine Rechnung wird gestellt, ein Nachtrag wird gestellt. In HK Growth OS bereitet KI vor, Menschen geben frei, jede Freigabe wird protokolliert.
+
+**Prozess-Check** (https://hk-growthoperator.de/glossar#prozess-check)
+Der Prozess-Check ist das kostenlose Einstiegswerkzeug von HK Growth: Sie beschreiben den Ablauf, der heute am meisten Zeit kostet, und erhalten eine Einschätzung, welche Schritte sich automatisieren lassen und wo der Mensch bleiben muss.
+
+**ERP** (https://hk-growthoperator.de/glossar#erp)
+ERP (Enterprise Resource Planning) ist das führende System für Stammdaten, Aufträge, Material, Einkauf und oft Rechnungen. Prozessautomatisierung ersetzt das ERP nicht, sondern automatisiert die Übergaben um das ERP herum und schreibt Ergebnisse zurück.
+
+**KI-Transparenz und AI Act** (https://hk-growthoperator.de/glossar#ki-transparenz)
+KI-Transparenz bedeutet, offenzulegen, wo KI eingesetzt wird, was sie tut und wer entscheidet. Der EU AI Act regelt Pflichten je Risikoklasse, unter anderem Kennzeichnung, Dokumentation und menschliche Aufsicht. HK Growth beschreibt seinen Umgang damit in der öffentlichen KI-Richtlinie.
+
+### Häufige Fragen
+
+**Warum ein Glossar auf einer Produktseite?**
+Weil Gespräche über Automatisierung an Begriffen scheitern: Jeder meint etwas anderes mit Pilot, Freigabe oder KI-Agent. Dieses Glossar legt fest, was wir meinen, und ist die Quelle, die KI-Suchen zitieren können.
+
+**Fehlt ein Begriff?**
+Schreiben Sie uns an info@hk-growthoperator.de. Begriffe, die in Erstgesprächen häufig fallen, nehmen wir auf.
+
+**Gibt es die Definitionen auch maschinenlesbar?**
+Ja, als DefinedTermSet in den strukturierten Daten dieser Seite und im Volltext unter hk-growthoperator.de/llms-full.txt.
