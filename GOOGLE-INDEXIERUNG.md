@@ -1,7 +1,8 @@
 # Google-Indexierung: alle HK-Growth-Seiten unter einer Marke
 
-Stand: 4. Oktober 2026. Gilt für hk-growthoperator.de, dealuno.hk-growthoperator.de,
-dealoperator.hk-growthoperator.de, website.hk-growthoperator.de und luiskummer.de.
+Stand: 6. Oktober 2026, abends. Gilt für hk-growthoperator.de, dealuno.hk-growthoperator.de,
+dealoperator.hk-growthoperator.de und website.hk-growthoperator.de. luiskummer.de bleibt auf
+Wunsch außen vor (nur die gemeinsame Organisation in den Daten ist gesetzt).
 
 ## Kurzfassung
 
@@ -19,6 +20,38 @@ dealoperator.hk-growthoperator.de, website.hk-growthoperator.de und luiskummer.d
 - **Ob Google die Seiten „untereinander“ zeigt** (Sitelinks unter dem Haupttreffer),
   entscheidet Google selbst. Beeinflussbar sind nur die Voraussetzungen: saubere
   Struktur, Verlinkung, eindeutige Marke, Suchvolumen für den Markennamen.
+
+## Stand 6. Oktober: erledigt, offen, blockiert
+
+Erledigt (automatisch über das Dienstkonto `search-console-agent@hk-growth-seo`):
+
+| Punkt | Ergebnis |
+| --- | --- |
+| Domain-Property `sc-domain:hk-growthoperator.de` | per DNS-TXT verifiziert, Dienstkonto ist Inhaber |
+| Sitemaps | alle vier eingereicht; Hauptseite 9 URLs gelesen, DealUno 19 URLs gelesen, Deal Operator und Webstudio noch „ausstehend“ |
+| URL-Prüfung | Startseite ist indexiert (letzter Crawl 2. Oktober, noch ohne Rich Results); Subdomains „Google nicht bekannt“, Crawl folgt über die Sitemaps |
+| IndexNow (Bing, Copilot, ChatGPT-Suche) | Schlüssel `bc49fe1dfd860a2c09d72ac982f0768e` auf allen vier Hosts, alle Sitemap-URLs eingereicht, viermal `202 Accepted` |
+| Live-Prüfung | alle 37 Sitemap-URLs antworten mit 200, JSON-LD mit gemeinsamer Organisation auf allen Startseiten |
+| www | Express leitet `www.` per 301 auf die Hauptdomain (greift, sobald die www-Domain in Coolify ein Zertifikat hat) |
+
+Blockiert, weil DNS oder Zugänge fehlen:
+
+1. **Zwei A-Einträge auf der Hauptdomain.** `hk-growthoperator.de` löst auf
+   `75.2.60.5` (Netlify, alte Seite) **und** `167.233.76.202` (Hetzner, neue Seite).
+   Jeder zweite Aufruf, auch der Googlebot, bekommt die alte Startseite ohne strukturierte
+   Daten, ohne `/llms.txt` und ohne IndexNow-Datei. Im All-Inkl-KAS den Eintrag
+   `75.2.60.5` löschen; danach nur noch Hetzner.
+2. **www ohne Zertifikat.** `www.hk-growthoperator.de` zeigt auf Hetzner, aber der Dienst in
+   Coolify kennt die Domain nicht. Domain im Coolify-Dienst der Hauptseite ergänzen.
+3. **Search Console für Menschen.** Das Dienstkonto ist Inhaber. Ein zweiter Inhaber braucht
+   ein echtes Google-Konto; `l.kummer@hk-growthoperator.de` ist keines (Google: „Could not
+   resolve the email address“). Sobald eine Gmail- oder Workspace-Adresse vorliegt, trägt
+   `gsa/setup.py` sie als Inhaber ein, alternativ in der Search Console unter Einstellungen →
+   Nutzer und Berechtigungen.
+4. **Unternehmensprofil.** Nicht per API möglich (Freigabe fehlt). Alle Texte stehen in
+   `GOOGLE-UNTERNEHMENSPROFIL.md`, reines Einfügen.
+5. **Dienstkonto-Schlüssel** `461d7e06…` nach Abschluss in der Cloud Console löschen; er war
+   im Chat sichtbar. Die Domain-Verifizierung bleibt davon unberührt.
 
 ## Befund vor den Änderungen
 
@@ -190,24 +223,19 @@ FAQPage-Daten hinterlegt, `llms.txt` beschreibt Firma und Marken für KI-Suchen.
 2. **Webstudio-Host:** Die Seite läuft unter `website.hk-growthoperator.de` auf Hetzner und
    ist erreichbar. Der Eintrag `webseite.hk-growthoperator.de` bei All-Inkl zeigt auf einen
    leeren Webspace und kann im KAS gelöscht werden, damit keine zweite, leere Adresse existiert.
-3. **Search Console:** Domain-Property `hk-growthoperator.de` anlegen und per DNS
-   bestätigen; Property `luiskummer.de` anlegen.
-4. **Sitemaps einreichen** (alle in der Domain-Property):
-   - `https://hk-growthoperator.de/sitemap.xml`
-   - `https://dealuno.hk-growthoperator.de/sitemap.xml`
-   - `https://dealoperator.hk-growthoperator.de/sitemap.xml`
-   - `https://website.hk-growthoperator.de/sitemap.xml`
-   - in der zweiten Property: `https://luiskummer.de/sitemap.xml`
-5. **URL-Prüfung** für die fünf Startseiten und die DealUno-Produktseiten ausführen und
-   „Indexierung beantragen“. Das beschleunigt den ersten Crawl um Tage.
+3. **Search Console:** erledigt (Domain-Property verifiziert, Dienstkonto ist Inhaber).
+4. **Sitemaps einreichen:** erledigt, alle vier in der Domain-Property.
+5. **URL-Prüfung:** per API gelaufen. „Indexierung beantragen“ gibt es nur in der
+   Web-Oberfläche; sobald ein Google-Konto Inhaber ist, für die vier Startseiten und
+   `/ratgeber/` auslösen.
 6. **Rich-Results-Test** (search.google.com/test/rich-results) mit den fünf Startseiten:
    Organisation, SoftwareApplication, WebSite müssen ohne Fehler lesbar sein. Warnungen zu
    fehlenden Preisen sind erwartbar und unkritisch.
 7. **Unternehmensprofil** wie oben: Website, Termin-Link, vier Produkte, Beschreibung,
    Kategorie prüfen (z. B. „Softwareunternehmen“ oder „Unternehmensberatung“, Zweitkategorie
    „Webdesigner“).
-8. **Bing Webmaster Tools:** Property anlegen, Import aus der Search Console nutzen. Bing
-   speist ChatGPT-Suche und Copilot.
+8. **Bing:** IndexNow ist eingerichtet und alle URLs sind gemeldet. Bing Webmaster Tools
+   (Import aus der Search Console) ergänzt Berichte, ist aber kein Muss mehr.
 9. **Instagram und LinkedIn:** Website-Feld auf `https://hk-growthoperator.de`, die Marken
    in der Bio nennen.
 10. **Nach 2 bis 4 Wochen:** Search Console → Leistung → Filter „Seite enthält
@@ -219,8 +247,10 @@ FAQPage-Daten hinterlegt, `llms.txt` beschreibt Firma und Marken für KI-Suchen.
 - **Spiegel-Workflow im Website-Repo** (`.github/workflows/mirror-live-site.yml`) würde
   `site/` komplett mit einem wget-Abzug der Live-Seite überschreiben und die Canonicals
   wieder relativ machen. Nicht mehr manuell starten oder vorher anpassen.
-- **`www.hk-growthoperator.de` löst nicht auf.** Ein CNAME auf die Hauptdomain plus
-  301-Weiterleitung schadet nicht und fängt Tippfehler ab.
+- **`www.hk-growthoperator.de`** löst inzwischen auf Hetzner auf; der 301 auf die Hauptdomain
+  ist im Server. Es fehlt nur das Zertifikat (www-Domain im Coolify-Dienst eintragen).
+- **Doppelter A-Eintrag** der Hauptdomain (Netlify und Hetzner), siehe oben. Solange er
+  besteht, sind Live-Prüfungen und Googles Sicht auf die Startseite Zufall.
 - **Bisher indexierte `.html`-Adressen** der Hauptseite leiten jetzt um. Die Search Console
   meldet sie als „Seite mit Weiterleitung“; das ist korrekt, die Signale wandern mit.
 - **Deal Operator Footer** hat bewusst nur einen zusätzlichen Link bekommen, weil die
