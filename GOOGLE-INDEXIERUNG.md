@@ -6,10 +6,13 @@ Wunsch außen vor (nur die gemeinsame Organisation in den Daten ist gesetzt).
 
 ## Kurzfassung
 
-- **Ein Profil reicht.** In der Google Search Console deckt eine einzige
-  **Domain-Property `hk-growthoperator.de`** alle Subdomains ab (DealUno, Deal Operator,
-  Webstudio, www, http und https). luiskummer.de bekommt eine zweite Property im selben
-  Google-Konto. Kein einzelnes Profil pro Seite nötig.
+- **Fünf Properties in der Search Console.** Die **Domain-Property `hk-growthoperator.de`**
+  deckt alle Subdomains gemeinsam ab (Gesamtbild, DNS-verifiziert). Dazu hat jede Site seit
+  dem 7. Oktober eine **eigene URL-Präfix-Property** mit eigener Sitemap, eigenem Leistungs-
+  und Indexbericht und eigenem „Indexierung beantragen“: `https://hk-growthoperator.de/`,
+  `https://dealuno.hk-growthoperator.de/`, `https://dealoperator.hk-growthoperator.de/`,
+  `https://website.hk-growthoperator.de/`. Die vier sind über die Domain-Verifizierung
+  automatisch verifiziert, es war kein weiterer DNS- oder Meta-Eintrag nötig.
 - **Das Google Unternehmensprofil** (Maps, Knowledge Panel) hat genau eine Website-Adresse:
   `https://hk-growthoperator.de`. Die Marken kommen dort als **Produkte** mit eigenem Link
   hinein, nicht als weitere Profile.
@@ -28,6 +31,7 @@ Erledigt (automatisch über das Dienstkonto `search-console-agent@hk-growth-seo`
 | Punkt | Ergebnis |
 | --- | --- |
 | Domain-Property `sc-domain:hk-growthoperator.de` | per DNS-TXT verifiziert, Dienstkonto ist Inhaber |
+| Einzel-Properties je Site (4 URL-Präfix) | am 7. Oktober angelegt, automatisch verifiziert über die Domain, Dienstkonto ist Inhaber, je eigene Sitemap eingereicht |
 | Sitemaps | alle vier eingereicht; Hauptseite 9 URLs gelesen, DealUno 19 URLs gelesen, Deal Operator und Webstudio noch „ausstehend“ |
 | URL-Prüfung | Startseite ist indexiert (letzter Crawl 2. Oktober, noch ohne Rich Results); Subdomains „Google nicht bekannt“, Crawl folgt über die Sitemaps |
 | IndexNow (Bing, Copilot, ChatGPT-Suche) | Schlüssel `bc49fe1dfd860a2c09d72ac982f0768e` auf allen vier Hosts, alle Sitemap-URLs eingereicht, viermal `202 Accepted` |
@@ -45,8 +49,8 @@ Blockiert, weil DNS oder Zugänge fehlen:
 3. **Search Console für Menschen.** Das Dienstkonto ist Inhaber. Ein zweiter Inhaber braucht
    ein echtes Google-Konto; `l.kummer@hk-growthoperator.de` ist keines (Google: „Could not
    resolve the email address“). Sobald eine Gmail- oder Workspace-Adresse vorliegt, trägt
-   `gsa/setup.py` sie als Inhaber ein, alternativ in der Search Console unter Einstellungen →
-   Nutzer und Berechtigungen.
+   `tools/search-console/owner.py` sie als Inhaber auf allen fünf Properties ein, alternativ in der Search
+   Console unter Einstellungen → Nutzer und Berechtigungen.
 4. **Unternehmensprofil.** Nicht per API möglich (Freigabe fehlt). Alle Texte stehen in
    `GOOGLE-UNTERNEHMENSPROFIL.md`, reines Einfügen.
 5. **Dienstkonto-Schlüssel** `461d7e06…` nach Abschluss in der Cloud Console löschen; er war
@@ -87,15 +91,17 @@ Ein Standort, ein Profil. Mehrere Websites lassen sich dort nicht hinterlegen, a
 
 ### 2. Google Search Console (Indexierung)
 
-Hier entsteht das „eine Profil“, das gewünscht ist:
+Aufbau: eine Domain-Property für das Gesamtbild plus eine Property je Site.
 
-1. Property-Typ **Domain** wählen, `hk-growthoperator.de` eintragen.
-2. Den angezeigten **TXT-Eintrag** beim DNS-Anbieter der Domain anlegen (dort, wo die
-   A-Records für dealuno./dealoperator. liegen).
-3. Damit sind alle Subdomains in einer Property. Im Bericht „Leistung“ lässt sich nach
-   Seite filtern (`dealuno.`, `dealoperator.` …), um die Marken einzeln zu sehen.
-4. `luiskummer.de` als zweite Domain-Property anlegen (anderes Hauptdomain, gleiche
-   Vorgehensweise).
+1. Property-Typ **Domain** wählen, `hk-growthoperator.de` eintragen, den angezeigten
+   **TXT-Eintrag** beim DNS-Anbieter anlegen. Erledigt.
+2. Je Site eine **URL-Präfix-Property** anlegen (`https://dealuno.hk-growthoperator.de/` usw.).
+   Sie sind durch die Domain-Verifizierung sofort verifiziert. Erledigt am 7. Oktober.
+3. Jede Site reicht ihre Sitemap in ihrer eigenen Property ein; die Domain-Property behält
+   zusätzlich alle vier. Erledigt.
+4. In der Oberfläche erscheinen die Properties erst, wenn das eigene Google-Konto Inhaber ist
+   (`tools/search-console/owner.py <key> <email>`); danach stehen die Einzelberichte je Marke bereit und
+   „Indexierung beantragen“ ist je Site möglich.
 
 ### 3. Knowledge Panel / Marken-Entität
 
@@ -222,8 +228,10 @@ FAQPage-Daten hinterlegt, `llms.txt` beschreibt Firma und Marken für KI-Suchen.
 2. **Webstudio-Host:** Die Seite läuft unter `website.hk-growthoperator.de` auf Hetzner und
    ist erreichbar. Der Eintrag `webseite.hk-growthoperator.de` bei All-Inkl zeigt auf einen
    leeren Webspace und kann im KAS gelöscht werden, damit keine zweite, leere Adresse existiert.
-3. **Search Console:** erledigt (Domain-Property verifiziert, Dienstkonto ist Inhaber).
-4. **Sitemaps einreichen:** erledigt, alle vier in der Domain-Property.
+3. **Search Console:** erledigt (Domain-Property plus vier Einzel-Properties verifiziert,
+   Dienstkonto ist Inhaber).
+4. **Sitemaps einreichen:** erledigt, alle vier in der Domain-Property und je eine in der
+   eigenen Property.
 5. **URL-Prüfung:** per API gelaufen. „Indexierung beantragen“ gibt es nur in der
    Web-Oberfläche; sobald ein Google-Konto Inhaber ist, für die vier Startseiten und
    `/ratgeber/` auslösen.
