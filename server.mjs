@@ -3,6 +3,7 @@ import nodemailer from 'nodemailer';
 import path from 'node:path';
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { sendMetaEvent, newEventId, hasMarketingConsent, fbCookies, trackingConfigScript } from './meta-capi.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -145,9 +146,20 @@ async function handleForm(req, res) {
     return res.status(400).send('Bitte geben Sie eine gültige E-Mail-Adresse an.');
   }
 
+  const eventId = newEventId();
+  const redirect = `${config.redirect}?eid=${eventId}`;
+  if (hasMarketingConsent(req.headers.cookie)) {
+    const { fbp, fbc } = fbCookies(req.headers.cookie);
+    sendMetaEvent({
+      eventName: 'Lead', eventId, sourceUrl: `https://hk-growthoperator.de${config.redirect}`,
+      email: req.body?.email, phone: req.body?.telefon || req.body?.phone, firstName: req.body?.name,
+      ip: req.ip, userAgent: req.get('user-agent'), fbp, fbc, customData: { content_name: formName },
+    }).catch(() => {});
+  }
+
   if (dryRun) {
     console.log(`[forms:dry-run] ${formName}\n${messageText(formName, req.body)}`);
-    return res.redirect(303, config.redirect);
+    return res.redirect(303, redirect);
   }
 
   try {
@@ -164,7 +176,7 @@ async function handleForm(req, res) {
       text: messageText(formName, req.body)
     });
 
-    return res.redirect(303, config.redirect);
+    return res.redirect(303, redirect);
   } catch (error) {
     console.error(`[forms] ${formName} failed:`, error?.message || error);
     return res.status(503).send(
@@ -174,6 +186,12 @@ async function handleForm(req, res) {
 }
 
 app.post('/api/forms/:form', handleForm);
+// Tracking-Konfiguration für den Browser (Meta-Pixel, Google Ads) aus der Umgebung; ohne IDs lädt nichts.
+app.get('/assets/tracking-config.js', (_req, res) => {
+  res.type('application/javascript').set('Cache-Control', 'no-store').send(
+    trackingConfigScript({ leadPaths: Object.values(forms).map((f) => f.redirect), privacyPath: '/datenschutz', tone: 'sie' })
+  );
+});
 app.get('/health', (_req, res) => res.type('text/plain').send('ok'));
 
 // One address per page: /system.html and /index.html redirect permanently to the
