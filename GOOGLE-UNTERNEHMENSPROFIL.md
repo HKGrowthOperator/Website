@@ -6,6 +6,28 @@ nichts abweichend schreiben, Google gleicht das ab.
 
 Profil bearbeiten: `business.google.com` → Profil „HK Growth“ → „Profil bearbeiten“.
 
+## Profilstärke: was das Profil heute zurückhält (Stand 7. Oktober 2026)
+
+Google zeigt für „HK Growth“ eine niedrige Profilstärke. Grund ist nicht die Website,
+sondern das Profil selbst: Kategorie „Unternehmensberater“, Öffnungszeiten „rund um die
+Uhr“, kein Telefon, keine Fotos, keine Produkte, keine Leistungen, keine Beschreibung,
+keine Beiträge, Einzugsgebiet „Deutschland“. Reihenfolge nach Wirkung:
+
+| Nr. | Eintrag | Was eintragen | Warum |
+| --- | --- | --- | --- |
+| 1 | Kategorie | Hauptkategorie „Softwareunternehmen“, dazu „Unternehmensberater“ und „Webdesigner“ | Entscheidet, bei welchen Suchen das Profil erscheint (CRM, Sales-App, Webdesign) |
+| 2 | Telefon | 0175 4547011 | Anruf-Button in der Suche, Pflichtfeld für hohe Profilstärke |
+| 3 | Öffnungszeiten | Echte Bürozeiten, z. B. Mo–Fr 9–18 Uhr, statt „rund um die Uhr“ | „Rund um die Uhr“ wirkt unglaubwürdig und wird von Google hinterfragt |
+| 4 | Standort und Einzugsgebiet | Adresse Marienheide anzeigen; Einzugsgebiet Oberbergischer Kreis, Köln, Bergisches Land, NRW | Lokale Treffer für „Gummersbach“, „Oberberg“, „Köln“; „Deutschland“ verwässert die Nähe |
+| 5 | Logo, Titelbild, Fotos | Logo, Titelbild, drei bis fünf Fotos (Büro, Team, Screenshots DealUno und Deal Operator) | Ohne Fotos bleibt die Profilstärke niedrig; Fotos bringen die meisten Klicks |
+| 6 | Beschreibung | Text unten (max. 750 Zeichen) | Verbindet die vier Marken mit dem Profil |
+| 7 | Produkte | DealUno, Deal Operator (0 €), Webstudio, HK Growth OS mit Link | Produktkarten unter dem Profil, jede mit eigenem Link |
+| 8 | Leistungen | Prozessautomatisierung, Sales-Software, Webdesign, SEO/GEO | Zusätzliche Suchbegriffe für das Profil |
+| 9 | Terminlink, Beitrag, Fragen | Terminlink auf das Erstgespräch, erster Beitrag, drei Fragen und Antworten | Aktivität hält das Profil aktuell |
+| 10 | Bewertungen | Fünf Bewertungen von Kunden oder Deal-Operator-Mitgliedern mit Nennung von DealUno oder Webstudio | Sterne in der Suche, größter Einzelfaktor für Klicks |
+
+Die Punkte 1 bis 5 heben die Profilstärke sofort; 6 bis 10 sind die Inhalte aus diesem Dokument.
+
 ## Stammdaten
 
 | Feld | Wert |
@@ -17,7 +39,7 @@ Profil bearbeiten: `business.google.com` → Profil „HK Growth“ → „Profi
 | Telefon | 0175 4547011 |
 | Website | https://hk-growthoperator.de |
 | Termin-Link | https://hk-growthoperator.de/#erstgespraech |
-| Einzugsgebiet | Marienheide, Gummersbach, Oberbergischer Kreis, Köln, Bergisches Land, Nordrhein-Westfalen, Deutschland |
+| Einzugsgebiet | Marienheide, Gummersbach, Oberbergischer Kreis, Köln, Bergisches Land, Nordrhein-Westfalen (nicht „Deutschland“ allein, das verwässert die lokale Nähe) |
 | E-Mail | info@hk-growthoperator.de |
 
 Alternativ als Termin-Link: `https://website.hk-growthoperator.de/#termin`.
