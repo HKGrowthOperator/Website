@@ -6,7 +6,7 @@ ENV NODE_ENV=production
 COPY package*.json ./
 RUN npm ci --omit=dev
 
-COPY server.mjs ./server.mjs
+COPY server.mjs meta-capi.mjs ./
 COPY site ./site
 
 EXPOSE 3000
