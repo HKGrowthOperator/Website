@@ -53,68 +53,78 @@ HK Growth Operator baut KI-Betriebssysteme und Prozessautomatisierung für den M
 ## Produkte (Profil → „Produkte“ → „Produkt hinzufügen“)
 
 Jedes Produkt mit Bild (Logo oder Screenshot, mindestens 720 × 720 px), Name, Kategorie,
-Beschreibung und Button „Weitere Informationen“ mit dem Link.
+Beschreibung und Button „Weitere Informationen“ mit dem Link. Die Texte tragen die Begriffe,
+unter denen das Angebot gesucht wird (Google-Grenzen: Name 58 Zeichen, Beschreibung 1000 Zeichen).
 
 ### 1. DealUno
 
 | Feld | Wert |
 | --- | --- |
-| Produktname | DealUno · Sales-App & CRM für die Kaltakquise |
+| Produktname | DealUno: Sales-App & CRM für Kaltakquise im B2B |
 | Kategorie | Vertriebssoftware |
 | Preis | Preisangabe weglassen (Pakete ab Start, auf der Website) |
 | Button | Weitere Informationen → https://dealuno.hk-growthoperator.de/ |
+| Begriffe im Text | Kaltakquise-Software, Telefonakquise, CRM für Vertriebsteams, Sales-App, Power Dialer, Lead Radar, Lead Score, Setter und Closer, Vertriebsautomatisierung, Vertriebssoftware KMU |
 
 ```
-DealUno bringt den ganzen Vertrieb an einen Ort. Der Lead Radar findet passende Unternehmen und bewertet sie mit einem Lead Score von 1 bis 10. In der Anrufsession arbeiten Sie mit Power Dialer, Skript, Einwandbehandlung und Infomail direkt im Gespräch; zugesagte Rückrufe erscheinen automatisch zum vereinbarten Zeitpunkt. Der Vertriebsprozess übergibt sauber vom Opener an den Setter und vom Setter an den Closer, alle Informationen bleiben am Lead. Pakete Start, Team und Enterprise mit persönlicher Einrichtung. Von HK Growth, aus eigener Vertriebsarbeit entstanden.
+DealUno ist die Sales-App und das CRM für die B2B-Kaltakquise: Kaltakquise-Software, Telefonakquise-Software und Vertriebssoftware für KMU in einem System. Der Lead Radar übernimmt die B2B-Leadrecherche und bewertet jedes Unternehmen mit einem Lead Score von 1 bis 10. In der Anrufsession arbeiten Sie mit Power Dialer, Gesprächsskript, Einwandbehandlung und Infomail direkt im Gespräch; zugesagte Rückrufe erscheinen automatisch zum vereinbarten Zeitpunkt. Der Vertriebsprozess übergibt sauber vom Opener an den Setter und vom Setter an den Closer; Gesprächsverlauf, Mails und Zusagen bleiben am Lead. Dazu Vertriebsautomatisierung fürs Nachfassen, Kaltakquise-KPIs wie Terminquote und Erreichbarkeit je Rolle, Lead Scoring und B2B-Leadgenerierung ohne gekaufte Adresslisten. Eigene Datenbank auf EU-Servern, persönliche Einführung, Pakete Start, Team und Enterprise ab zwei Nutzern. Deutsche Alternative zu Pipedrive, Close und Aircall. Kostenfreie Demo.
 ```
 
 ### 2. Deal Operator
 
 | Feld | Wert |
 | --- | --- |
-| Produktname | Deal Operator · Kostenfreie Sales-Community |
+| Produktname | Deal Operator: kostenfreie Sales-Community zum Callen |
 | Kategorie | Community |
 | Preis | 0 € |
 | Button | Weitere Informationen → https://dealoperator.hk-growthoperator.de/ |
+| Begriffe im Text | Sales-Community, Cold-Calling-Community, Kaltakquise-Challenge, Tagesabschluss, Calling-Tag, Rangliste, Discord, Opener, Setter, Closer, Cold-Calling-Routine |
 
 ```
-Deal Operator ist das kostenfreie Werkzeug fürs gemeinsame Callen. Jeden Calling-Tag Anwahlen, Settings, Closings und Learnings festhalten, die eigene Serie und das Leistungslevel sehen, in der Rangliste dranbleiben. Reflexionen, Call-Partner und Sessions ergänzen den Alltag; die Discord-Runde liefert Antworten und Austausch. Für Opener, Setter und Closer, die wirklich callen. Anmelden, Zahlen eintragen, dranbleiben.
+Deal Operator ist die kostenfreie Sales-Community und Cold-Calling-Community von HK Growth fürs gemeinsame Callen. Jeden Calling-Tag Anwahlen, Erreichte, Settings, Closings und Learnings im Tagesabschluss festhalten, die eigene Serie und das Leistungslevel sehen, in der Rangliste dranbleiben: eine dauerhafte Kaltakquise-Challenge statt einer Aktion für zwei Wochen. Call-Partner, Sessions und Reflexionen bauen eine Cold-Calling-Routine auf; die Discord-Runde liefert Austausch zu Skript, Einwandbehandlung, Vorzimmer und Terminquote. Für Opener, Setter, Closer, Selbstständige und kleine Vertriebsteams, die Telefonakquise wirklich machen. Ohne Testphase, ohne Paket, ohne Kosten. Anmelden, Zahlen eintragen, dranbleiben.
 ```
 
 ### 3. HK Growth Webstudio
 
 | Feld | Wert |
 | --- | --- |
-| Produktname | Webstudio · Websites mit SEO und Anfrage-Automation |
+| Produktname | HK Growth Webstudio: Website erstellen lassen, Festpreis |
 | Kategorie | Webdesign |
 | Preis | Preisangabe weglassen (Festpreis nach Erstgespräch) |
 | Button | Weitere Informationen → https://website.hk-growthoperator.de/ |
+| Begriffe im Text | Webdesign Gummersbach, Webdesign Oberberg, Webdesign Köln, Website erstellen lassen, Website-Relaunch, lokale SEO, Google Unternehmensprofil, KI-Sichtbarkeit (GEO), Terminbuchung, Anfrage-Automation, Website für Handwerker, Website für Vereine |
 
 ```
-Unternehmenswebsites in 2 bis 4 Wochen: klare Positionierung, technisches SEO, Sichtbarkeit in Google und KI-Suchen (GEO), Terminbuchung und Anfrage-Automation. Jede Anfrage wird gespeichert, eingeordnet und sofort weitergeleitet, per E-Mail, ins CRM oder in DealUno; der Kunde bekommt automatisch eine Bestätigung. Selbst gehostete Schriften, keine Cookies, keine Tracker. Aus Marienheide für das Bergische Land, Köln und ganz Deutschland. Festpreis nach dem Erstgespräch.
+Webdesign aus Marienheide für Gummersbach, den Oberbergischen Kreis, Köln und das Bergische Land: Unternehmenswebsite, Onepager oder Website-Relaunch in 2 bis 4 Wochen zum Festpreis statt nach Agenturstunden. Inklusive Positionierung, Texte, technisches SEO, lokale Suchmaschinenoptimierung mit Google Unternehmensprofil, KI-Sichtbarkeit (GEO) für ChatGPT, Perplexity und Google AI Overview mit llms.txt und strukturierten Daten, Online-Terminbuchung und Anfrage-Automation: Jede Anfrage wird gespeichert, eingeordnet und sofort weitergeleitet, per E-Mail, ins CRM oder in DealUno. Websites für Handwerker, Vereine, Dienstleister, Berater, Kanzleien und Praxen. Selbst gehostete Schriften, keine Cookies, keine Tracker. Referenzen: Citroën Club Rhein-Ruhr, SC Merzenich.
 ```
 
 ### 4. HK Growth OS
 
 | Feld | Wert |
 | --- | --- |
-| Produktname | HK Growth OS · KI-Betriebssystem für operative Abläufe |
+| Produktname | HK Growth OS: Prozessautomatisierung bis zur Rechnung |
 | Kategorie | Unternehmenssoftware |
 | Preis | Preisangabe weglassen |
-| Button | Weitere Informationen → https://hk-growthoperator.de/system |
+| Button | Weitere Informationen → https://hk-growthoperator.de/prozessautomatisierung |
+| Begriffe im Text | Prozessautomatisierung Mittelstand, KI-Betriebssystem, Angebotserstellung automatisieren, Auftragsabwicklung, Nachkalkulation, Rechnungsstellung automatisieren, KI-Agentur Oberberg, KI-Agentur Köln, Handwerk, Bau, Service, Maschinenbau |
 
 ```
-HK Growth OS verbindet Anfragen, Angebote, Aufträge, Zeiterfassung, Nachkalkulation und Rechnungen in einem System. Auftragssteuerung, Übergaben und Rechnungsablauf laufen automatisiert, ERP, CRM und Buchhaltung bleiben angebunden. KI übernimmt die Vorarbeit, Menschen prüfen, entscheiden und führen. Für technische B2B-Unternehmen und den Mittelstand. Prozess-Check und ROI-Rechner auf der Website, Einführung in Prozessaufnahme, Pilot, Test und Rollout.
+HK Growth OS ist das KI-Betriebssystem für Prozessautomatisierung im Mittelstand: Anfrage, Angebotserstellung, Auftragsabwicklung, Zeiterfassung, Nachkalkulation und Rechnungsstellung in einem Ablauf. Auftragssteuerung, Übergaben und Rechnungslauf laufen automatisiert; ERP, CRM und Buchhaltung bleiben angebunden, keine Softwaremigration. KI-Agenten übernehmen die Vorarbeit, Menschen prüfen, geben frei und führen. Für Handwerk, Bauunternehmen, technischen Service, Maschinenbau und technische B2B-Unternehmen, von der Prozessaufnahme über den Pilot bis zum Rollout. KI-Agentur für den Oberbergischen Kreis, Köln und ganz Deutschland. Prozess-Check und ROI-Rechner kostenlos auf der Website.
 ```
 
-## Leistungen (Profil → „Leistungen“)
+## Leistungen (Profil → „Leistungen“, je Leistung Name und Beschreibung bis 300 Zeichen)
 
-- Prozessautomatisierung
-- KI-Betriebssystem / Auftragssteuerung
-- Vertriebssoftware und CRM (DealUno)
-- Sales-Community und Vertriebstraining (Deal Operator)
-- Webdesign und Website-Erstellung
-- Suchmaschinenoptimierung (SEO) und KI-Sichtbarkeit (GEO)
+| Leistung | Beschreibung |
+| --- | --- |
+| Prozessautomatisierung für den Mittelstand | Abläufe von der Anfrage über Angebot, Auftrag und Zeiterfassung bis zur Rechnung automatisieren. Workflow-Automatisierung mit KI-Agenten, ERP und Buchhaltung bleiben angebunden. Prozess-Check kostenlos. |
+| Angebotserstellung, Auftragsabwicklung und Rechnungsstellung automatisieren | Angebote in Stunden statt Tagen, Auftragssteuerung ohne Nachfragen, Rechnung direkt nach Abschluss, Nachkalkulation live je Auftrag. Für Handwerk, Bau, technischen Service und Maschinenbau. |
+| KI-Beratung und KI-Agentur | Prozessaufnahme vor Ort im Oberbergischen Kreis und in Köln, Systemlogik, Pilot in Wochen, Rollout mit Freigaben durch Menschen. Transparenz nach EU AI Act. |
+| Vertriebssoftware und CRM-Einführung (DealUno) | Kaltakquise-Software mit Lead Radar, Lead Score, Power Dialer, Gesprächsskript, Einwandbehandlung und Vertriebsprozess für Opener, Setter und Closer. Persönliche Einrichtung, Daten auf EU-Servern. |
+| Sales-Community und Cold-Calling-Routine (Deal Operator) | Kostenfreie Community fürs gemeinsame Callen: Tagesabschluss je Calling-Tag, Serie, Rangliste, Discord-Runde. Für Opener, Setter, Closer und Selbstständige. |
+| Webdesign und Website erstellen lassen | Unternehmenswebsite, Onepager oder Website-Relaunch in 2 bis 4 Wochen zum Festpreis. Webdesign für Gummersbach, Marienheide, den Oberbergischen Kreis, Köln und das Bergische Land. |
+| Lokale SEO und Google Unternehmensprofil | Technisches SEO, Inhalte je Leistung und Ort, Google Unternehmensprofil einrichten und pflegen, Bewertungen aufbauen. Für Gummersbach, Oberberg und Köln. |
+| KI-Sichtbarkeit (GEO) | In ChatGPT, Perplexity, Copilot und Google AI Overview genannt werden: llms.txt, strukturierte Daten, FAQ und zitierfähige Inhalte für die eigene Website. |
+| Online-Terminbuchung und Anfrage-Automation | Termine direkt auf der Website buchen, Anfragen automatisch erfassen, einordnen und per E-Mail, ins CRM oder in DealUno weiterleiten, mit Bestätigung an den Kunden. |
 
 ## Erster Beitrag (Profil → „Beitrag hinzufügen“, max. 1500 Zeichen)
 
