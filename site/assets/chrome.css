@@ -53,3 +53,7 @@ body.hk-unified.legal-page .side{border-color:var(--chrome-line)}
 body.hk-unified .mobile-nav{display:none!important}
 @media(max-width:1100px){body.hk-unified .desktop-menu{display:none}body.hk-unified .site-header .site-nav{grid-template-columns:1fr auto}body.hk-unified .site-actions>.btn{display:none}body.hk-unified .mobile-menu-button{display:inline-flex;align-items:center}body.hk-unified .site-actions{gap:0}body.hk-unified .footer-grid{grid-template-columns:1.3fr repeat(2,1fr);row-gap:38px}}
 @media(max-width:760px){body.hk-unified .site-header .site-nav{height:64px;width:min(calc(100% - 28px),1360px)}body.hk-unified .site-brand{font-size:12px}body.hk-unified .site-brand .logo-slot{width:62px;height:28px}body.hk-unified .mobile-panel .container,body.hk-unified footer>.container{width:min(calc(100% - 28px),1360px)}body.hk-unified .footer-grid{grid-template-columns:1fr 1fr}body.hk-unified .footer-brand{grid-column:1/-1}body.hk-unified .footer-wordmark{font-size:26vw;margin-top:40px;margin-bottom:0}body.hk-unified .footer-bottom{flex-direction:column;gap:18px}body.hk-unified.legal-page .main{width:min(calc(100% - 28px),1180px)}}
+.footer-more{display:grid;gap:8px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(128,128,128,.25);font-size:12.5px;line-height:1.7;font-weight:400}
+.footer-more b{opacity:.65;font-weight:600;margin-right:4px}
+.footer-more a{opacity:.8}
+.footer-more a:hover{opacity:1}
